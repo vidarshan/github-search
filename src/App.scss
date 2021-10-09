@@ -15,23 +15,25 @@ body {
   font-family: "Calibre" !important;
 }
 
-.ui.grid {
-  display: flex;
-  flex-direction: column !important;
-  justify-content: center;
-  align-items: center !important;
-  height: 100vh;
-
-  .row {
-    display: flex !important;
+.home {
+  .ui.grid {
+    display: flex;
     flex-direction: column !important;
-    justify-content: center !important;
+    justify-content: center;
     align-items: center !important;
-  }
+    height: 100vh;
 
-  .ui.input {
-    font-family: "Calibre" !important;
-    height: 3rem;
-    width: 60%;
+    .row {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    .ui.input {
+      font-family: "Calibre" !important;
+      height: 3rem;
+      width: 60%;
+    }
   }
 }

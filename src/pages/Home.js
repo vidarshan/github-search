@@ -13,20 +13,22 @@ const Home = () => {
 
 
     return (
-        <Grid>
-            <Grid.Row className='github-home'>
-                <Header size='huge'>Githuber</Header>
-                <Input
-                    action={{
-                        icon: "search",
-                        onClick: () => history.push(`/search/${keyword}`)
-                    }}
-                    placeholder='Search...'
-                    onChange={(e) => setKeyword(e.target.value)}
-                />
+        <div className="home">
+            <Grid>
+                <Grid.Row className='github-home'>
+                    <Header size='huge'>Githuber</Header>
+                    <Input
+                        action={{
+                            icon: "search",
+                            onClick: () => history.push(`/search/${keyword}`)
+                        }}
+                        placeholder='Search...'
+                        onChange={(e) => setKeyword(e.target.value)}
+                    />
 
-            </Grid.Row>
-        </Grid>
+                </Grid.Row>
+            </Grid>
+        </div>
     )
 }
 
