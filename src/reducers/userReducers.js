@@ -1,4 +1,4 @@
-import { USER_SEARCH_SUCCESS, USER_SEARCH_FAIL, USER_SEARCH_REQUEST } from '../constants/userConstants';
+import { USER_SEARCH_SUCCESS, USER_SEARCH_FAIL, USER_SEARCH_REQUEST, USER_GET_REQUEST, USER_GET_SUCCESS, USER_GET_FAIL } from '../constants/userConstants';
 
 export const userSearchReducer = (
     state = { userSearch: [] },
@@ -15,3 +15,16 @@ export const userSearchReducer = (
             return state;
     }
 };
+
+export const getUserReducer = (state = { getUser: {} }, action) => {
+    switch (action.type) {
+        case USER_GET_REQUEST:
+            return { ...state, loading: true };
+        case USER_GET_SUCCESS:
+            return { ...state, loading: false, getUser: action.payload };
+        case USER_GET_FAIL:
+            return { ...state, loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
