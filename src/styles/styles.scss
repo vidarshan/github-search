@@ -4,7 +4,18 @@
 }
 
 html {
+  margin: 1rem;
+  border-radius: 2rem;
   font-family: "Calibre", "sans-serif" !important;
+  background: #e0e5ec;
+  color: rgb(54, 54, 54);
+  padding: 2rem;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
 }
 
 .home {
@@ -58,6 +69,10 @@ html {
         border: 2px solid black;
         padding: 0.2rem;
         border-radius: 50%;
+        box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+          7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
       }
 
       .result-login {
@@ -67,6 +82,173 @@ html {
 
       .result-details {
         color: blue;
+      }
+    }
+  }
+}
+
+.profile {
+  .img-container {
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 1rem;
+
+    .profile-img {
+      height: 10rem;
+      width: 10rem;
+      padding: 0.5rem;
+      border-radius: 50%;
+      box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+        7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
+        inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
+        inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
+    }
+
+    .profile-name {
+      margin-top: 1rem;
+      font-size: 2rem;
+    }
+
+    .profile-bio {
+      font-size: 1.2rem;
+      color: rgb(104, 104, 104);
+    }
+  }
+
+  .follow-social {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 1rem;
+    margin: 1rem;
+    box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+      7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001, inset 0px 0px 0px 0px #fff9,
+      inset 0px 0px 0px 0px #0001, inset 0px 0px 0px 0px #fff9,
+      inset 0px 0px 0px 0px #0001;
+
+    .following-followers {
+      display: flex;
+      justify-content: center;
+
+      .follows {
+        display: flex;
+        flex-direction: column;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 1rem;
+        margin: 1rem;
+        font-size: 1.2rem;
+        border-radius: 1rem;
+        box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+          7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
+      }
+    }
+    .blog-twitter-email {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .social {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem;
+        padding: 1rem;
+        font-size: 1.2rem;
+        border-radius: 1rem;
+        box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+          7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
+      }
+    }
+  }
+
+  .info {
+    text-align: center;
+    margin: 1rem;
+    border-radius: 1rem;
+    box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+      7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001, inset 0px 0px 0px 0px #fff9,
+      inset 0px 0px 0px 0px #0001, inset 0px 0px 0px 0px #fff9,
+      inset 0px 0px 0px 0px #0001;
+
+    .section-heading {
+      padding-top: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: #e0e5ec;
+      font-size: 1.2rem;
+      margin: 0 1rem;
+
+      .item {
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        text-align: center;
+        box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+          7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
+      }
+    }
+  }
+
+  .items {
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      margin: 2rem 1rem;
+      border-radius: 1rem;
+      box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+        7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
+        inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
+        inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
+
+      .repos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+          7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
+      }
+
+      .gists {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+          7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
+      }
+
+      .starred {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+          7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
       }
     }
   }
