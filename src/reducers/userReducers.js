@@ -73,11 +73,11 @@ export const getUserGists = (state = { userGists: [] }, action) => {
 
 export const getUserStarred = (state = { userStarred: [] }, action) => {
     switch (action.type) {
-        case USER_GET_REPOS_REQUEST:
+        case USER_GET_STARRED_REQUEST:
             return { ...state, loading: true };
-        case USER_GET_REPOS_SUCCESS:
+        case USER_GET_STARRED_SUCCESS:
             return { ...state, loading: false, userStarred: action.payload };
-        case USER_GET_REPOS_FAIL:
+        case USER_GET_STARRED_FAIL:
             return { ...state, loading: false, error: action.payload }
         default:
             return state;

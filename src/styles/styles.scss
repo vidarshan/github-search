@@ -87,7 +87,40 @@ html {
   }
 }
 
+// .user-type {
+//   position: absolute;
+//   top: 10rem !important;
+//   left: 50%;
+//   background-color: white;
+//   border-radius: 50%;
+//   height: 1rem;
+//   width: 1rem;
+//   font-size: 2rem;
+// }
+
 .profile {
+  .back-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 16px;
+    padding: 0.5rem 1rem;
+    width: max-content;
+    border-radius: 1rem;
+    cursor: pointer;
+    box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+      7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001, inset 0px 0px 0px 0px #fff9,
+      inset 0px 0px 0px 0px #0001, inset 0px 0px 0px 0px #fff9,
+      inset 0px 0px 0px 0px #0001;
+  }
+
+  .back-btn:hover {
+    box-shadow: 1px 1px 2px 0 rgba(255, 255, 255, 0.5),
+      -1px -1px 2px 0 rgba(116, 125, 136, 0.2),
+      inset -1px -1px 2px 0 rgba(255, 255, 255, 0.5),
+      inset 1px 1px 2px 0 rgba(116, 125, 136, 0.3);
+  }
+
   .img-container {
     display: flex;
     flex-direction: column !important;
@@ -202,53 +235,56 @@ html {
   }
 
   .items {
+    text-align: center;
+    margin: 3rem 1rem 1rem 1rem;
+    border-radius: 1rem;
+    box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+      7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001, inset 0px 0px 0px 0px #fff9,
+      inset 0px 0px 0px 0px #0001, inset 0px 0px 0px 0px #fff9,
+      inset 0px 0px 0px 0px #0001;
+
+    .section-heading {
+      padding-top: 1rem;
+      font-size: 1.5rem;
+    }
+
     .items-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      margin: 2rem 1rem;
-      border-radius: 1rem;
-      box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
-        7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
-        inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
-        inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
+      margin: 1rem 1rem 2rem 1rem;
 
-      .repos {
+      .items {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         margin: 1rem;
         padding: 1rem;
         border-radius: 1rem;
+        font-size: 1.1rem;
+        text-decoration: none;
+        color: inherit !important;
+        cursor: pointer;
         box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
           7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
           inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
           inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
       }
 
-      .gists {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 1rem;
-        padding: 1rem;
-        border-radius: 1rem;
-        box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
-          7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
-          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
-          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
+      .items:active {
+        transition: 1s;
+        box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5),
+          -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+          inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
+          inset 4px 4px 6px 0 rgba(116, 125, 136, 0.3);
       }
 
-      .starred {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 1rem;
-        padding: 1rem;
-        border-radius: 1rem;
-        box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
-          7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
-          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
-          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
+      .items:hover {
+        box-shadow: 1px 1px 2px 0 rgba(255, 255, 255, 0.5),
+          -1px -1px 2px 0 rgba(116, 125, 136, 0.2),
+          inset -1px -1px 2px 0 rgba(255, 255, 255, 0.5),
+          inset 1px 1px 2px 0 rgba(116, 125, 136, 0.3);
+        transition: ease 5s;
       }
     }
   }

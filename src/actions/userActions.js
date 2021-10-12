@@ -140,7 +140,7 @@ export const getUserStarred = (user) => async (dispatch) => {
             payload: data,
         });
 
-        console.log(data)
+        console.log(data.length)
 
     } catch (error) {
         dispatch({
