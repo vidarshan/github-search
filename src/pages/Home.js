@@ -1,4 +1,3 @@
-import 'boxicons';
 import { useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { FaSearch } from "react-icons/fa";
