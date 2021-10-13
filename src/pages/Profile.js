@@ -18,12 +18,9 @@ const Profile = ({ match }) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const repoError = true;
-    const starredError = true;
-
     const { loading: userLoading, error: userError, getUser: user } = useSelector((state) => state.getUser);
-    const { loading: repoLoading, userRepos: repos } = useSelector((state) => state.userRepos);
-    const { loading: starredLoading, userStarred: starred } = useSelector((state) => state.userStarred);
+    const { loading: repoLoading, error: repoError, userRepos: repos } = useSelector((state) => state.userRepos);
+    const { loading: starredLoading, error: starredError, userStarred: starred } = useSelector((state) => state.userStarred);
 
     const goBackHandler = () => {
         history.goBack()
@@ -66,15 +63,16 @@ const Profile = ({ match }) => {
                         </div>
                     </div>
                     <div className="blog-twitter-email">
-                        <div className="social">
+                        {user.blog && <div className="social">
                             🌎 Website
                             <br />
-                            <span>{user.blog}</span>
-                        </div>
+                            <a className='social-link' href={user.blog} target='_blank' rel='noreferrer'>  {user.blog}</a>
+                        </div>}
+
                         <div className="social">
                             📩 Twitter
                             <br />
-                            <span>{user.twitter_username}</span>
+                            <a className='social-link' href={`https://twitter.com/${user.twitter_username}`} target='_blank' rel='noreferrer'> @{user.twitter_username}</a>
                         </div>
                     </div>
                 </div>

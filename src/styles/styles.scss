@@ -250,6 +250,32 @@ html {
           inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
           inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
       }
+
+      .social {
+        display: flex;
+        flex-direction: column;
+        justify-content: center !important;
+        align-items: center;
+        margin: 1rem;
+        padding: 1rem;
+        font-size: 1.2rem;
+        border-radius: 1rem;
+        box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+          7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001,
+          inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
+
+        .social-link {
+          color: inherit;
+          cursor: pointer;
+        }
+      }
+
+      .social:hover {
+        .social-link {
+          text-decoration: underline;
+        }
+      }
     }
   }
 
