@@ -23,10 +23,7 @@ export const searchUser = (keyword) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_SEARCH_FAIL,
-            payload:
-                error.response && error.response.data.msg
-                    ? error.response.data.msg
-                    : error.msg,
+            payload: 'An error occurred'
         });
     }
 };
@@ -50,10 +47,7 @@ export const getUserInfo = (user) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_GET_FAIL,
-            payload:
-                error.response && error.response.data.msg
-                    ? error.response.data.msg
-                    : error.msg,
+            payload: 'An error occurred'
         });
     }
 };
@@ -78,10 +72,7 @@ export const getUserRepos = (user) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_GET_REPOS_FAIL,
-            payload:
-                error.response && error.response.data.msg
-                    ? error.response.data.msg
-                    : error.msg,
+            payload: 'An error occurred'
         });
     }
 };
@@ -106,10 +97,7 @@ export const getUserGists = (user) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_GET_GISTS_FAIL,
-            payload:
-                error.response && error.response.data.msg
-                    ? error.response.data.msg
-                    : error.msg,
+            payload: 'An error occurred'
         });
     }
 };
@@ -134,10 +122,7 @@ export const getUserStarred = (user) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_GET_STARRED_FAIL,
-            payload:
-                error.response && error.response.data.msg
-                    ? error.response.data.msg
-                    : error.msg,
+            payload: 'An error occurred'
         });
     }
 };

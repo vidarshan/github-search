@@ -145,10 +145,10 @@ const Profile = ({ match }) => {
                     <div className="section-heading"><VscStarFull /> Starred Repositories</div>
                     <div className="items-grid">
                         {map(starred, (star) => {
-                            return <div className='items' rel="noreferrer" href={replace(star.url, 'api.github.com/repos', 'github.com')}>
+                            return <a className='items' rel="noreferrer" href={replace(star.url, 'api.github.com/repos', 'github.com')}>
                                 <div className="icon"><VscStarFull /></div>
                                 <div className="name">{star.name}</div>
-                            </div>
+                            </a>
                         })}
                     </div>
                 </div>

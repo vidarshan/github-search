@@ -4,7 +4,6 @@
 }
 
 html {
-  margin: 1rem;
   border-radius: 2rem;
   font-family: "Calibre", "sans-serif" !important;
   background: #e0e5ec;
@@ -168,6 +167,7 @@ html {
 }
 
 .profile {
+  margin: 2rem;
   .img-container {
     display: flex;
     flex-direction: column !important;
@@ -426,5 +426,35 @@ html {
     100% {
       opacity: 0;
     }
+  }
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  font-size: 2rem;
+
+  img {
+    height: 5rem;
+  }
+
+  .msg {
+    padding-top: 1rem;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  padding: 1rem;
+
+  .icon {
+    margin-left: 0.5rem;
+    color: inherit;
   }
 }

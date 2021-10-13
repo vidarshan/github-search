@@ -7,6 +7,7 @@ import { Fade } from 'react-awesome-reveal';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import Loader from '../components/Loader';
+import Error from '../components/Error';
 
 
 const Results = ({ match }) => {
@@ -15,7 +16,6 @@ const Results = ({ match }) => {
     const dispatch = useDispatch();
 
     const searchResults = useSelector((state) => state.userSearch);
-
 
     const { loading, userSearch, error } = searchResults;
 
@@ -32,7 +32,7 @@ const Results = ({ match }) => {
 
     return (
         <Fade direction={'left'}>
-            {loading ? <Loader /> : error ? <h1>Error</h1> : <>
+            {loading ? <Loader /> : error ? <Error /> : <>
                 <div className="results">
                     <div className="back-btn" onClick={() => goBackHandler()}>
                         <div className="icon">
