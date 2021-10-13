@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import 'boxicons';
+import { useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { FaSearch } from "react-icons/fa";
 import { BsGithub } from 'react-icons/bs';
-import { Link, useHistory } from 'react-router-dom';
-import 'boxicons';
+import { useHistory } from 'react-router-dom';
 
 
 

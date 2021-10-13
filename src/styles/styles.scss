@@ -345,6 +345,7 @@ html {
 
 .loader {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 90vh;
@@ -427,6 +428,10 @@ html {
       opacity: 0;
     }
   }
+
+  .text {
+    margin-top: 1rem;
+  }
 }
 
 .error {
@@ -435,7 +440,7 @@ html {
   justify-content: center;
   align-items: center;
   height: 90vh;
-  font-size: 2rem;
+  font-size: 1rem;
 
   img {
     height: 5rem;

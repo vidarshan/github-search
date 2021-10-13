@@ -25,8 +25,6 @@ const Results = ({ match }) => {
 
     useEffect(() => {
         dispatch(searchUser(match.params.word))
-
-        { console.log(match.params) }
     }, [match, dispatch])
 
 

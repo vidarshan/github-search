@@ -9,6 +9,8 @@ import map from 'lodash.map';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfo, getUserRepos, getUserStarred } from '../actions/userActions';
 import { replace } from 'lodash';
+import Loader from '../components/Loader';
+import Error from '../components/Error';
 
 
 const Profile = ({ match }) => {
@@ -16,9 +18,12 @@ const Profile = ({ match }) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
+    const repoError = true;
+    const starredError = true;
+
     const { loading: userLoading, error: userError, getUser: user } = useSelector((state) => state.getUser);
-    const { loading: repoLoading, error: repoError, userRepos: repos } = useSelector((state) => state.userRepos);
-    const { loading: starredLoading, error: starredError, userStarred: starred } = useSelector((state) => state.userStarred);
+    const { loading: repoLoading, userRepos: repos } = useSelector((state) => state.userRepos);
+    const { loading: starredLoading, userStarred: starred } = useSelector((state) => state.userStarred);
 
     const goBackHandler = () => {
         history.goBack()
@@ -32,8 +37,7 @@ const Profile = ({ match }) => {
 
     return (
         <Fade direction={'left'}>
-
-            <div className='profile'>
+            {userLoading ? <Loader msg={'Loading Profile'} /> : userError ? <Error error={'Error occurred when getting profile'} /> : <div className='profile'>
                 <div className="back-btn" onClick={() => goBackHandler()}>
                     <div className="icon">
                         <FiArrowLeft />
@@ -127,7 +131,7 @@ const Profile = ({ match }) => {
                     </div>
                 </div>
 
-                <div className="items">
+                {repoLoading ? <Loader msg={'Loading Repositories'} /> : repoError ? <Error error={'Error occurred when getting Repositories'} /> : <div className="items">
                     <div className="section-heading"><VscFolder /> Public Repositories</div>
                     <div className="items-grid">
 
@@ -139,9 +143,9 @@ const Profile = ({ match }) => {
                         })}
 
                     </div>
-                </div>
+                </div>}
 
-                <div className="items">
+                {starredLoading ? <Loader msg={'Loading Starred Repositories'} /> : starredError ? <Error error={'Error occurred when getting Stars'} /> : <div className="items">
                     <div className="section-heading"><VscStarFull /> Starred Repositories</div>
                     <div className="items-grid">
                         {map(starred, (star) => {
@@ -151,8 +155,11 @@ const Profile = ({ match }) => {
                             </a>
                         })}
                     </div>
-                </div>
-            </div>
+                </div>}
+
+
+            </div>}
+
         </Fade>
 
     )
