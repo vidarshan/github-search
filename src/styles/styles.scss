@@ -489,3 +489,148 @@ html {
     color: inherit;
   }
 }
+
+@media (max-width: 1280px) {
+  .results {
+    .results-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media (max-width: 1080px) {
+  .results {
+    .results-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .profile {
+    margin: 0rem;
+    .follow-social {
+      flex-direction: row;
+      .following-followers {
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .info {
+      .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 1.2rem;
+        margin: 0 1rem;
+      }
+    }
+
+    .items {
+      .items-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    padding: 1rem;
+    font-size: 70%;
+  }
+
+  .home {
+    .search {
+      width: 80%;
+      flex-direction: column;
+
+      input {
+        margin: 1rem 0;
+      }
+      .search-btn {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  .results {
+    .results-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .profile {
+    margin: 0rem;
+    .follow-social {
+      flex-direction: row;
+      .following-followers {
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .info {
+      .info-grid {
+        grid-template-columns: repeat(3, 1fr);
+        font-size: 1.2rem;
+        margin: 0 1rem;
+      }
+    }
+
+    .items {
+      .items-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  html {
+    padding: 1rem;
+    font-size: 70%;
+  }
+
+  .home {
+    .search {
+      width: 100%;
+      flex-direction: column;
+
+      input {
+        margin: 1rem 0;
+      }
+      .search-btn {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  .results {
+    .results-grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  .profile {
+    margin: 0rem;
+    .follow-social {
+      flex-direction: column;
+      .following-followers {
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .info {
+      .info-grid {
+        grid-template-columns: repeat(1, 1fr);
+        font-size: 1.2rem;
+        margin: 0 1rem;
+      }
+    }
+
+    .items {
+      .items-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+  }
+}
