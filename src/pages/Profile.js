@@ -39,7 +39,7 @@ const Profile = ({ match }) => {
                         <FiArrowLeft />
                     </div>
                     <div className="text">
-                        Back to Results
+                        Back
                     </div>
                 </div>
                 {/* <span className='user-type'>{user.type === 'User' ? '👤' : '🛡️'}</span> */}
@@ -47,6 +47,7 @@ const Profile = ({ match }) => {
                     <img className='profile-img' src={user.avatar_url} alt="" />
                     <span className='profile-name'>{user.name}</span>
                     <span className='profile-bio'>{user.bio}</span>
+                    {/* <div className='view-on-github'>View Profile on Github</div> */}
                 </div>
                 <div className="follow-social">
                     <div className="following-followers">

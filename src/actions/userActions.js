@@ -10,8 +10,6 @@ export const searchUser = (keyword) => async (dispatch) => {
             type: USER_SEARCH_REQUEST
         });
 
-        console.log(process.env)
-
         const { data } = await axios.get(
             ` https://api.github.com/search/users?q=${keyword}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`
         );
@@ -21,7 +19,6 @@ export const searchUser = (keyword) => async (dispatch) => {
             payload: data,
         });
 
-        console.log(data)
 
     } catch (error) {
         dispatch({
@@ -40,9 +37,6 @@ export const getUserInfo = (user) => async (dispatch) => {
             type: USER_GET_REQUEST
         });
 
-        console.log(process.env)
-
-
         const { data } = await axios.get(
             ` https://api.github.com/users/${user}?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`
         );
@@ -52,7 +46,6 @@ export const getUserInfo = (user) => async (dispatch) => {
             payload: data,
         });
 
-        console.log(data)
 
     } catch (error) {
         dispatch({
@@ -82,8 +75,6 @@ export const getUserRepos = (user) => async (dispatch) => {
             payload: data,
         });
 
-        console.log(data)
-
     } catch (error) {
         dispatch({
             type: USER_GET_REPOS_FAIL,
@@ -111,7 +102,6 @@ export const getUserGists = (user) => async (dispatch) => {
             payload: data,
         });
 
-        console.log(data)
 
     } catch (error) {
         dispatch({
@@ -140,7 +130,6 @@ export const getUserStarred = (user) => async (dispatch) => {
             payload: data,
         });
 
-        console.log(data.length)
 
     } catch (error) {
         dispatch({
