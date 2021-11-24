@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import Results from "./pages/Results";
 import "antd/dist/antd.css";
+import "./styles/styles.scss";
 
 function App() {
   return (
@@ -13,7 +14,6 @@ function App() {
         <Route path="/search/:word" component={Results} />
         <Route path="/profile/:name" component={Profile} />
       </div>
-      <Footer />
     </Router>
   );
 }

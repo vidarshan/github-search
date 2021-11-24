@@ -1,7 +1,8 @@
-import { Row, Col, Input, Space } from "antd";
+import { Row, Col, Input, Space, Typography, Layout } from "antd";
+
 import { AudioOutlined } from "@ant-design/icons";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 import { Fade } from "react-awesome-reveal";
 import { FaSearch } from "react-icons/fa";
@@ -9,6 +10,8 @@ import { BsGithub } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
 
 const { Search } = Input;
+const { Title } = Typography;
+const { Header, Content, Footer } = Layout;
 
 const Home = () => {
   const history = useHistory();
@@ -16,29 +19,41 @@ const Home = () => {
   const [keyword, setKeyword] = useState();
   const [disable, setDisable] = useState(true);
 
-  const searchHandler = (word) => {
-    if (!word) {
-      setDisable(true);
+  const searchHandler = () => {
+    if (!keyword) {
     } else {
-      setKeyword(word);
-      setDisable(false);
+      history.push(`/search/${keyword}`);
     }
   };
 
   return (
     // <Fade direction={"left"}>
-    <Row>
-      <Col style={{ backgroundColor: "red" }} span={24}>
-        <Space>
-          <Search
-            size="large"
-            placeholder="input search text"
-            onSearch={searchHandler}
-            style={{ width: 500 }}
-          />
-        </Space>
-      </Col>
-    </Row>
+    <div className="search-page">
+      <div className="search-container">
+        <Row justify="center">
+          <Title level={1}>Githuber [d/L]</Title>
+        </Row>
+        <Row justify="center">
+          <Title level={4}>Github search made simple!</Title>
+        </Row>
+        <Row justify="center">
+          <Col span={12}>
+            <Search
+              onChange={(e) => setKeyword(e.target.value)}
+              size="large"
+              placeholder="input search text"
+              onSearch={searchHandler}
+            />
+          </Col>
+        </Row>
+        <Row justify="center">
+          <Title level={5}>Powered by Github API</Title>
+        </Row>
+        <Row justify="center">
+          <Title level={5}>&copy; vidarshan</Title>
+        </Row>
+      </div>
+    </div>
     // <div className="home">
     //     <div class="icon">
     //       <BsGithub />{" "}
