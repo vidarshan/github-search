@@ -13,6 +13,11 @@
 
 .results-grid {
   margin: 0 2rem;
+
+  .ant-card-body {
+    text-align: center;
+    border-top: 1px solid rgb(167, 167, 167);
+  }
 }
 
 .ant-card-cover img {
@@ -20,11 +25,26 @@
   border-radius: 50% !important;
 }
 
-.ant-card-body {
-  text-align: center;
-  border-top: 1px solid rgb(167, 167, 167);
-}
 .profile-img {
   border-radius: 50%;
   height: 10rem;
 }
+
+.profile {
+  .main-row {
+    padding: 1rem;
+    background-color: rgb(236, 236, 236);
+    border-bottom: 2px solid rgb(182, 182, 182) !important;
+
+    .ant-col-4 {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+// #root {
+//   background-color: rgb(39, 39, 39) !important;
+// }

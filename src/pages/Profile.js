@@ -6,6 +6,12 @@ import { Fade } from "react-awesome-reveal";
 import CountUp from "react-countup";
 import moment from "moment";
 import map from "lodash.map";
+import {
+  FolderTwoTone,
+  StarTwoTone,
+  TwitterOutlined,
+  GlobalOutlined,
+} from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getUserInfo,
@@ -14,7 +20,7 @@ import {
 } from "../actions/userActions";
 import { replace } from "lodash";
 import Loader from "../components/Loader";
-import { Row, Col, Typography, Button } from "antd";
+import { Row, Col, Typography, Button, PageHeader, Space, Card } from "antd";
 import Error from "../components/Error";
 
 const { Title } = Typography;
@@ -57,92 +63,125 @@ const Profile = ({ match }) => {
         <Error error={"Error occurred when getting profile"} />
       ) : (
         <div className="profile">
-          <div className="back-btn" onClick={() => goBackHandler()}>
-            <div className="icon">
-              <FiArrowLeft />
-            </div>
-            <div className="text">Back</div>
-          </div>
-          <Row justify="center">
-            <img className="profile-img" src={user.avatar_url} alt="" />
-          </Row>
-          <Row justify="center">
-            <Title level={3}>{user.name}</Title>
-          </Row>
-          <Row justify="center">
-            <Title level={5}>{user.bio}</Title>
-          </Row>
-          <Row>
-            <Col>
-              <Button>View Profile on Github</Button>
+          <PageHeader
+            className="site-page-header"
+            onBack={() => goBackHandler()}
+            title="Back to Results"
+          />
+          <Row className="main-row">
+            <Col span={4}>
+              <img className="profile-img" src={user.avatar_url} alt="" />
             </Col>
-          </Row>
-          <Row>
-            <Col span={12}>
-              <CountUp duration={1} end={user.followers} separator="," />
+            <Col span={20}>
+              <Row>
+                <Col>
+                  <Title>{user.name}</Title>
+                </Col>
+              </Row>
+              <Row>
+                <Col span={24}>
+                  <Title level={5}>{user.bio}</Title>
+                </Col>
+              </Row>
+              <Row>
+                <Col span={6}>
+                  <Row>
+                    <CountUp duration={1} end={user.followers} separator="," />
+                  </Row>
+                  <Row>
+                    <Title level={5}>Followers</Title>
+                  </Row>
+                </Col>
+                <Col span={6}>
+                  <Row>
+                    <CountUp duration={5} end={user.following} />
+                  </Row>
+                  <Row>
+                    <Title level={5}>Following</Title>
+                  </Row>
+                </Col>
+              </Row>
+              <Row>
+                <Col span={6}>
+                  <Row>
+                    <Title level={5}>Joined</Title>
+                  </Row>
+                  <Row>
+                    <Title level={5}>
+                      {moment(user.created_at).format("MM-DD-YYYY")}
+                    </Title>
+                  </Row>
+                </Col>
+                <Col span={6}>
+                  <Row>
+                    <Title level={5}>Updated</Title>
+                  </Row>
+                  <Row>
+                    <Title level={5}>
+                      {moment(user.updated_at).format("MM-DD-YYYY")}
+                    </Title>
+                  </Row>
+                </Col>
+              </Row>
+              <Row>
+                <Col span={16}>
+                  <Button type="primary" style={{ backgroundColor: "#1ba14c" }}>
+                    View Profile on Github
+                  </Button>
+                </Col>
+                <Col span={4}>
+                  <Button
+                    type="primary"
+                    style={{ backgroundColor: "black" }}
+                    icon={<GlobalOutlined />}
+                    block
+                  ></Button>
+                </Col>
+                <Col span={4}>
+                  <Button
+                    style={{ backgroundColor: "#1DA1F2" }}
+                    icon={<TwitterOutlined />}
+                    block
+                  ></Button>
+                </Col>
+              </Row>
             </Col>
-            <Col span={12}>
-              <CountUp duration={5} end={user.following} />
-            </Col>
-          </Row>
-          <Row>
-            <Col> 🌎 Website {user.blog}</Col>
-            <Col>
-              📩 Twitter {`https://twitter.com/${user.twitter_username}`}
-            </Col>
-          </Row>
-          <Row>Profile</Row>
-          <Row>
-            <Col>📍 Location {user.location}</Col>
-            <Col>🏢 Organizations {user.company}</Col>
-            <Col>
-              📅 Date Joined {moment(user.created_at).format("MM-DD-YYYY")}
-            </Col>
-            <Col>
-              📅 Last Updated {moment(user.updated_at).format("MM-DD-YYYY")}
-            </Col>
-            <Col>💵 Hireable? {user.hireable ? "Yes" : "No"}</Col>
-            <Col>💵 Hireable? {user.hireable ? "Yes" : "No"}</Col>
-            <Col>💵 Hireable? {user.hireable ? "Yes" : "No"}</Col>
-            <Col>💵 Hireable? {user.hireable ? "Yes" : "No"}</Col>
-            <Col>💵 Hireable? {user.hireable ? "Yes" : "No"}</Col>
-            <Col>💵 Hireable? {user.hireable ? "Yes" : "No"}</Col>
-            <Col>💵 Hireable? {user.hireable ? "Yes" : "No"}</Col>
           </Row>
 
-          <br />
+          {/* <Col span={12}> 🌎 Website {user.blog}</Col>
+            <Col span={12}>
+              📩 Twitter {`https://twitter.com/${user.twitter_username}`}
+            </Col> */}
 
           {repoLoading ? (
             <Loader msg={"Loading Repositories"} />
           ) : repoError ? (
             <Error error={"Error occurred when getting Repositories"} />
           ) : (
-            <div className="items">
-              <div className="section-heading">
-                <VscFolder /> Public Repositories
-              </div>
-              <div className="items-grid">
+            <>
+              <Row justify="center">
+                <Title level={4}>
+                  <FolderTwoTone /> Public Repositories
+                </Title>
+              </Row>
+              <Row>
                 {map(repos, (repo) => {
                   return (
-                    <a
-                      className="items"
-                      rel="noreferrer"
-                      href={replace(
-                        repo.url,
-                        "api.github.com/repos",
-                        "github.com"
-                      )}
-                      target="_blank"
-                    >
-                      <div className="icon">
-                        <VscFolder />
-                      </div>
-                      <div className="name">{repo.name}</div>
-                    </a>
+                    <Col xs={24} sm={12} md={8} lg={8} xl={6}>
+                      <Card hoverable style={{ margin: "1rem" }}>
+                        <Row justify="center">
+                          <FolderTwoTone style={{ fontSize: "32px" }} />
+                        </Row>
+                        <Row justify="center">
+                          <p>{repo.name}</p>
+                        </Row>
+                        <Button block>View Repository</Button>
+                      </Card>
+                    </Col>
                   );
                 })}
-              </div>
-            </div>
+              </Row>
+            </>
           )}
 
           {starredLoading ? (
@@ -151,29 +190,28 @@ const Profile = ({ match }) => {
             <Error error={"Error occurred when getting Stars"} />
           ) : (
             <div className="items">
-              <div className="section-heading">
-                <VscStarFull /> Starred Repositories
-              </div>
-              <div className="items-grid">
+              <Row justify="center">
+                <Title level={4}>
+                  <StarTwoTone /> Starred Repositories
+                </Title>
+              </Row>
+              <Row>
                 {map(starred, (star) => {
                   return (
-                    <a
-                      className="items"
-                      rel="noreferrer"
-                      href={replace(
-                        star.url,
-                        "api.github.com/repos",
-                        "github.com"
-                      )}
-                    >
-                      <div className="icon">
-                        <VscStarFull />
-                      </div>
-                      <div className="name">{star.name}</div>
-                    </a>
+                    <Col xs={24} sm={12} md={8} lg={8} xl={6}>
+                      <Card hoverable style={{ margin: "1rem" }}>
+                        <Row justify="center">
+                          <StarTwoTone style={{ fontSize: "32px" }} />
+                        </Row>
+                        <Row justify="center">
+                          <p>{star.name}</p>
+                        </Row>
+                        <Button block>View Repository</Button>
+                      </Card>
+                    </Col>
                   );
                 })}
-              </div>
+              </Row>
             </div>
           )}
         </div>
