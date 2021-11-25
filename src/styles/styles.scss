@@ -10,3 +10,21 @@
   height: 100vh;
   font-family: "Calibre";
 }
+
+.results-grid {
+  margin: 0 2rem;
+}
+
+.ant-card-cover img {
+  padding: 2rem;
+  border-radius: 50% !important;
+}
+
+.ant-card-body {
+  text-align: center;
+  border-top: 1px solid rgb(167, 167, 167);
+}
+.profile-img {
+  border-radius: 50%;
+  height: 10rem;
+}
