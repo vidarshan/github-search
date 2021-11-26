@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useHistory } from "react-router";
 import { FiArrowLeft } from "react-icons/fi";
 import { VscFolder, VscOctoface, VscStarFull } from "react-icons/vsc";
 import { Fade } from "react-awesome-reveal";
 import CountUp from "react-countup";
 import moment from "moment";
+import intervalToDuration from "date-fns/intervalToDuration";
 import map from "lodash.map";
 import {
   FolderTwoTone,
@@ -28,6 +29,28 @@ const { Title } = Typography;
 const Profile = ({ match }) => {
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const years = useRef(0);
+  const months = useRef(0);
+  const days = useRef(0);
+
+  const getDuration = (createdDate) => {
+    let interval;
+    console.log(createdDate);
+
+    if (createdDate) {
+      interval = intervalToDuration({
+        start: new Date(),
+        end: new Date(createdDate),
+      });
+
+      years.current = interval.years;
+      months.current = interval.months;
+      days.current = interval.days;
+    }
+
+    console.log(interval);
+  };
 
   const {
     loading: userLoading,
@@ -84,6 +107,15 @@ const Profile = ({ match }) => {
                 </Col>
               </Row>
               <Row>
+                <Col span={24}>
+                  {getDuration(user.created_at)}
+                  <Title level={5}>
+                    Member for {years.current} years, {months.current} months,{" "}
+                    {days.current} days
+                  </Title>
+                </Col>
+              </Row>
+              <Row>
                 <Col span={6}>
                   <Row>
                     <CountUp duration={1} end={user.followers} separator="," />
@@ -101,7 +133,7 @@ const Profile = ({ match }) => {
                   </Row>
                 </Col>
               </Row>
-              <Row>
+              {/* <Row>
                 <Col span={6}>
                   <Row>
                     <Title level={5}>Joined</Title>
@@ -122,7 +154,7 @@ const Profile = ({ match }) => {
                     </Title>
                   </Row>
                 </Col>
-              </Row>
+              </Row> */}
               <Row>
                 <Col span={16}>
                   <Button type="primary" style={{ backgroundColor: "#1ba14c" }}>
