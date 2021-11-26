@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import { FiArrowLeft } from "react-icons/fi";
 import { VscFolder, VscOctoface, VscStarFull } from "react-icons/vsc";
@@ -22,6 +22,7 @@ import {
 import { replace } from "lodash";
 import Loader from "../components/Loader";
 import { Row, Col, Typography, Button, PageHeader, Space, Card } from "antd";
+import { getGithubContributions } from "github-contributions-counter";
 import Error from "../components/Error";
 
 const { Title } = Typography;
@@ -48,8 +49,6 @@ const Profile = ({ match }) => {
       months.current = interval.months;
       days.current = interval.days;
     }
-
-    console.log(interval);
   };
 
   const {
@@ -92,13 +91,13 @@ const Profile = ({ match }) => {
             title="Back to Results"
           />
           <Row className="main-row">
-            <Col span={4}>
+            <Col xs={24} sm={6} md={6} lg={4} xl={3} xxl={3}>
               <img className="profile-img" src={user.avatar_url} alt="" />
             </Col>
-            <Col span={20}>
+            <Col xs={24} sm={16}>
               <Row>
                 <Col>
-                  <Title>{user.name}</Title>
+                  <Title level={2}>{user.name}</Title>
                 </Col>
               </Row>
               <Row>
@@ -118,7 +117,7 @@ const Profile = ({ match }) => {
               <Row>
                 <Col span={6}>
                   <Row>
-                    <CountUp duration={1} end={user.followers} separator="," />
+                    <Title level={4}>{user.followers}</Title>
                   </Row>
                   <Row>
                     <Title level={5}>Followers</Title>
@@ -133,48 +132,34 @@ const Profile = ({ match }) => {
                   </Row>
                 </Col>
               </Row>
-              {/* <Row>
-                <Col span={6}>
-                  <Row>
-                    <Title level={5}>Joined</Title>
-                  </Row>
-                  <Row>
-                    <Title level={5}>
-                      {moment(user.created_at).format("MM-DD-YYYY")}
-                    </Title>
-                  </Row>
-                </Col>
-                <Col span={6}>
-                  <Row>
-                    <Title level={5}>Updated</Title>
-                  </Row>
-                  <Row>
-                    <Title level={5}>
-                      {moment(user.updated_at).format("MM-DD-YYYY")}
-                    </Title>
-                  </Row>
-                </Col>
-              </Row> */}
               <Row>
-                <Col span={16}>
-                  <Button type="primary" style={{ backgroundColor: "#1ba14c" }}>
+                <Col xs={24}>
+                  <Button
+                    block
+                    type="primary"
+                    style={{ backgroundColor: "#1ba14c" }}
+                  >
                     View Profile on Github
                   </Button>
                 </Col>
-                <Col span={4}>
+                <Col xs={12}>
                   <Button
                     type="primary"
                     style={{ backgroundColor: "black" }}
                     icon={<GlobalOutlined />}
                     block
-                  ></Button>
+                  >
+                    Website
+                  </Button>
                 </Col>
-                <Col span={4}>
+                <Col xs={12}>
                   <Button
                     style={{ backgroundColor: "#1DA1F2" }}
                     icon={<TwitterOutlined />}
                     block
-                  ></Button>
+                  >
+                    Twitter
+                  </Button>
                 </Col>
               </Row>
             </Col>
@@ -191,12 +176,12 @@ const Profile = ({ match }) => {
             <Error error={"Error occurred when getting Repositories"} />
           ) : (
             <>
-              <Row justify="center">
+              <Row justify="center" style={{ marginTop: "1rem" }}>
                 <Title level={4}>
                   <FolderTwoTone /> Public Repositories
                 </Title>
               </Row>
-              <Row>
+              <Row style={{ borderBottom: "1px solid grey" }}>
                 {map(repos, (repo) => {
                   return (
                     <Col xs={24} sm={12} md={8} lg={8} xl={6}>
@@ -221,8 +206,8 @@ const Profile = ({ match }) => {
           ) : starredError ? (
             <Error error={"Error occurred when getting Stars"} />
           ) : (
-            <div className="items">
-              <Row justify="center">
+            <>
+              <Row justify="center" style={{ marginTop: "1rem" }}>
                 <Title level={4}>
                   <StarTwoTone /> Starred Repositories
                 </Title>
@@ -244,7 +229,7 @@ const Profile = ({ match }) => {
                   );
                 })}
               </Row>
-            </div>
+            </>
           )}
         </div>
       )}

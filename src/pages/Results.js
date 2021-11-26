@@ -8,7 +8,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
-import { Row, Col, Divider, Card, Button, Typography } from "antd";
+import { Row, Col, Divider, Card, Button, Typography, PageHeader } from "antd";
 import ResultCard from "../components/ResultCard";
 
 const { Meta } = Card;
@@ -39,12 +39,11 @@ const Results = ({ match }) => {
       ) : (
         <>
           <div className="results">
-            <div className="back-btn" onClick={() => goBackHandler()}>
-              <div className="icon">
-                <FiArrowLeft />
-              </div>
-              <div className="text">Back</div>
-            </div>
+            <PageHeader
+              className="site-page-header"
+              onBack={() => goBackHandler()}
+              title="Back to Home"
+            />
             <div className="results-grid">
               <Row gutter={[20, 20]} align="middle">
                 {map(userSearch.items, (result) => {

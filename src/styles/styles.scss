@@ -36,6 +36,11 @@
     background-color: rgb(236, 236, 236);
     border-bottom: 2px solid rgb(182, 182, 182) !important;
 
+    h1.ant-typography,
+    .ant-typography h1 {
+      margin-bottom: 0 !important;
+    }
+
     .ant-col-4 {
       display: flex;
       flex-direction: row;
