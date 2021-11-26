@@ -12,6 +12,9 @@ import {
   StarTwoTone,
   TwitterOutlined,
   GlobalOutlined,
+  GithubOutlined,
+  UserAddOutlined,
+  UserDeleteOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -88,73 +91,90 @@ const Profile = ({ match }) => {
           <PageHeader
             className="site-page-header"
             onBack={() => goBackHandler()}
-            title="Back to Results"
+            title="Back to Search Results"
           />
           <Row className="main-row">
-            <Col xs={24} sm={6} md={6} lg={4} xl={3} xxl={3}>
+            <Col
+              className="flex-col"
+              xs={24}
+              sm={24}
+              md={6}
+              lg={4}
+              xl={3}
+              xxl={3}
+            >
               <img className="profile-img" src={user.avatar_url} alt="" />
             </Col>
-            <Col xs={24} sm={16}>
+            <Col xs={24} sm={24} md={18}>
               <Row>
-                <Col>
+                <Col className="col-spacing-top">
                   <Title level={2}>{user.name}</Title>
                 </Col>
               </Row>
               <Row>
-                <Col span={24}>
-                  <Title level={5}>{user.bio}</Title>
+                <Col className="col-spacing col-spacing-top" xs={24}>
+                  <p className="bio">{user.bio}</p>
                 </Col>
               </Row>
               <Row>
-                <Col span={24}>
+                <Col className="col-spacing col-spacing-top" span={24}>
                   {getDuration(user.created_at)}
-                  <Title level={5}>
+                  <p className="duration">
                     Member for {years.current} years, {months.current} months,{" "}
-                    {days.current} days
-                  </Title>
+                    {days.current} days.
+                  </p>
                 </Col>
               </Row>
               <Row>
-                <Col span={6}>
-                  <Row>
-                    <Title level={4}>{user.followers}</Title>
-                  </Row>
-                  <Row>
-                    <Title level={5}>Followers</Title>
-                  </Row>
+                <Col className="col-spacing col-center" xs={12} md={6} lg={4}>
+                  <p className="followers-following">
+                    <UserAddOutlined />
+                    {user.followers} Followers{" "}
+                  </p>
                 </Col>
-                <Col span={6}>
-                  <Row>
-                    <CountUp duration={5} end={user.following} />
-                  </Row>
-                  <Row>
-                    <Title level={5}>Following</Title>
-                  </Row>
+                <Col className="col-spacing col-center" xs={12} md={6} lg={4}>
+                  <p className="followers-following">
+                    <UserDeleteOutlined />
+                    {user.following} Following
+                  </p>
                 </Col>
               </Row>
               <Row>
-                <Col xs={24}>
+                <Col className="col-spacing" xs={24} md={10} lg={10}>
                   <Button
+                    style={{
+                      background: "transparent",
+                      borderColor: "green",
+                      color: "green",
+                    }}
                     block
-                    type="primary"
-                    style={{ backgroundColor: "#1ba14c" }}
+                    type="default"
                   >
-                    View Profile on Github
+                    <GithubOutlined /> View Profile on Github
                   </Button>
                 </Col>
-                <Col xs={12}>
+                <Col className="col-spacing" xs={24} md={7} lg={6}>
                   <Button
-                    type="primary"
-                    style={{ backgroundColor: "black" }}
+                    style={{
+                      background: "transparent",
+                      borderColor: "grey",
+                      color: "grey",
+                    }}
+                    type="default"
                     icon={<GlobalOutlined />}
                     block
                   >
                     Website
                   </Button>
                 </Col>
-                <Col xs={12}>
+                <Col className="col-spacing" xs={24} md={7} lg={6}>
                   <Button
-                    style={{ backgroundColor: "#1DA1F2" }}
+                    style={{
+                      background: "transparent",
+                      borderColor: "#1DA1F2",
+                      color: "#1DA1F2",
+                    }}
+                    type="default"
                     icon={<TwitterOutlined />}
                     block
                   >
