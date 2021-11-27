@@ -22,7 +22,22 @@ const Results = ({ match }) => {
   };
 
   useEffect(() => {
+    var element = document.body;
+    if (localStorage.getItem("theme") === "dark") {
+      element.classList.toggle("dark-mode");
+    } else {
+      element.classList.remove("dark-mode");
+    }
+  }, [match]);
+
+  useEffect(() => {
     dispatch(searchUser(match.params.word));
+    var element = document.body;
+    if (localStorage.getItem("theme") === "dark") {
+      element.classList.toggle("dark-mode");
+    } else {
+      element.classList.remove("dark-mode");
+    }
   }, [match, dispatch]);
 
   return (

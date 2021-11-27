@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Row, Col, Input, Typography, Switch } from "antd";
+import { Row, Col, Input, Typography } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
 import { Fade } from "react-awesome-reveal";
 
@@ -19,16 +19,6 @@ const Home = () => {
     }
   };
 
-  const changeTheme = () => {
-    var element = document.body;
-
-    if (!element.classList[0]) {
-      element.classList.toggle("dark-mode");
-    } else if (element.classList[0]) {
-      element.classList.remove("dark-mode");
-    }
-  };
-
   return (
     <Fade direction={"left"}>
       <div className="search-page">
@@ -37,15 +27,6 @@ const Home = () => {
             <Title>
               <GithubOutlined /> {"     "}Github Searcher
             </Title>{" "}
-          </Row>
-
-          <Row justify="center theme-col">
-            <Switch
-              checkedChildren="Light"
-              unCheckedChildren="Dark"
-              onChange={() => changeTheme()}
-              defaultChecked
-            />
           </Row>
 
           <Row justify="center">

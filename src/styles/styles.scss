@@ -36,7 +36,6 @@
 
   .ant-card-body {
     text-align: center;
-    border-top: 1px solid rgb(167, 167, 167);
   }
 }
 
@@ -117,96 +116,57 @@
   background-color: #20c162 !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  h2.ant-typography,
-  .ant-typography h2 {
-    color: white !important;
-  }
+// .dark-mode {
+//   #root,
+//   .ant-input-group > .ant-input:first-child,
+//   .ant-input-group-addon:first-child,
+//   h4.ant-typography,
+//   .ant-typography h4,
+//   h5.ant-typography,
+//   .ant-typography h5 {
+//     background-color: #333 !important;
+//     border-color: #696969;
+//     color: white;
+//   }
 
-  .profile .main-row .duration {
-    color: white !important;
-  }
-  .main-row {
-    background-color: rgb(68, 68, 68) !important;
-  }
-  body {
-    background-color: #333 !important;
-  }
+//   .h2.ant-typography,
+//   .ant-typography h2 {
+//     color: white !important;
+//   }
 
-  #root,
-  .ant-input-group > .ant-input:first-child,
-  .ant-input-group-addon:first-child,
-  h4.ant-typography,
-  .ant-typography h4,
-  h5.ant-typography,
-  .ant-typography h5,
-  .ant-card-cover img,
-  .h2.ant-typography,
-  .ant-typography h2,
-  .ant-btn > .anticon + span,
-  .ant-btn > span + .anticon,
-  p {
-    border-color: #696969;
-    color: rgb(255, 255, 255) !important;
-  }
+//   .profile .main-row .duration {
+//     color: white !important;
+//   }
+//   .main-row {
+//     background-color: rgb(68, 68, 68) !important;
+//   }
 
-  .ant-notification-notice {
-    background-color: #20c162 !important;
-  }
+//   .ant-card-bordered .ant-card-cover,
+//   .results-grid .ant-card-body {
+//     background-color: #333 !important;
+//     border: 1px solid rgb(238, 238, 238) !important;
+//   }
 
-  .ant-input-group > .ant-input:first-child,
-  .ant-input-group-addon:first-child {
-    background-color: transparent !important;
-  }
+//   .ant-card-body {
+//     background-color: #333 !important;
+//     color: white !important;
+//   }
 
-  .ant-card-bordered .ant-card-cover,
-  .ant-card-cover img,
-  .ant-card-body,
-  .ant-card,
-  h5.ant-typography {
-    border: 1px solid rgb(85, 85, 85) !important;
-    background-color: rgb(85, 85, 85) !important;
-  }
+//   .ant-notification-notice {
+//     background-color: #20c162 !important;
+//   }
 
-  .ant-input-search
-    > .ant-input-group
-    > .ant-input-group-addon:last-child
-    .ant-input-search-button:not(.ant-btn-primary) {
-    background-color: #20c162 !important;
-    border-color: #20c162 !important;
-  }
+//   .ant-input-search
+//     > .ant-input-group
+//     > .ant-input-group-addon:last-child
+//     .ant-input-search-button:not(.ant-btn-primary) {
+//     background-color: #20c162 !important;
+//     border-color: #20c162 !important;
+//   }
 
-  h1,
-  .ant-page-header-heading-title,
-  svg {
-    color: #f5f5f5 !important;
-  }
-}
-
-.dark-mode {
-  #root,
-  .ant-input-group > .ant-input:first-child,
-  .ant-input-group-addon:first-child,
-  h4.ant-typography,
-  .ant-typography h4,
-  h5.ant-typography,
-  .ant-typography h5 {
-    background-color: #333 !important;
-    border-color: #696969;
-    color: white;
-  }
-
-  .ant-input-search
-    > .ant-input-group
-    > .ant-input-group-addon:last-child
-    .ant-input-search-button:not(.ant-btn-primary) {
-    background-color: #20c162 !important;
-    border-color: #20c162 !important;
-  }
-
-  h1,
-  .ant-page-header-heading-title,
-  svg {
-    color: #f5f5f5 !important;
-  }
-}
+//   h1,
+//   .ant-page-header-heading-title,
+//   svg {
+//     color: #f5f5f5 !important;
+//   }
+// }
