@@ -31,6 +31,22 @@
   margin-top: 1rem;
 }
 
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.no-results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .results-grid {
   margin: 0 2rem;
 

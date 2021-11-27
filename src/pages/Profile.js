@@ -106,17 +106,17 @@ const Profile = ({ match }) => {
 
   return (
     <Fade direction={"left"}>
+      <PageHeader
+        className="site-page-header"
+        onBack={() => goBackHandler()}
+        title="Back to Search Results"
+      />
       {userLoading ? (
         <Loader />
       ) : userError ? (
         <Error error={"Error occurred when getting profile"} />
       ) : (
         <div className="profile">
-          <PageHeader
-            className="site-page-header"
-            onBack={() => goBackHandler()}
-            title="Back to Search Results"
-          />
           <Row className="main-row">
             <Col
               className="flex-col"
@@ -132,7 +132,8 @@ const Profile = ({ match }) => {
             <Col xs={24} sm={24} md={18}>
               <Row>
                 <Col className="col-spacing-top">
-                  <Title level={2}>{user.name}</Title>
+                  {console.log(user.login)}
+                  <Title level={2}>{user.name ? user.name : user.login}</Title>
                 </Col>
               </Row>
               <Row>
@@ -226,7 +227,7 @@ const Profile = ({ match }) => {
             <Loader msg={"Loading Repositories"} />
           ) : repoError ? (
             <Error error={"Error occurred when getting Repositories"} />
-          ) : (
+          ) : repos.length ? (
             <>
               <Row justify="center" style={{ marginTop: "1rem" }}>
                 <Title level={4}>
@@ -282,13 +283,24 @@ const Profile = ({ match }) => {
                 })}
               </Row>
             </>
+          ) : (
+            <>
+              <Row style={{ marginTop: "1rem" }} justify="center">
+                <Title level={4}>
+                  <StarTwoTone twoToneColor="orange" /> Starred Repositories
+                </Title>
+              </Row>
+              <Row justify="center">
+                <Title level={3}>This User has no starred repos</Title>
+              </Row>
+            </>
           )}
 
           {starredLoading ? (
             <Loader msg={"Loading Starred Repositories"} />
           ) : starredError ? (
             <Error error={"Error occurred when getting Stars"} />
-          ) : (
+          ) : starred.length ? (
             <>
               <Row justify="center" style={{ marginTop: "1rem" }}>
                 <Title level={4}>
@@ -347,6 +359,17 @@ const Profile = ({ match }) => {
                     </Col>
                   );
                 })}
+              </Row>
+            </>
+          ) : (
+            <>
+              <Row style={{ marginTop: "1rem" }} justify="center">
+                <Title level={4}>
+                  <StarTwoTone twoToneColor="orange" /> Starred Repositories
+                </Title>
+              </Row>
+              <Row justify="center">
+                <Title level={3}>This User has no starred repos</Title>
               </Row>
             </>
           )}

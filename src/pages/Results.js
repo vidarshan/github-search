@@ -8,6 +8,7 @@ import Loader from "../components/Loader";
 import Error from "../components/Error";
 import { Row, Col, PageHeader } from "antd";
 import ResultCard from "../components/ResultCard";
+import NoResults from "../components/NoResults";
 
 const Results = ({ match }) => {
   const history = useHistory();
@@ -42,18 +43,18 @@ const Results = ({ match }) => {
 
   return (
     <Fade direction={"left"}>
+      <PageHeader
+        className="site-page-header"
+        onBack={() => goBackHandler()}
+        title="Back to Home"
+      />
       {loading ? (
         <Loader />
       ) : error ? (
         <Error />
-      ) : (
+      ) : userSearch.total_count > 0 ? (
         <>
           <div className="results">
-            <PageHeader
-              className="site-page-header"
-              onBack={() => goBackHandler()}
-              title="Back to Home"
-            />
             <div className="results-grid">
               <Row gutter={[20, 20]} align="middle">
                 {map(userSearch.items, (result, key) => {
@@ -67,6 +68,8 @@ const Results = ({ match }) => {
             </div>
           </div>
         </>
+      ) : (
+        <NoResults />
       )}
     </Fade>
   );
