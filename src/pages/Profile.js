@@ -15,7 +15,8 @@ import {
   GithubOutlined,
   UserAddOutlined,
   UserDeleteOutlined,
-  LinkOutlined,
+  CopyOutlined,
+  CheckOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -25,7 +26,16 @@ import {
 } from "../actions/userActions";
 import { replace } from "lodash";
 import Loader from "../components/Loader";
-import { Row, Col, Typography, Button, PageHeader, Space, Card } from "antd";
+import {
+  Row,
+  Col,
+  Typography,
+  Button,
+  PageHeader,
+  Space,
+  Card,
+  notification,
+} from "antd";
 import { getGithubContributions } from "github-contributions-counter";
 import Error from "../components/Error";
 
@@ -38,6 +48,9 @@ const Profile = ({ match }) => {
   const years = useRef(0);
   const months = useRef(0);
   const days = useRef(0);
+
+  const [isCopied, setIsCopied] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(null);
 
   const getDuration = (createdDate) => {
     let interval;
@@ -73,6 +86,23 @@ const Profile = ({ match }) => {
 
   const goBackHandler = () => {
     history.goBack();
+  };
+
+  const openNotificationWithIcon = (type) => {
+    notification[type]({
+      message: "Copied Link",
+      description: "Repo clone URL Copied to the clipboard.",
+    });
+  };
+  const copyToClipboard = (text, id) => {
+    setCopiedLink(id);
+    setIsCopied(false);
+    navigator.clipboard.writeText(text + ".git");
+    setIsCopied(true);
+
+    if (isCopied) {
+      openNotificationWithIcon("success");
+    }
   };
 
   useEffect(() => {
@@ -143,6 +173,9 @@ const Profile = ({ match }) => {
               <Row>
                 <Col className="col-spacing" xs={24} md={10} lg={10}>
                   <Button
+                    href={user.html_url}
+                    target="_blank"
+                    rel="noreferrer"
                     style={{
                       background: "green",
                       borderColor: "green",
@@ -154,34 +187,45 @@ const Profile = ({ match }) => {
                     <GithubOutlined /> View Profile on Github
                   </Button>
                 </Col>
-                <Col className="col-spacing" xs={24} md={7} lg={6}>
-                  <Button
-                    style={{
-                      background: "transparent",
-                      borderColor: "grey",
-                      color: "grey",
-                    }}
-                    type="default"
-                    icon={<GlobalOutlined />}
-                    block
-                  >
-                    Website
-                  </Button>
-                </Col>
-                <Col className="col-spacing" xs={24} md={7} lg={6}>
-                  <Button
-                    style={{
-                      background: "transparent",
-                      borderColor: "#1DA1F2",
-                      color: "#1DA1F2",
-                    }}
-                    type="default"
-                    icon={<TwitterOutlined />}
-                    block
-                  >
-                    Twitter
-                  </Button>
-                </Col>
+                {user.blog && (
+                  <Col className="col-spacing" xs={24} md={7} lg={6}>
+                    <Button
+                      href={user.blog}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        background: "transparent",
+                        borderColor: "grey",
+                        color: "grey",
+                      }}
+                      type="default"
+                      icon={<GlobalOutlined />}
+                      block
+                    >
+                      Website
+                    </Button>
+                  </Col>
+                )}
+
+                {user.twitter_username && (
+                  <Col className="col-spacing" xs={24} md={7} lg={6}>
+                    <Button
+                      href={`https://twitter.com/${user.twitter_username}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        background: "transparent",
+                        borderColor: "#1DA1F2",
+                        color: "#1DA1F2",
+                      }}
+                      type="default"
+                      icon={<TwitterOutlined />}
+                      block
+                    >
+                      Twitter
+                    </Button>
+                  </Col>
+                )}
               </Row>
             </Col>
           </Row>
@@ -215,13 +259,22 @@ const Profile = ({ match }) => {
                         </Row>
                         <Row>
                           <Col span={20}>
-                            <Button block type="primary">
+                            <Button block type="default">
                               View Repository
                             </Button>
                           </Col>
                           <Col span={4}>
-                            <Button>
-                              <LinkOutlined />
+                            <Button
+                              onClick={() =>
+                                copyToClipboard(repo.html_url, repo.id)
+                              }
+                              type="link"
+                            >
+                              {isCopied && copiedLink === repo.id ? (
+                                <CheckOutlined />
+                              ) : (
+                                <CopyOutlined />
+                              )}
                             </Button>
                           </Col>
                         </Row>
@@ -265,8 +318,18 @@ const Profile = ({ match }) => {
                             <Button block>View Repository</Button>
                           </Col>
                           <Col span={4}>
-                            <Button style={{ color: "orange" }} type="default">
-                              <LinkOutlined />
+                            <Button
+                              style={{ color: "orange" }}
+                              onClick={() =>
+                                copyToClipboard(star.html_url, star.id)
+                              }
+                              type="default"
+                            >
+                              {isCopied && copiedLink === star.id ? (
+                                <CheckOutlined />
+                              ) : (
+                                <CopyOutlined />
+                              )}
                             </Button>
                           </Col>
                         </Row>
