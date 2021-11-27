@@ -1,6 +1,7 @@
 import { Row, Col, Input, Space, Typography, Layout } from "antd";
 
-import { AudioOutlined } from "@ant-design/icons";
+import { Switch } from "antd";
+import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 
 import { Fragment, useState } from "react";
 
@@ -26,12 +27,26 @@ const Home = () => {
     }
   };
 
+  const changeTheme = () => {
+    console.log();
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+  };
+
   return (
     // <Fade direction={"left"}>
     <div className="search-page">
       <div className="search-container">
         <Row justify="center">
-          <Title level={1}>Githuber [d/L]</Title>
+          <Title level={1}>
+            Githuber{" "}
+            <Switch
+              checkedChildren="Light"
+              unCheckedChildren="Dark"
+              onChange={() => changeTheme()}
+              defaultChecked
+            />
+          </Title>
         </Row>
         <Row justify="center">
           <Title level={4}>Github search made simple!</Title>

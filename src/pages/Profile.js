@@ -15,6 +15,7 @@ import {
   GithubOutlined,
   UserAddOutlined,
   UserDeleteOutlined,
+  LinkOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -99,9 +100,9 @@ const Profile = ({ match }) => {
               xs={24}
               sm={24}
               md={6}
-              lg={4}
-              xl={3}
-              xxl={3}
+              lg={6}
+              xl={6}
+              xxl={4}
             >
               <img className="profile-img" src={user.avatar_url} alt="" />
             </Col>
@@ -143,9 +144,9 @@ const Profile = ({ match }) => {
                 <Col className="col-spacing" xs={24} md={10} lg={10}>
                   <Button
                     style={{
-                      background: "transparent",
+                      background: "green",
                       borderColor: "green",
-                      color: "green",
+                      color: "white",
                     }}
                     block
                     type="default"
@@ -212,7 +213,18 @@ const Profile = ({ match }) => {
                         <Row justify="center">
                           <p>{repo.name}</p>
                         </Row>
-                        <Button block>View Repository</Button>
+                        <Row>
+                          <Col span={20}>
+                            <Button block type="primary">
+                              View Repository
+                            </Button>
+                          </Col>
+                          <Col span={4}>
+                            <Button>
+                              <LinkOutlined />
+                            </Button>
+                          </Col>
+                        </Row>
                       </Card>
                     </Col>
                   );
@@ -229,7 +241,7 @@ const Profile = ({ match }) => {
             <>
               <Row justify="center" style={{ marginTop: "1rem" }}>
                 <Title level={4}>
-                  <StarTwoTone /> Starred Repositories
+                  <StarTwoTone twoToneColor="orange" /> Starred Repositories
                 </Title>
               </Row>
               <Row>
@@ -238,12 +250,26 @@ const Profile = ({ match }) => {
                     <Col xs={24} sm={12} md={8} lg={8} xl={6}>
                       <Card hoverable style={{ margin: "1rem" }}>
                         <Row justify="center">
-                          <StarTwoTone style={{ fontSize: "32px" }} />
+                          <StarTwoTone
+                            twoToneColor="orange"
+                            style={{
+                              fontSize: "32px",
+                            }}
+                          />
                         </Row>
                         <Row justify="center">
                           <p>{star.name}</p>
                         </Row>
-                        <Button block>View Repository</Button>
+                        <Row>
+                          <Col span={20}>
+                            <Button block>View Repository</Button>
+                          </Col>
+                          <Col span={4}>
+                            <Button style={{ color: "orange" }} type="default">
+                              <LinkOutlined />
+                            </Button>
+                          </Col>
+                        </Row>
                       </Card>
                     </Col>
                   );

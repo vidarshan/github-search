@@ -50,7 +50,7 @@ const Results = ({ match }) => {
                   return (
                     //   <Link className="result-card" to={`/profile/${result.login}`}>
 
-                    <Col xs={20} sm={16} md={12} lg={8} xl={4}>
+                    <Col xs={24} sm={12} md={8} lg={8} xl={4}>
                       <ResultCard result={result} />
                     </Col>
                   );
