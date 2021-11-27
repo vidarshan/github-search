@@ -144,9 +144,14 @@
   .h2.ant-typography,
   .ant-typography h2,
   .ant-btn > .anticon + span,
-  .ant-btn > span + .anticon {
+  .ant-btn > span + .anticon,
+  p {
     border-color: #696969;
     color: rgb(255, 255, 255) !important;
+  }
+
+  .ant-notification-notice {
+    background-color: #20c162 !important;
   }
 
   .ant-card-bordered .ant-card-cover,

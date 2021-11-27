@@ -261,6 +261,11 @@ const Profile = ({ match }) => {
                         <Row>
                           <Col span={20}>
                             <Button
+                              style={{
+                                color: "#20c162",
+                                borderColor: "#20c162",
+                                backgroundColor: "transparent",
+                              }}
                               href={repo.html_url}
                               target="_blank"
                               rel="noreferrer"
