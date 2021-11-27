@@ -6,7 +6,7 @@ import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { Fragment, useState } from "react";
 
 import { Fade } from "react-awesome-reveal";
-import { FaSearch } from "react-icons/fa";
+import { GrSun } from "react-icons/gr";
 import { BsGithub } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
 
@@ -39,9 +39,8 @@ const Home = () => {
       <div className="search-container">
         <Row justify="center">
           <Title level={1}>
-            Githuber{" "}
+            Githuber <GrSun />
             <Switch
-              checkedChildren="Light"
               unCheckedChildren="Dark"
               onChange={() => changeTheme()}
               defaultChecked

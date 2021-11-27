@@ -17,6 +17,7 @@ import {
   UserDeleteOutlined,
   CopyOutlined,
   CheckOutlined,
+  LoadingOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -32,7 +33,7 @@ import {
   Typography,
   Button,
   PageHeader,
-  Space,
+  Spin,
   Card,
   notification,
 } from "antd";
@@ -114,7 +115,7 @@ const Profile = ({ match }) => {
   return (
     <Fade direction={"left"}>
       {userLoading ? (
-        <Loader msg={"Loading Profile"} />
+        <Loader />
       ) : userError ? (
         <Error error={"Error occurred when getting profile"} />
       ) : (
@@ -259,7 +260,13 @@ const Profile = ({ match }) => {
                         </Row>
                         <Row>
                           <Col span={20}>
-                            <Button block type="default">
+                            <Button
+                              href={repo.html_url}
+                              target="_blank"
+                              rel="noreferrer"
+                              block
+                              type="default"
+                            >
                               View Repository
                             </Button>
                           </Col>
@@ -315,7 +322,14 @@ const Profile = ({ match }) => {
                         </Row>
                         <Row>
                           <Col span={20}>
-                            <Button block>View Repository</Button>
+                            <Button
+                              href={star.html_url}
+                              target="_blank"
+                              rel="noreferrer"
+                              block
+                            >
+                              View Repository
+                            </Button>
                           </Col>
                           <Col span={4}>
                             <Button
@@ -323,7 +337,7 @@ const Profile = ({ match }) => {
                               onClick={() =>
                                 copyToClipboard(star.html_url, star.id)
                               }
-                              type="default"
+                              type="link"
                             >
                               {isCopied && copiedLink === star.id ? (
                                 <CheckOutlined />
