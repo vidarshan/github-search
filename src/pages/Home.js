@@ -1,7 +1,7 @@
 import { Row, Col, Input, Space, Typography, Layout } from "antd";
 
 import { Switch } from "antd";
-import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
+import { GithubOutlined } from "@ant-design/icons";
 
 import { Fragment, useState } from "react";
 
@@ -38,58 +38,30 @@ const Home = () => {
     <div className="search-page">
       <div className="search-container">
         <Row justify="center">
-          <Title level={1}>
-            Githuber <GrSun />
-            <Switch
-              unCheckedChildren="Dark"
-              onChange={() => changeTheme()}
-              defaultChecked
-            />
-          </Title>
+          <Title>
+            <GithubOutlined /> {"     "}Github Searcher
+          </Title>{" "}
+        </Row>
+        <Row justify="center theme-col">
+          <Switch
+            checkedChildren="Light"
+            unCheckedChildren="Dark"
+            onChange={() => changeTheme()}
+            defaultChecked
+          />
         </Row>
         <Row justify="center">
-          <Title level={4}>Github search made simple!</Title>
-        </Row>
-        <Row justify="center">
-          <Col span={12}>
+          <Col xl={10} lg={10} md={16} sm={20} xs={20}>
             <Search
               onChange={(e) => setKeyword(e.target.value)}
               size="large"
-              placeholder="input search text"
+              placeholder="Search for a Github user"
               onSearch={searchHandler}
             />
           </Col>
         </Row>
-        <Row justify="center">
-          <Title level={5}>Powered by Github API</Title>
-        </Row>
-        <Row justify="center">
-          <Title level={5}>&copy; vidarshan</Title>
-        </Row>
       </div>
     </div>
-    // <div className="home">
-    //     <div class="icon">
-    //       <BsGithub />{" "}
-    //     </div>
-    //     <div class="heading">Githuber</div>
-    //     <div class="sub-heading">Github search made simple</div>
-    //     <div class="search">
-    //       <input
-    //         type="text"
-    //         placeholder="Search for a Github User"
-    //         onChange={(e) => searchHandler(e.target.value)}
-    //       />
-    //       <button
-    //         disabled={disable}
-    //         className="search-btn"
-    //         onClick={() => history.push(`/search/${keyword}`)}
-    //       >
-    //         <FaSearch />
-    //       </button>
-    //     </div>
-    //   </div>
-    // </Fade>
   );
 };
 

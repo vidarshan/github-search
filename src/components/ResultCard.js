@@ -18,7 +18,15 @@ const ResultCard = ({ result }) => {
       }
     >
       <Title level={5}>{result.login}</Title>
-      <Button block onClick={() => handleDetailedProfile(result.login)}>
+      <Button
+        style={{
+          color: "#20c162",
+          borderColor: "#20c162",
+          backgroundColor: "transparent",
+        }}
+        block
+        onClick={() => handleDetailedProfile(result.login)}
+      >
         View Detailed Profile
       </Button>
     </Card>

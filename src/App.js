@@ -13,7 +13,8 @@ function App() {
         <Route path="/" component={Home} exact />
         <Route path="/search/:word" component={Results} />
         <Route path="/profile/:name" component={Profile} />
-      </div>
+      </div>{" "}
+      <Footer />
     </Router>
   );
 }

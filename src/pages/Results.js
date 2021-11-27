@@ -48,8 +48,6 @@ const Results = ({ match }) => {
               <Row gutter={[20, 20]} align="middle">
                 {map(userSearch.items, (result) => {
                   return (
-                    //   <Link className="result-card" to={`/profile/${result.login}`}>
-
                     <Col xs={24} sm={12} md={8} lg={8} xl={4}>
                       <ResultCard result={result} />
                     </Col>
