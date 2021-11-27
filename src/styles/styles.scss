@@ -154,6 +154,11 @@
     background-color: #20c162 !important;
   }
 
+  .ant-input-group > .ant-input:first-child,
+  .ant-input-group-addon:first-child {
+    background-color: transparent !important;
+  }
+
   .ant-card-bordered .ant-card-cover,
   .ant-card-cover img,
   .ant-card-body,

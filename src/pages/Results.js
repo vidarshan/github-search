@@ -4,15 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchUser } from "../actions/userActions";
 import map from "lodash.map";
 import { Fade } from "react-awesome-reveal";
-import { FiArrowLeft } from "react-icons/fi";
-import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
-import { Row, Col, Divider, Card, Button, Typography, PageHeader } from "antd";
+import { Row, Col, PageHeader } from "antd";
 import ResultCard from "../components/ResultCard";
-
-const { Meta } = Card;
-const { Title } = Typography;
 
 const Results = ({ match }) => {
   const history = useHistory();
@@ -46,9 +41,9 @@ const Results = ({ match }) => {
             />
             <div className="results-grid">
               <Row gutter={[20, 20]} align="middle">
-                {map(userSearch.items, (result) => {
+                {map(userSearch.items, (result, key) => {
                   return (
-                    <Col xs={24} sm={12} md={8} lg={8} xl={4}>
+                    <Col key={key} xs={24} sm={12} md={8} lg={8} xl={4}>
                       <ResultCard result={result} />
                     </Col>
                   );

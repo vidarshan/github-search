@@ -1,10 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
-import { FiArrowLeft } from "react-icons/fi";
-import { VscFolder, VscOctoface, VscStarFull } from "react-icons/vsc";
 import { Fade } from "react-awesome-reveal";
-import CountUp from "react-countup";
-import moment from "moment";
 import intervalToDuration from "date-fns/intervalToDuration";
 import map from "lodash.map";
 import {
@@ -17,7 +13,6 @@ import {
   UserDeleteOutlined,
   CopyOutlined,
   CheckOutlined,
-  LoadingOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -25,7 +20,6 @@ import {
   getUserRepos,
   getUserStarred,
 } from "../actions/userActions";
-import { replace } from "lodash";
 import Loader from "../components/Loader";
 import {
   Row,
@@ -33,11 +27,9 @@ import {
   Typography,
   Button,
   PageHeader,
-  Spin,
   Card,
   notification,
 } from "antd";
-import { getGithubContributions } from "github-contributions-counter";
 import Error from "../components/Error";
 
 const { Title } = Typography;
@@ -230,12 +222,6 @@ const Profile = ({ match }) => {
               </Row>
             </Col>
           </Row>
-
-          {/* <Col span={12}> 🌎 Website {user.blog}</Col>
-            <Col span={12}>
-              📩 Twitter {`https://twitter.com/${user.twitter_username}`}
-            </Col> */}
-
           {repoLoading ? (
             <Loader msg={"Loading Repositories"} />
           ) : repoError ? (
@@ -248,9 +234,9 @@ const Profile = ({ match }) => {
                 </Title>
               </Row>
               <Row style={{ borderBottom: "1px solid grey" }}>
-                {map(repos, (repo) => {
+                {map(repos, (repo, key) => {
                   return (
-                    <Col xs={24} sm={12} md={8} lg={8} xl={6}>
+                    <Col key={key} xs={24} sm={12} md={8} lg={8} xl={6}>
                       <Card hoverable style={{ margin: "1rem" }}>
                         <Row justify="center">
                           <FolderTwoTone style={{ fontSize: "32px" }} />
@@ -310,9 +296,9 @@ const Profile = ({ match }) => {
                 </Title>
               </Row>
               <Row>
-                {map(starred, (star) => {
+                {map(starred, (star, key) => {
                   return (
-                    <Col xs={24} sm={12} md={8} lg={8} xl={6}>
+                    <Col key={key} xs={24} sm={12} md={8} lg={8} xl={6}>
                       <Card hoverable style={{ margin: "1rem" }}>
                         <Row justify="center">
                           <StarTwoTone
@@ -328,6 +314,11 @@ const Profile = ({ match }) => {
                         <Row>
                           <Col span={20}>
                             <Button
+                              style={{
+                                color: "#20c162",
+                                borderColor: "#20c162",
+                                backgroundColor: "transparent",
+                              }}
                               href={star.html_url}
                               target="_blank"
                               rel="noreferrer"

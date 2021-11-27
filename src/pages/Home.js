@@ -1,24 +1,16 @@
-import { Row, Col, Input, Space, Typography, Layout } from "antd";
-
-import { Switch } from "antd";
-import { GithubOutlined } from "@ant-design/icons";
-
-import { Fragment, useState } from "react";
-
-import { Fade } from "react-awesome-reveal";
-import { GrSun } from "react-icons/gr";
-import { BsGithub } from "react-icons/bs";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Row, Col, Input, Typography, Switch } from "antd";
+import { GithubOutlined } from "@ant-design/icons";
+import { Fade } from "react-awesome-reveal";
 
 const { Search } = Input;
 const { Title } = Typography;
-const { Header, Content, Footer } = Layout;
 
 const Home = () => {
   const history = useHistory();
 
   const [keyword, setKeyword] = useState();
-  const [disable, setDisable] = useState(true);
 
   const searchHandler = () => {
     if (!keyword) {
@@ -28,40 +20,47 @@ const Home = () => {
   };
 
   const changeTheme = () => {
-    console.log();
     var element = document.body;
-    element.classList.toggle("dark-mode");
+
+    if (!element.classList[0]) {
+      element.classList.toggle("dark-mode");
+    } else if (element.classList[0]) {
+      element.classList.remove("dark-mode");
+    }
   };
 
   return (
-    // <Fade direction={"left"}>
-    <div className="search-page">
-      <div className="search-container">
-        <Row justify="center">
-          <Title>
-            <GithubOutlined /> {"     "}Github Searcher
-          </Title>{" "}
-        </Row>
-        <Row justify="center theme-col">
-          <Switch
-            checkedChildren="Light"
-            unCheckedChildren="Dark"
-            onChange={() => changeTheme()}
-            defaultChecked
-          />
-        </Row>
-        <Row justify="center">
-          <Col xl={10} lg={10} md={16} sm={20} xs={20}>
-            <Search
-              onChange={(e) => setKeyword(e.target.value)}
-              size="large"
-              placeholder="Search for a Github user"
-              onSearch={searchHandler}
+    <Fade direction={"left"}>
+      <div className="search-page">
+        <div className="search-container">
+          <Row justify="center">
+            <Title>
+              <GithubOutlined /> {"     "}Github Searcher
+            </Title>{" "}
+          </Row>
+
+          <Row justify="center theme-col">
+            <Switch
+              checkedChildren="Light"
+              unCheckedChildren="Dark"
+              onChange={() => changeTheme()}
+              defaultChecked
             />
-          </Col>
-        </Row>
+          </Row>
+
+          <Row justify="center">
+            <Col xl={10} lg={10} md={16} sm={20} xs={20}>
+              <Search
+                onChange={(e) => setKeyword(e.target.value)}
+                size="large"
+                placeholder="Search for a Github user"
+                onSearch={searchHandler}
+              />
+            </Col>
+          </Row>
+        </div>
       </div>
-    </div>
+    </Fade>
   );
 };
 

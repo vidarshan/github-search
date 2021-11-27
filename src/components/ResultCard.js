@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
-import { Row, Col, Divider, Card, Button, Typography } from "antd";
+import { Card, Button, Typography } from "antd";
 const { Title } = Typography;
 
 const ResultCard = ({ result }) => {
