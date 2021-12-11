@@ -137,9 +137,10 @@ const Profile = ({ match }) => {
                 </Col>
               </Row>
               <Row>
-                <Col className="col-spacing col-spacing-top" xs={24}>
+                {user.bio && <Col className="col-spacing col-spacing-top" xs={24}>
                   <p className="bio">{user.bio}</p>
-                </Col>
+                </Col>}
+
               </Row>
               <Row>
                 <Col className="col-spacing col-spacing-top" span={24}>

@@ -25,7 +25,7 @@ const Home = () => {
         <div className="search-container">
           <Row justify="center">
             <Title>
-              <GithubOutlined /> {"     "}Github Searcher
+              <GithubOutlined /> {"     "}Github Search
             </Title>{" "}
           </Row>
 
