@@ -1,6 +1,6 @@
 <h1 align='center'>Github Search 🔍</h1>
 
-<h5 align='center'>Search and find all the details of a Github user by their name. It's Github search made simple.💯</h5>
+<h5 align='center'>Search and find all the details of a Github user by their name. Github search made simple.💯</h5>
 <h5 align='center'>🌎 https://61a26a6d1c6eea0007117321--quirky-heisenberg-ef69be.netlify.app/</h5>
 
 ## 📁 Data Source
