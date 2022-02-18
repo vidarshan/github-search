@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchUser } from "../actions/userActions";
 import map from "lodash.map";
 import { Fade } from "react-awesome-reveal";
-import Loader from "../components/Loader";
 import Error from "../components/Error";
-import { Row, Col, PageHeader } from "antd";
+import { Grid, Col, Loader } from "@mantine/core";
 import ResultCard from "../components/ResultCard";
 import NoResults from "../components/NoResults";
 
@@ -43,18 +42,27 @@ const Results = ({ match }) => {
 
   return (
     <Fade direction={"left"}>
-      <PageHeader
+      {/* <PageHeader
         className="site-page-header"
         onBack={() => goBackHandler()}
         title="Back to Home"
-      />
+      /> */}
       {loading ? (
         <Loader />
       ) : error ? (
         <Error />
       ) : userSearch.total_count > 0 ? (
         <>
-          <div className="results">
+          <Grid>
+            {map(userSearch.items, (result, key) => {
+              return (
+                <Col key={key} xs={24} sm={12} md={8} lg={8} xl={4}>
+                  <ResultCard result={result} />
+                </Col>
+              );
+            })}
+          </Grid>
+          {/* <div className="results">
             <div className="results-grid">
               <Row gutter={[20, 20]} align="middle">
                 {map(userSearch.items, (result, key) => {
@@ -66,7 +74,7 @@ const Results = ({ match }) => {
                 })}
               </Row>
             </div>
-          </div>
+          </div> */}
         </>
       ) : (
         <NoResults />

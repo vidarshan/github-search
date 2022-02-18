@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Row, Col, Input, Typography } from "antd";
-import { BsMoonStarsFill } from "react-icons/bs";
+import { BsMoonStarsFill, BsAt } from "react-icons/bs";
+import { VscGithub } from 'react-icons/vsc';
 import { Fade } from "react-awesome-reveal";
 import { AppShell, ActionIcon, useMantineColorScheme, Container, Space, MediaQuery, Group, Text, TextInput, useMantineTheme } from '@mantine/core';
 
@@ -20,20 +21,23 @@ const Home = () => {
 
   const [keyword, setKeyword] = useState();
 
-  const searchHandler = () => {
-    if (!keyword) {
-    } else {
+  const searchHandler = (event) => {
+
+    console.log(event)
+    if (event.key == 'Enter') {
       history.push(`/search/${keyword}`);
+      // if (!keyword) {
+      // } else {
+      //   history.push(`/search/${keyword}`);
+      // }
+
     }
   };
 
   return (
     <>
-      <Container sx={{ display: 'flex', alignItems: "center", justifyContent: 'space-between', maxWidth: 'none', height: '5vh' }}>
-
-        <Text size='xl' weight={700}>57</Text>
-
-
+      <Container sx={{ display: 'flex', alignItems: "center", justifyContent: 'space-between', height: '5vh' }} fluid>
+        <Text size='md' weight={500}>57 / 60 Requests</Text>
         <ActionIcon
           variant="outline"
           color={dark ? 'yellow' : 'blue'}
@@ -48,13 +52,19 @@ const Home = () => {
         </ActionIcon>
 
       </Container>
-      <Container sx={{ maxWidth: 'none', height: '95vh', display: "flex", flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <Text size='xl'>Github Search</Text>
-        <Space h="xl" />
+      <Container sx={{ maxWidth: 'none', height: '90vh', display: "flex", flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <VscGithub size='30' />
+        <Space h="sm" />
+        <Text sx={{ fontSize: "2.2rem" }} weight={700}>Github Search</Text>
+        <Space h="sm" />
         <TextInput
+          onChange={(e) => console.log(e.target.value)}
+          onKeyPress={(e) => searchHandler(e)}
+          icon={<BsAt />}
           radius='md'
-          sx={{ width: '40%' }}
-          placeholder="Your name"
+          size='md'
+          sx={{ width: '40%', }}
+          placeholder="Your github username"
         />
       </Container>
 
