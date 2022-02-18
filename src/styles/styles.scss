@@ -1,11 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 
-@font-face {
-  font-family: "San Francisco";
-  src: url("../fonts/sf/SFNSDisplay-Light.otf");
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#root {
+div,
+input,
+.mantine-Text-root,
+.mantine-150hmss,
+.mantine-Container-root,
+.mantine-p20j1y {
   font-family: "Manrope", sans-serif !important;
 }
 
@@ -14,7 +21,7 @@
   flex-direction: column;
   justify-content: center;
   height: 100vh;
-  font-family: "San Francisco";
+  font-family: "Manrope", sans-serif !important;
 
   .col-spacing-top {
     padding-top: 1rem;

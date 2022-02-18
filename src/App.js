@@ -3,19 +3,27 @@ import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import Results from "./pages/Results";
-import "antd/dist/antd.css";
-import "./styles/styles.scss";
+import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
+import { useState } from "react";
+import './styles/styles.scss'
 
 function App() {
+
+  const [colorScheme, setColorScheme] = useState('light');
+  const toggleColorScheme = (value) =>
+    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+
   return (
-    <Router>
-      <div className="App">
-        <Route path="/" component={Home} exact />
-        <Route path="/search/:word" component={Results} />
-        <Route path="/profile/:name" component={Profile} />
-      </div>{" "}
-      <Footer />
-    </Router>
+    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+      <MantineProvider>
+        <Router>
+          <Route path="/" component={Home} exact />
+          <Route path="/search/:word" component={Results} />
+          <Route path="/profile/:name" component={Profile} />
+          <Footer />
+        </Router>
+      </MantineProvider>
+    </ColorSchemeProvider>
   );
 }
 
