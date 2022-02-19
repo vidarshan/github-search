@@ -1,13 +1,12 @@
 import React from "react";
-import { useHistory } from "react-router";
 import { Card, Image, Text } from "@mantine/core";
 
 
 const ResultCard = ({ result }) => {
-  const history = useHistory();
+
 
   const handleDetailedProfile = (username) => {
-    history.push(`/profile/${username}`);
+    // history.push(`/profile/${username}`);
   };
 
   return (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BsMoonStarsFill, BsAt, BsSearch, BsX } from "react-icons/bs";
 import { VscGithub } from 'react-icons/vsc';
 import { useDispatch, useSelector } from "react-redux";
@@ -9,9 +9,11 @@ import { Alert, ActionIcon, useMantineColorScheme, Container, Space, Button, Gro
 
 
 const Home = () => {
-  const history = useHistory();
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const notifications = useNotifications();
+
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = colorScheme === 'dark';
@@ -32,8 +34,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (userSearch) {
-      console.log(userSearch)
+    if (Object.keys(userSearch).length) {
+      navigate(`/users/${userSearch.login}`)
     }
 
   }, [userSearch])

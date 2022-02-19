@@ -1,19 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router";
-// import { Fade } from "react-awesome-reveal";
-// import intervalToDuration from "date-fns/intervalToDuration";
-import map from "lodash.map";
-// import {
-//   FolderTwoTone,
-//   StarTwoTone,
-//   TwitterOutlined,
-//   GlobalOutlined,
-//   GithubOutlined,
-//   UserAddOutlined,
-//   UserDeleteOutlined,
-//   CopyOutlined,
-//   CheckOutlined,
-// } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getUserInfo,
@@ -21,20 +6,11 @@ import {
   getUserStarred,
 } from "../actions/userActions";
 import Loader from "../components/Loader";
-// import {
-//   Row,
-//   Col,
-//   Typography,
-//   Button,
-//   PageHeader,
-//   Card,
-//   notification,
-// } from "antd";
 import Error from "../components/Error";
 
 
 const Profile = ({ match }) => {
-  const history = useHistory();
+
   const dispatch = useDispatch();
 
   const years = useRef(0);
@@ -77,7 +53,7 @@ const Profile = ({ match }) => {
   } = useSelector((state) => state.userStarred);
 
   const goBackHandler = () => {
-    history.goBack();
+    // history.goBack();
   };
 
   // const openNotificationWithIcon = (type) => {

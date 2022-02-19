@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { searchUser } from "../actions/userActions";
 import map from "lodash.map";
@@ -14,7 +13,7 @@ import ResultCard from "../components/ResultCard";
 import NoResults from "../components/NoResults";
 
 const Results = ({ match }) => {
-  const history = useHistory();
+
   const dispatch = useDispatch();
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
@@ -28,7 +27,7 @@ const Results = ({ match }) => {
   const { loading, userSearch, error } = searchResults;
 
   const goBackHandler = () => {
-    history.goBack();
+    // history.goBack();
   };
 
   useEffect(() => {
