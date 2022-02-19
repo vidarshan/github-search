@@ -17,7 +17,7 @@ function App() {
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
       <MantineProvider theme={{ colorScheme }}>
-        <NotificationsProvider>
+        <NotificationsProvider position='top-center'>
           <Router>
             <Route path="/" component={Home} exact />
             <Route path="/search/:word" component={Results} />

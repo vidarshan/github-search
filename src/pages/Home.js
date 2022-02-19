@@ -32,7 +32,8 @@ const Home = () => {
       title: 'Oops!',
       message: 'No users found with the username you entered. Try Again!',
       icon: <BsX />,
-      color: 'red'
+      color: 'red',
+      duration: 10000
     })
   };
 
