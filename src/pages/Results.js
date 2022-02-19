@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { searchUser } from "../actions/userActions";
 import map from "lodash.map";
+import { BsMoonStarsFill, BsAt } from "react-icons/bs";
+import { VscGithub } from 'react-icons/vsc';
+// import { Fade } from "react-awesome-reveal";
+import { AppShell, ActionIcon, useMantineColorScheme, Container, Space, MediaQuery, Group, Text, TextInput, useMantineTheme } from '@mantine/core';
 
 import Error from "../components/Error";
 import { Grid, Col, Loader } from "@mantine/core";
@@ -12,6 +16,12 @@ import NoResults from "../components/NoResults";
 const Results = ({ match }) => {
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const dark = colorScheme === 'dark';
+
+  const [opened, setOpened] = useState(false);
+  const theme = useMantineTheme();
 
   const searchResults = useSelector((state) => state.userSearch);
 
@@ -42,6 +52,22 @@ const Results = ({ match }) => {
 
   return (
     <>
+      <Container sx={{ display: 'flex', alignItems: "center", justifyContent: 'space-between', height: '5vh' }} fluid>
+        <Text size='md' weight={500}>57 / 60 Requests</Text>
+        <ActionIcon
+          variant="outline"
+          color={dark ? 'yellow' : 'blue'}
+          onClick={() => toggleColorScheme()}
+          title="Toggle color scheme"
+        >
+          {dark ? (
+            <BsMoonStarsFill />
+          ) : (
+            <BsMoonStarsFill />
+          )}
+        </ActionIcon>
+
+      </Container>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -51,7 +77,7 @@ const Results = ({ match }) => {
           <Grid>
             {map(userSearch.items, (result, key) => {
               return (
-                <Col span={3}>
+                <Col xs={4} sm={4} md={3} lg={2} xl={2} span={2}>
                   <ResultCard result={result} />
                 </Col>
               );

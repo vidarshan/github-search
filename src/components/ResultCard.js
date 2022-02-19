@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
-import { Card, Image } from "@mantine/core";
+import { Card, Image, Text } from "@mantine/core";
 
 
 const ResultCard = ({ result }) => {
@@ -12,13 +12,13 @@ const ResultCard = ({ result }) => {
 
   return (
     <Card
+      padding='xs' radius='md'
       withBorder
-    // cover={
-    //   <img className="result-img" alt="example" src={result.avatar_url} />
-    // }
     >
-
-      <Image />
+      <Image radius='md' src={result.avatar_url} />
+      <Card.Section>
+        <Text align='center'>{result.login}</Text>
+      </Card.Section>
       {/* <Title level={5}>{result.login}</Title> */}
       {/* <Button
         style={{

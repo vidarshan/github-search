@@ -22,11 +22,11 @@ const Home = () => {
 
     console.log(event)
     if (event.key == 'Enter') {
-      history.push(`/search/${keyword}`);
-      // if (!keyword) {
-      // } else {
-      //   history.push(`/search/${keyword}`);
-      // }
+
+      if (!keyword) {
+      } else {
+        history.push(`/search/${keyword}`);
+      }
 
     }
   };
@@ -55,7 +55,7 @@ const Home = () => {
         <Text sx={{ fontSize: "2.2rem" }} weight={700}>Github Search</Text>
         <Space h="sm" />
         <TextInput
-          onChange={(e) => console.log(e.target.value)}
+          onChange={(e) => setKeyword(e.target.value)}
           onKeyPress={(e) => searchHandler(e)}
           icon={<BsAt />}
           radius='md'
@@ -66,28 +66,6 @@ const Home = () => {
       </Container>
 
     </>
-    // <Fade direction={"left"}>
-    //   <div className="search-page">
-    //     <div className="search-container">
-    //       <Row justify="center">
-    //         <Title>
-    //           <GithubOutlined /> {"     "}Github Search
-    //         </Title>{" "}
-    //       </Row>
-
-    //       <Row justify="center">
-    //         <Col xl={10} lg={10} md={16} sm={20} xs={20}>
-    //           {/* <Search
-    //             onChange={(e) => setKeyword(e.target.value)}
-    //             size="large"
-    //             placeholder="Search for a Github user"
-    //             onSearch={searchHandler}
-    //           /> */}
-    //         </Col>
-    //       </Row>
-    //     </div>
-    //   </div>
-    // </Fade>
   );
 };
 
