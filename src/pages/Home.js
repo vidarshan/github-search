@@ -35,7 +35,7 @@ const Home = () => {
 
   useEffect(() => {
     if (Object.keys(userSearch).length) {
-      navigate(`/users/${userSearch.login}`)
+      navigate(`/profile/${userSearch.login}`)
     }
 
   }, [userSearch])

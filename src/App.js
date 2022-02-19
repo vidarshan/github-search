@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
@@ -18,12 +18,13 @@ function App() {
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
       <MantineProvider theme={{ colorScheme }}>
         <NotificationsProvider position='top-center'>
-          <Router>
-            <Route path="/" component={Home} exact />
-            <Route path="/search/:word" component={Results} />
-            <Route path="/profile/:name" component={Profile} />
-            <Footer />
-          </Router>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/search/:word" element={<Results />} />
+              <Route path="/profile/:name" element={<Profile />} />
+            </Routes>
+          </BrowserRouter>
         </NotificationsProvider>
       </MantineProvider>
     </ColorSchemeProvider>
