@@ -26,15 +26,9 @@ const Home = () => {
   const { loading, userSearch, error } = searchResults;
 
   const searchHandler = (event) => {
-    // dispatch(searchUser(keyword))
+    dispatch(searchUser(keyword))
 
-    notifications.showNotification({
-      title: 'Oops!',
-      message: 'No users found with the username you entered. Try Again!',
-      icon: <BsX />,
-      color: 'red',
-      duration: 10000
-    })
+
   };
 
   useEffect(() => {
@@ -48,8 +42,11 @@ const Home = () => {
   useEffect(() => {
     if (error) {
       notifications.showNotification({
-        title: 'Default notification',
-        message: 'Hey there, your code is awesome! 🤥',
+        title: 'Oops!',
+        message: 'No users found with the username you entered. Try Again!',
+        icon: <BsX />,
+        color: 'red',
+        duration: 10000
       })
     }
   }, [error])

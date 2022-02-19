@@ -17,7 +17,7 @@ import {
 } from '../constants/userConstants';
 
 export const userSearchReducer = (
-    state = { userSearch: [] },
+    state = { userSearch: {} },
     action
 ) => {
     switch (action.type) {
