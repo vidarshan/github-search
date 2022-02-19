@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { BsMoonStarsFill, BsAt } from "react-icons/bs";
+import { BsMoonStarsFill, BsAt, BsSearch } from "react-icons/bs";
 import { VscGithub } from 'react-icons/vsc';
-// import { Fade } from "react-awesome-reveal";
-import { AppShell, ActionIcon, useMantineColorScheme, Container, Space, MediaQuery, Group, Text, TextInput, useMantineTheme } from '@mantine/core';
+import { useDispatch, useSelector } from "react-redux";
+import { searchUser } from "../actions/userActions";
+import { AppShell, ActionIcon, useMantineColorScheme, Container, Space, Button, Group, Text, TextInput, useMantineTheme } from '@mantine/core';
 
 
 const Home = () => {
   const history = useHistory();
-
+  const dispatch = useDispatch();
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = colorScheme === 'dark';
@@ -18,18 +19,20 @@ const Home = () => {
 
   const [keyword, setKeyword] = useState();
 
+  const searchResults = useSelector((state) => state.userSearch);
+
+  const { loading, userSearch, error } = searchResults;
+
   const searchHandler = (event) => {
-
-    console.log(event)
-    if (event.key == 'Enter') {
-
-      if (!keyword) {
-      } else {
-        history.push(`/search/${keyword}`);
-      }
-
-    }
+    dispatch(searchUser(keyword))
   };
+
+  useEffect(() => {
+    if (userSearch) {
+      console.log(userSearch)
+    }
+
+  }, [userSearch])
 
   return (
     <>
@@ -54,15 +57,20 @@ const Home = () => {
         <Space h="sm" />
         <Text sx={{ fontSize: "2.2rem" }} weight={700}>Github Search</Text>
         <Space h="sm" />
-        <TextInput
-          onChange={(e) => setKeyword(e.target.value)}
-          onKeyPress={(e) => searchHandler(e)}
-          icon={<BsAt />}
-          radius='md'
-          size='md'
-          sx={{ width: '40%', }}
-          placeholder="Your github username"
-        />
+        <Group direction='row' position='center'>
+          <TextInput
+            onChange={(e) => setKeyword(e.target.value)}
+            disabled={loading}
+            icon={<BsAt />}
+            radius='md'
+            size='md'
+
+            placeholder="Your github username"
+          />
+          <ActionIcon loading={loading} onClick={() => searchHandler()} variant='filled' radius='xl' color='green'
+            size='lg'><BsSearch /></ActionIcon>
+        </Group>
+
       </Container>
 
     </>
