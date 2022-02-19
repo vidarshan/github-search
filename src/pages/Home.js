@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Row, Col, Input, Typography } from "antd";
 import { BsMoonStarsFill, BsAt } from "react-icons/bs";
 import { VscGithub } from 'react-icons/vsc';
-import { Fade } from "react-awesome-reveal";
+// import { Fade } from "react-awesome-reveal";
 import { AppShell, ActionIcon, useMantineColorScheme, Container, Space, MediaQuery, Group, Text, TextInput, useMantineTheme } from '@mantine/core';
 
-const { Search } = Input;
-const { Title } = Typography;
 
 const Home = () => {
   const history = useHistory();

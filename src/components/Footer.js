@@ -1,11 +1,11 @@
 import React from "react";
 import moment from "moment";
-import { Button, Row } from "antd";
+// import { Button, Row } from "antd";
 
 const Footer = () => {
   return (
     <div className="footer">
-      <Row justify="center">
+      {/* <Row justify="center">
         &copy; {moment().format("YYYY")} vidarshan. | Powered by Github API
       </Row>
       <Row justify="center">
@@ -17,7 +17,7 @@ const Footer = () => {
         >
           View creater on Github
         </Button>
-      </Row>
+      </Row> */}
     </div>
   );
 };

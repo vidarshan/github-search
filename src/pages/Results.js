@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { searchUser } from "../actions/userActions";
 import map from "lodash.map";
-import { Fade } from "react-awesome-reveal";
+
 import Error from "../components/Error";
 import { Grid, Col, Loader } from "@mantine/core";
 import ResultCard from "../components/ResultCard";
@@ -41,12 +41,7 @@ const Results = ({ match }) => {
   }, [match, dispatch]);
 
   return (
-    <Fade direction={"left"}>
-      {/* <PageHeader
-        className="site-page-header"
-        onBack={() => goBackHandler()}
-        title="Back to Home"
-      /> */}
+    <>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -56,7 +51,7 @@ const Results = ({ match }) => {
           <Grid>
             {map(userSearch.items, (result, key) => {
               return (
-                <Col key={key} xs={24} sm={12} md={8} lg={8} xl={4}>
+                <Col span={3}>
                   <ResultCard result={result} />
                 </Col>
               );
@@ -79,7 +74,7 @@ const Results = ({ match }) => {
       ) : (
         <NoResults />
       )}
-    </Fade>
+    </>
   );
 };
 

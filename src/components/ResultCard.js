@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
-import { Card, Button, Typography } from "antd";
-const { Title } = Typography;
+import { Card, Image } from "@mantine/core";
+
 
 const ResultCard = ({ result }) => {
   const history = useHistory();
@@ -12,13 +12,15 @@ const ResultCard = ({ result }) => {
 
   return (
     <Card
-      hoverable
-      cover={
-        <img className="result-img" alt="example" src={result.avatar_url} />
-      }
+      withBorder
+    // cover={
+    //   <img className="result-img" alt="example" src={result.avatar_url} />
+    // }
     >
-      <Title level={5}>{result.login}</Title>
-      <Button
+
+      <Image />
+      {/* <Title level={5}>{result.login}</Title> */}
+      {/* <Button
         style={{
           color: "#20c162",
           borderColor: "#20c162",
@@ -28,7 +30,7 @@ const ResultCard = ({ result }) => {
         onClick={() => handleDetailedProfile(result.login)}
       >
         View Detailed Profile
-      </Button>
+      </Button> */}
     </Card>
   );
 };
