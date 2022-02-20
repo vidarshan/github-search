@@ -58,7 +58,7 @@ const Home = () => {
   }, [error]);
 
   return (
-    <Paper sx={{ borderRadius: "0px" }}>
+    <Paper sx={{ borderRadius: "0px", paddingTop: '1rem' }}>
       <Container
         sx={{
           display: "flex",
@@ -85,7 +85,7 @@ const Home = () => {
       <Container
         sx={{
           maxWidth: "none",
-          height: "90vh",
+          height: "95vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
