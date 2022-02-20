@@ -4,7 +4,7 @@ import {
   getUserRepos,
   getUserStarred,
 } from "../actions/userActions";
-import Loader from "../components/Loader";
+import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import { useDispatch, useSelector } from "react-redux";
 import { useNotifications } from "@mantine/notifications";
@@ -39,6 +39,7 @@ const Profile = ({ match }) => {
   const [pages, setPages] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
   const [activePage, setActivePage] = useState(1);
+  const alload = true;
   // const years = useRef(0);
   // const months = useRef(0);
   // const days = useRef(0);
@@ -104,7 +105,7 @@ const Profile = ({ match }) => {
 
   const handlerPageChange = (e) => {
     setActivePage(e)
-    console.log(activePage)
+
 
   }
 
@@ -125,7 +126,7 @@ const Profile = ({ match }) => {
   }, [userSearch])
 
   useEffect(() => {
-    dispatch(getUserRepos(params.name, activePage));
+    // dispatch(getUserRepos(params.name, activePage));
   }, [activePage])
 
 
@@ -212,9 +213,10 @@ const Profile = ({ match }) => {
         <Tabs color='green' active={activeTab} onTabChange={setActiveTab}>
           <Tabs.Tab label="Repositories">
             <Grid>
-              <Col span={6}>
+              {alload ? <Col span={12}><Spinner /></Col> : <Col span={6}>
                 <RepositoryCard name='Sample-repo' description={`nfrebfhbe rferbferfer ybreygfyr erebvurev nrenvuireburebg breugburegb urebgreg brehvbrf hvbhr ebverbvbef hvbefb verbvb`} forksCount={34023} starsCount={45942} language='TypeScript' size={29232} />
-              </Col>
+              </Col>}
+
               {/* {repoLoading ? <div>loading</div> : repos.map((repo) => {
                 return <Col span={6}>
                   <RepositoryCard name={repo.name} description={repo.description} forksCount={repo.forks_count} starsCount={repo.stargazers_count} language={repo.language} size={repo.size} />
