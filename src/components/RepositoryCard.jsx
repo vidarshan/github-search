@@ -3,6 +3,7 @@ import { Card, Text, Group, Badge, Grid, Col, Container } from "@mantine/core";
 import { BsStarFill } from "react-icons/bs";
 import { BiGitBranch } from "react-icons/bi";
 import {GoPrimitiveDot} from 'react-icons/go';
+import {colors} from '../data/Colors';
 
 const RepositoryCard = ({
   name,
@@ -12,18 +13,31 @@ const RepositoryCard = ({
   language,
   size,
 }) => {
+
+
+  const getColor = (language) => {
+    console.log(language)
+    let langColor = colors.filter((lang)=>{
+      return (lang.language === language);
+    });
+
+    return langColor[0].color
+  }
+
   return (
     <Card sx={{ margin: "1rem 0" }} padding='xl' radius="md" shadow="md" withBorder>
       <Grid>
         <Col span={6}>
+        
           <Text weight={600}>{name}</Text> 
         </Col>
-        <Col span={6}>
+        {language && <Col span={6}>
         <div style={{display:'flex', alignItems:'center', justifyContent:'flex-end', width:'100%'}}>
-        <GoPrimitiveDot/>
+        <GoPrimitiveDot color={(getColor(language))}/>
           <Text align='right' >{language}</Text>
           </div>
-        </Col>
+        </Col>}
+        
         </Grid>
         <Grid>
        {description &&  <Col sx={{margin:'1rem 0'}} span={12}>
