@@ -13,7 +13,7 @@ import {
   BsEnvelope,
   BsSearch,
   BsTwitter,
-  BsGithub, BsFillFileEarmarkCodeFill, BsStar, BsFillStarFill, BsFillFileZipFill
+  BsGithub, BsFillFileEarmarkCodeFill, BsFillXCircleFill, BsFillStarFill, BsFillFileZipFill
 } from "react-icons/bs";
 import {
   Container,
@@ -22,7 +22,7 @@ import {
   Button,
   ActionIcon,
   Tabs,
-  Tab,
+  Alert,
   Text,
   Group,
   Grid,
@@ -77,11 +77,11 @@ const Profile = ({ match }) => {
     error: repoError,
     userRepos: repos,
   } = useSelector((state) => state.userRepos);
-  // const {
-  //   loading: starredLoading,
-  //   error: starredError,
-  //   userStarred: starred,
-  // } = useSelector((state) => state.userStarred);
+  const {
+    loading: starredLoading,
+    error: starredError,
+    userStarred: starred,
+  } = useSelector((state) => state.userStarred);
 
   // const goBackHandler = () => {
   //   // history.goBack();
@@ -106,8 +106,6 @@ const Profile = ({ match }) => {
 
   const handlerPageChange = (e) => {
     setActivePage(e)
-
-
   }
 
   useEffect(() => {
@@ -127,12 +125,23 @@ const Profile = ({ match }) => {
   }, [userSearch])
 
   useEffect(() => {
-    dispatch(getUserRepos(params.name, activePage));
+
+    // dispatch(getUserRepos(params.name, activePage));
   }, [activePage])
 
 
   useEffect(() => {
-    console.log(params);
+    if (activeTab === 0) {
+      dispatch(getUserRepos(params.name, 1))
+    } else if (activeTab === 1) {
+      dispatch(getUserStarred(params.name, 1));
+    } else {
+      //
+    }
+  }, [activeTab])
+
+  useEffect(() => {
+
     // dispatch(getUserInfo(match.params.name));
 
     // dispatch(getUserStarred(match.params.name));
@@ -228,7 +237,24 @@ const Profile = ({ match }) => {
               <Pagination size="md" color='green' radius='xl' total={pages} page={activePage} onChange={(e) => handlerPageChange(e)} />
             </Group>
           </Tabs.Tab>
-          <Tabs.Tab icon={<BsFillStarFill />} label="Starred">Second tab content</Tabs.Tab>
+          <Tabs.Tab icon={<BsFillStarFill />} label="Starred">
+            <Grid>
+              {/* {alload ? <Col span={12}><Spinner /></Col> : <Col span={6}>
+                <RepositoryCard name='Sample-repo' description={`nfrebfhbe rferbferfer ybreygfyr erebvurev nrenvuireburebg breugburegb urebgreg brehvbrf hvbhr ebverbvbef hvbefb verbvb`} forksCount={34023} starsCount={45942} language='TypeScript' size={29232} />
+              </Col>} */}
+
+              {starredLoading ? <Col span={12}><Spinner /></Col> : starred && starred.length ? starred.map((star) => {
+                return <Col span={6}>
+                  <RepositoryCard name={star.name} description={star.description} language={star.language} size={star.size} />
+                </Col>
+              }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
+                This user has no starred repos.
+              </Alert></Col>}
+            </Grid>
+            <Group sx={{ margin: '3rem 0' }} position='center'>
+              <Pagination size="md" color='green' radius='xl' total={pages} page={activePage} onChange={(e) => handlerPageChange(e)} />
+            </Group>
+          </Tabs.Tab>
           <Tabs.Tab icon={<BsFillFileEarmarkCodeFill />} label="Gists">Third tab content</Tabs.Tab>
         </Tabs>
       </Container>
