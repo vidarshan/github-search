@@ -26,11 +26,11 @@ const RepositoryCard = ({
         </Col>
         </Grid>
         <Grid>
-        <Col sx={{margin:'1rem 0'}} span={12}>
+       {description &&  <Col sx={{margin:'1rem 0'}} span={12}>
           <Text size="sm" style={{ lineHeight: 1.5 }}>
-          {description.substring(0,100)+'...'}
+          {description &&description.substring(0,100)+'...'}
         </Text>
-        </Col>
+        </Col>}
         </Grid>
         <Group  direction='row' position='apart'>
           <div style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
