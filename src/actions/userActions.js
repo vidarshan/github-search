@@ -77,7 +77,7 @@ export const getUserRepos = (user, page) => async (dispatch) => {
     }
 };
 
-export const getUserGists = (user) => async (dispatch) => {
+export const getUserGists = (user, page) => async (dispatch) => {
     try {
         dispatch({
             type: USER_GET_GISTS_REQUEST
@@ -85,7 +85,7 @@ export const getUserGists = (user) => async (dispatch) => {
 
 
         const { data } = await axios.get(
-            `https://api.github.com/users/${user}/gists?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`
+            `https://api.github.com/users/${user}/gists?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}?per_page=100&page=${page}`
         );
 
         dispatch({

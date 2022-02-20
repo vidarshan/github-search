@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
+  getUserGists,
   getUserInfo,
   getUserRepos,
   getUserStarred,
@@ -82,6 +83,11 @@ const Profile = ({ match }) => {
     error: starredError,
     userStarred: starred,
   } = useSelector((state) => state.userStarred);
+  const {
+    loading: gistsLoading,
+    error: gistsError,
+    userGists: gists,
+  } = useSelector((state) => state.userGists);
 
   // const goBackHandler = () => {
   //   // history.goBack();
@@ -112,12 +118,22 @@ const Profile = ({ match }) => {
 
     if (userSearch) {
 
-      if (Math.round(userSearch.public_repos % 50) > 0) {
-        setPages(Math.round(userSearch.public_repos / 50) + 1)
-        console.log("d", activePage)
-      } else {
-        setPages(Math.round(userSearch.public_repos / 50))
-        console.log("e", activePage)
+      if (activeTab === 0) {
+        if (Math.round(userSearch.public_repos % 50) > 0) {
+          setPages(Math.round(userSearch.public_repos / 50) + 1)
+          console.log("d", activePage)
+        } else {
+          setPages(Math.round(userSearch.public_repos / 50))
+          console.log("e", activePage)
+        }
+      } else if (activeTab === 2) {
+        if (Math.round(userSearch.public_gists % 50) > 0) {
+          setPages(Math.round(userSearch.public_gists / 50) + 1)
+          console.log("d", activePage)
+        } else {
+          setPages(Math.round(userSearch.public_gists / 50))
+          console.log("e", activePage)
+        }
       }
 
 
@@ -126,7 +142,14 @@ const Profile = ({ match }) => {
 
   useEffect(() => {
 
-    // dispatch(getUserRepos(params.name, activePage));
+    if (activeTab === 0) {
+      dispatch(getUserRepos(params.name, activePage));
+    } else if (activeTab === 1) {
+      dispatch(getUserStarred(params.name, activePage));
+    } else if (activeTab === 2) {
+      dispatch(getUserGists(params.name, activePage));
+    }
+
   }, [activePage])
 
 
@@ -136,7 +159,7 @@ const Profile = ({ match }) => {
     } else if (activeTab === 1) {
       dispatch(getUserStarred(params.name, 1));
     } else {
-      //
+      dispatch(getUserGists(params.name, 1));
     }
   }, [activeTab])
 
@@ -239,10 +262,6 @@ const Profile = ({ match }) => {
           </Tabs.Tab>
           <Tabs.Tab icon={<BsFillStarFill />} label="Starred">
             <Grid>
-              {/* {alload ? <Col span={12}><Spinner /></Col> : <Col span={6}>
-                <RepositoryCard name='Sample-repo' description={`nfrebfhbe rferbferfer ybreygfyr erebvurev nrenvuireburebg breugburegb urebgreg brehvbrf hvbhr ebverbvbef hvbefb verbvb`} forksCount={34023} starsCount={45942} language='TypeScript' size={29232} />
-              </Col>} */}
-
               {starredLoading ? <Col span={12}><Spinner /></Col> : starred && starred.length ? starred.map((star) => {
                 return <Col span={6}>
                   <RepositoryCard name={star.name} description={star.description} language={star.language} size={star.size} />
@@ -255,7 +274,21 @@ const Profile = ({ match }) => {
               <Pagination size="md" color='green' radius='xl' total={pages} page={activePage} onChange={(e) => handlerPageChange(e)} />
             </Group>
           </Tabs.Tab>
-          <Tabs.Tab icon={<BsFillFileEarmarkCodeFill />} label="Gists">Third tab content</Tabs.Tab>
+          <Tabs.Tab icon={<BsFillFileEarmarkCodeFill />} label="Gists">
+
+            <Grid>
+              {gistsLoading ? <Col span={12}><Spinner /></Col> : gists && gists.length ? gists.map((gist) => {
+                return <Col span={6}>
+                  <RepositoryCard name={gist.id} />
+                </Col>
+              }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
+                This user has no starred repos.
+              </Alert></Col>}
+            </Grid>
+            <Group sx={{ margin: '3rem 0' }} position='center'>
+              <Pagination size="md" color='green' radius='xl' total={pages} page={activePage} onChange={(e) => handlerPageChange(e)} />
+            </Group>
+          </Tabs.Tab>
         </Tabs>
       </Container>
     </Paper>

@@ -61,7 +61,7 @@ const RepositoryCard = ({
         )}
       </Grid>
       <Group sx={{ marginTop: "1.5rem" }} direction="row" position="apart">
-        <div
+        {starsCount && <div
           style={{
             display: "flex",
             alignItems: "center",
@@ -73,8 +73,8 @@ const RepositoryCard = ({
             {" "}
             {starsCount.toLocaleString()}
           </Text>
-        </div>
-        <div
+        </div>}
+        {forksCount && <div
           direction="row"
           position="apart"
           style={{
@@ -88,7 +88,8 @@ const RepositoryCard = ({
             {" "}
             {forksCount.toLocaleString()}
           </Text>
-        </div>
+        </div>}
+        
       </Group>
     </Card>
   );
