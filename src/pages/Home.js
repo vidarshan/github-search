@@ -5,7 +5,7 @@ import { VscGithub } from 'react-icons/vsc';
 import { useDispatch, useSelector } from "react-redux";
 import { useNotifications } from '@mantine/notifications';
 import { searchUser } from "../actions/userActions";
-import { Alert, ActionIcon, useMantineColorScheme, Container, Space, Button, Group, Text, TextInput, useMantineTheme } from '@mantine/core';
+import { Paper, ActionIcon, useMantineColorScheme, Container, Space, Button, Group, Text, TextInput, useMantineTheme } from '@mantine/core';
 
 
 const Home = () => {
@@ -54,14 +54,14 @@ const Home = () => {
   }, [error])
 
   return (
-    <>
+    <Paper>
       <Container sx={{ display: 'flex', alignItems: "center", justifyContent: 'space-between', height: '5vh' }} fluid>
         <Text size='md' weight={500}>57 / 60 Requests</Text>
         <ActionIcon
           variant="outline"
           color={dark ? 'yellow' : 'blue'}
           onClick={() => toggleColorScheme()}
-          title="Toggle color scheme"
+          title="Toggle color scheme" radius='md'
         >
           {dark ? (
             <BsMoonStarsFill />
@@ -71,7 +71,7 @@ const Home = () => {
         </ActionIcon>
 
       </Container>
-      <Container sx={{ maxWidth: 'none', height: '90vh', display: "flex", flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <Container sx={{ maxWidth: 'none', height: '95vh', display: "flex", flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <VscGithub size='30' />
         <Space h="sm" />
         <Text sx={{ fontSize: "2.2rem" }} weight={700}>Github Search</Text>
@@ -97,7 +97,7 @@ const Home = () => {
 
       </Container>
 
-    </>
+    </Paper>
   );
 };
 

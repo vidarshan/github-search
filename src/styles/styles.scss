@@ -17,10 +17,14 @@ input,
 }
 
 input {
-  font-weight: 500 !important;
+  font-weight: 600 !important;
 }
 
 .mantine-Notification-description,
 .mantine-Notification-title {
+  font-weight: 600 !important;
+}
+
+.mantine-Tabs-tabLabel {
   font-weight: 600 !important;
 }
