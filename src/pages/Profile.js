@@ -25,16 +25,17 @@ import {
   Tab,
   Text,
   Group,
-  Card,
   Grid,
   Col, Pagination
 } from "@mantine/core";
 import { searchUser } from "../actions/userActions";
+import RepositoryCard from '../components/RepositoryCard';
+
 
 const Profile = ({ match }) => {
   const dispatch = useDispatch();
   const [pages, setPages] = useState(1);
-  const [activeTab, setActiveTab] = useState(1);
+  const [activeTab, setActiveTab] = useState(0);
   // const years = useRef(0);
   // const months = useRef(0);
   // const days = useRef(0);
@@ -101,7 +102,7 @@ const Profile = ({ match }) => {
 
   useEffect(() => {
     if (userSearch) {
-      setPages(Math.round(userSearch.public_repos / 100) + 1)
+      setPages(Math.round(userSearch.public_repos / 50) + 1)
     }
   }, [userSearch])
 
@@ -113,7 +114,7 @@ const Profile = ({ match }) => {
   }, [dispatch, match]);
 
   return (
-    <Paper>
+    <Paper sx={{ minHeight: "100vh" }}>
       <Container
         sx={{
           display: "flex",
@@ -137,7 +138,7 @@ const Profile = ({ match }) => {
         <Text sx={{ fontSize: "1rem" }} weight={400}>
           @{userSearch.login}
         </Text>
-        <Group direction="row" position="center">
+        <Group sx={{ marginTop: '1rem' }} direction="row" position="center">
           <Text align="center">
             {userSearch.followers} <br /> Followers
           </Text>
@@ -159,7 +160,7 @@ const Profile = ({ match }) => {
             loading={loading}
             variant="filled"
             radius="xl"
-            color="green"
+            color="cyan"
             size="lg"
           >
             <BsGlobe />
@@ -168,7 +169,7 @@ const Profile = ({ match }) => {
             loading={loading}
             variant="filled"
             radius="xl"
-            color="green"
+            color="blue"
             size="lg"
           >
             <BsTwitter />
@@ -177,7 +178,7 @@ const Profile = ({ match }) => {
             loading={loading}
             variant="filled"
             radius="xl"
-            color="green"
+            color="yellow"
             size="lg"
           >
             <BsEnvelope />
@@ -189,19 +190,13 @@ const Profile = ({ match }) => {
           <Tabs.Tab label="Repositories">
             <Grid>
               <Col span={12}>
-                {" "}
-                <Card radius="md" shadow="md" withBorder>
-                  hdhsdh
-                </Card>
-              </Col>
-              <Col span={12}>
-                {" "}
-                <Card radius="md" shadow="md" withBorder>
-                  hdhsdh
-                </Card>
+                <RepositoryCard />
+
               </Col>
             </Grid>
-            <Pagination color='green' radius='md' total={pages} page={activePage} onChange={setPage} />
+            <Group position='center'>
+              <Pagination color='green' radius='md' total={pages} page={activePage} onChange={setPage} />
+            </Group>
           </Tabs.Tab>
           <Tabs.Tab label="Starred">Second tab content</Tabs.Tab>
           <Tabs.Tab label="Gists">Third tab content</Tabs.Tab>

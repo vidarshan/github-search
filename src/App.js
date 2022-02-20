@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import Results from "./pages/Results";
-import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
+import { MantineProvider, ColorSchemeProvider, ColorScheme, Paper } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { useState } from "react";
 import './styles/styles.scss'
@@ -17,15 +17,17 @@ function App() {
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
       <MantineProvider theme={{ colorScheme }}>
-        <NotificationsProvider position='top-center'>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/search/:word" element={<Results />} />
-              <Route path="/profile/:name" element={<Profile />} />
-            </Routes>
-          </BrowserRouter>
-        </NotificationsProvider>
+        <Paper>
+          <NotificationsProvider position='top-center'>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/search/:word" element={<Results />} />
+                <Route path="/profile/:name" element={<Profile />} />
+              </Routes>
+            </BrowserRouter>
+          </NotificationsProvider>
+        </Paper>
       </MantineProvider>
     </ColorSchemeProvider>
   );
