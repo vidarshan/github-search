@@ -13,7 +13,7 @@ import {
   BsEnvelope,
   BsSearch,
   BsTwitter,
-  BsGithub,
+  BsGithub, BsFillFileEarmarkCodeFill, BsStar, BsFillStarFill, BsFillFileZipFill
 } from "react-icons/bs";
 import {
   Container,
@@ -31,6 +31,7 @@ import {
 import { searchUser } from "../actions/userActions";
 import RepositoryCard from '../components/RepositoryCard';
 import { useParams } from "react-router";
+import { RiGitRepositoryLine, RiStarLine } from 'react-icons/ri';
 
 
 const Profile = ({ match }) => {
@@ -126,7 +127,7 @@ const Profile = ({ match }) => {
   }, [userSearch])
 
   useEffect(() => {
-    // dispatch(getUserRepos(params.name, activePage));
+    dispatch(getUserRepos(params.name, activePage));
   }, [activePage])
 
 
@@ -210,25 +211,25 @@ const Profile = ({ match }) => {
         </Group>
       </Container>
       <Container sx={{ marginTop: '1rem' }}>
-        <Tabs color='green' active={activeTab} onTabChange={setActiveTab}>
-          <Tabs.Tab label="Repositories">
+        <Tabs grow variant="pills" color='green' active={activeTab} onTabChange={setActiveTab}>
+          <Tabs.Tab icon={<BsFillFileZipFill />} label="Repositories">
             <Grid>
-              {alload ? <Col span={12}><Spinner /></Col> : <Col span={6}>
+              {/* {alload ? <Col span={12}><Spinner /></Col> : <Col span={6}>
                 <RepositoryCard name='Sample-repo' description={`nfrebfhbe rferbferfer ybreygfyr erebvurev nrenvuireburebg breugburegb urebgreg brehvbrf hvbhr ebverbvbef hvbefb verbvb`} forksCount={34023} starsCount={45942} language='TypeScript' size={29232} />
-              </Col>}
+              </Col>} */}
 
-              {/* {repoLoading ? <div>loading</div> : repos.map((repo) => {
+              {repoLoading ? <Col span={12}><Spinner /></Col> : repos.map((repo) => {
                 return <Col span={6}>
                   <RepositoryCard name={repo.name} description={repo.description} forksCount={repo.forks_count} starsCount={repo.stargazers_count} language={repo.language} size={repo.size} />
                 </Col>
-              })} */}
+              })}
             </Grid>
-            <Group sx={{ margin: '2rem 0' }} position='center'>
-              <Pagination color='green' radius='md' total={pages} page={activePage} onChange={(e) => handlerPageChange(e)} />
+            <Group sx={{ margin: '3rem 0' }} position='center'>
+              <Pagination size="md" color='green' radius='xl' total={pages} page={activePage} onChange={(e) => handlerPageChange(e)} />
             </Group>
           </Tabs.Tab>
-          <Tabs.Tab label="Starred">Second tab content</Tabs.Tab>
-          <Tabs.Tab label="Gists">Third tab content</Tabs.Tab>
+          <Tabs.Tab icon={<BsFillStarFill />} label="Starred">Second tab content</Tabs.Tab>
+          <Tabs.Tab icon={<BsFillFileEarmarkCodeFill />} label="Gists">Third tab content</Tabs.Tab>
         </Tabs>
       </Container>
     </Paper>

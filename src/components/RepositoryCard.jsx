@@ -14,12 +14,13 @@ const RepositoryCard = ({
   size,
 }) => {
   const getColor = (language) => {
-    console.log(language);
+
     let langColor = colors.filter((lang) => {
       return lang.language === language;
     });
 
-    return langColor[0].color;
+    
+    return langColor && langColor.length ? langColor[0].color : 'grey';
   };
 
   return (

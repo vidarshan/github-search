@@ -162,6 +162,7 @@ export const colors = [
     { language: "SAS", color: "#B34936" },
     { language: "Scala", color: "#DC322F" },
     { language: "Scheme", color: "#1e4aec" },
+    { language: "SCSS", color: "#cc0088" },
     { language: "Self", color: "#0579aa" },
     { language: "Shell", color: "#89e051" },
     { language: "Shen", color: "#120F14" },
