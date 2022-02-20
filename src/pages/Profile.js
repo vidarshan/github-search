@@ -38,7 +38,9 @@ import { RiGitRepositoryLine, RiStarLine } from 'react-icons/ri';
 const Profile = ({ match }) => {
   const params = useParams();
   const dispatch = useDispatch();
-  const [pages, setPages] = useState(1);
+  const [repoPages, setRepoPages] = useState(1);
+  const [gistsPages, setGistsPages] = useState(1);
+  const [starredPages, setStarredPages] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
   const [activePage, setActivePage] = useState(1);
   const alload = true;
@@ -120,18 +122,31 @@ const Profile = ({ match }) => {
 
       if (activeTab === 0) {
         if (Math.round(userSearch.public_repos % 50) > 0) {
-          setPages(Math.round(userSearch.public_repos / 50) + 1)
+          setRepoPages(Math.round(userSearch.public_repos / 50) + 1)
           console.log("d", activePage)
         } else {
-          setPages(Math.round(userSearch.public_repos / 50))
+          setRepoPages(Math.round(userSearch.public_repos / 50))
           console.log("e", activePage)
         }
-      } else if (activeTab === 2) {
-        if (Math.round(userSearch.public_gists % 50) > 0) {
-          setPages(Math.round(userSearch.public_gists / 50) + 1)
+      }
+
+      if (activeTab === 1) {
+        if (Math.round(userSearch.public_repos % 50) > 0) {
+          setGistsPages(Math.round(userSearch.public_repos / 50) + 1)
           console.log("d", activePage)
         } else {
-          setPages(Math.round(userSearch.public_gists / 50))
+          setGistsPages(Math.round(userSearch.public_repos / 50))
+          console.log("e", activePage)
+        }
+      }
+
+
+      if (activeTab === 2) {
+        if (Math.round(userSearch.public_repos % 50) > 0) {
+          setStarredPages(Math.round(userSearch.public_repos / 50) + 1)
+          console.log("d", activePage)
+        } else {
+          setStarredPages(Math.round(userSearch.public_repos / 50))
           console.log("e", activePage)
         }
       }
@@ -250,14 +265,16 @@ const Profile = ({ match }) => {
                 <RepositoryCard name='Sample-repo' description={`nfrebfhbe rferbferfer ybreygfyr erebvurev nrenvuireburebg breugburegb urebgreg brehvbrf hvbhr ebverbvbef hvbefb verbvb`} forksCount={34023} starsCount={45942} language='TypeScript' size={29232} />
               </Col>} */}
 
-              {repoLoading ? <Col span={12}><Spinner /></Col> : repos.map((repo) => {
+              {repoLoading ? <Col span={12}><Spinner /></Col> : repos && repos.length ? repos.map((repo) => {
                 return <Col span={6}>
                   <RepositoryCard name={repo.name} description={repo.description} forksCount={repo.forks_count} starsCount={repo.stargazers_count} language={repo.language} size={repo.size} />
                 </Col>
-              })}
+              }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
+                This user has no public repos.
+              </Alert></Col>}
             </Grid>
             <Group sx={{ margin: '3rem 0' }} position='center'>
-              <Pagination size="md" color='green' radius='xl' total={pages} page={activePage} onChange={(e) => handlerPageChange(e)} />
+              <Pagination size="md" color='green' radius='xl' total={repoPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
             </Group>
           </Tabs.Tab>
           <Tabs.Tab icon={<BsFillStarFill />} label="Starred">
@@ -271,7 +288,7 @@ const Profile = ({ match }) => {
               </Alert></Col>}
             </Grid>
             <Group sx={{ margin: '3rem 0' }} position='center'>
-              <Pagination size="md" color='green' radius='xl' total={pages} page={activePage} onChange={(e) => handlerPageChange(e)} />
+              <Pagination size="md" color='green' radius='xl' total={starredPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
             </Group>
           </Tabs.Tab>
           <Tabs.Tab icon={<BsFillFileEarmarkCodeFill />} label="Gists">
@@ -282,11 +299,11 @@ const Profile = ({ match }) => {
                   <RepositoryCard name={gist.id} />
                 </Col>
               }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
-                This user has no starred repos.
+                This user has no gists.
               </Alert></Col>}
             </Grid>
             <Group sx={{ margin: '3rem 0' }} position='center'>
-              <Pagination size="md" color='green' radius='xl' total={pages} page={activePage} onChange={(e) => handlerPageChange(e)} />
+              <Pagination size="md" color='green' radius='xl' total={gistsPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
             </Group>
           </Tabs.Tab>
         </Tabs>

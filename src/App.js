@@ -6,14 +6,19 @@ import Results from "./pages/Results";
 import { MantineProvider, ColorSchemeProvider, ColorScheme, Paper } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { useState } from "react";
+import { useHotkeys, useLocalStorageValue } from '@mantine/hooks';
 import './styles/styles.scss'
 
 function App() {
 
-  const [colorScheme, setColorScheme] = useState('light');
+  const [colorScheme, setColorScheme] = useLocalStorageValue({
+    key: 'mantine-color-scheme',
+    defaultValue: 'light',
+  });
   const toggleColorScheme = (value) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
+  useHotkeys([['mod+J', () => toggleColorScheme()]]);
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
       <MantineProvider theme={{ colorScheme }}>
@@ -27,6 +32,7 @@ function App() {
               </Routes>
             </BrowserRouter>
           </NotificationsProvider>
+          <Footer />
         </Paper>
       </MantineProvider>
     </ColorSchemeProvider>
