@@ -30,12 +30,15 @@ import {
 } from "@mantine/core";
 import { searchUser } from "../actions/userActions";
 import RepositoryCard from '../components/RepositoryCard';
+import { useParams } from "react-router";
 
 
 const Profile = ({ match }) => {
+  const params = useParams();
   const dispatch = useDispatch();
   const [pages, setPages] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
+  const [activePage, setActivePage] = useState(1);
   // const years = useRef(0);
   // const months = useRef(0);
   // const days = useRef(0);
@@ -44,7 +47,6 @@ const Profile = ({ match }) => {
   // const [copiedLink, setCopiedLink] = useState(null);
 
   const searchResults = useSelector((state) => state.userSearch);
-  const [activePage, setPage] = useState(1);
   const { loading, userSearch, error } = searchResults;
 
   // const getDuration = (createdDate) => {
@@ -68,11 +70,11 @@ const Profile = ({ match }) => {
   //   error: userError,
   //   getUser: user,
   // } = useSelector((state) => state.getUser);
-  // const {
-  //   loading: repoLoading,
-  //   error: repoError,
-  //   userRepos: repos,
-  // } = useSelector((state) => state.userRepos);
+  const {
+    loading: repoLoading,
+    error: repoError,
+    userRepos: repos,
+  } = useSelector((state) => state.userRepos);
   // const {
   //   loading: starredLoading,
   //   error: starredError,
@@ -100,16 +102,37 @@ const Profile = ({ match }) => {
   //   }
   // };
 
+  const handlerPageChange = (e) => {
+    setActivePage(e)
+    console.log(activePage)
+
+  }
+
   useEffect(() => {
+
     if (userSearch) {
-      setPages(Math.round(userSearch.public_repos / 50) + 1)
+
+      if (Math.round(userSearch.public_repos % 50) > 0) {
+        setPages(Math.round(userSearch.public_repos / 50) + 1)
+        console.log("d", activePage)
+      } else {
+        setPages(Math.round(userSearch.public_repos / 50))
+        console.log("e", activePage)
+      }
+
+
     }
   }, [userSearch])
 
   useEffect(() => {
-    console.log("fsfsdf");
+    // dispatch(getUserRepos(params.name, activePage));
+  }, [activePage])
+
+
+  useEffect(() => {
+    console.log(params);
     // dispatch(getUserInfo(match.params.name));
-    // dispatch(getUserRepos(match.params.name));
+
     // dispatch(getUserStarred(match.params.name));
   }, [dispatch, match]);
 
@@ -189,13 +212,17 @@ const Profile = ({ match }) => {
         <Tabs color='green' active={activeTab} onTabChange={setActiveTab}>
           <Tabs.Tab label="Repositories">
             <Grid>
-              <Col span={12}>
-                <RepositoryCard />
-
+              <Col span={6}>
+                <RepositoryCard name='Sample-repo' description={`nfrebfhbe rferbferfer ybreygfyr erebvurev nrenvuireburebg breugburegb urebgreg brehvbrf hvbhr ebverbvbef hvbefb verbvb`} forksCount={34023} starsCount={45942} language='Typescript' size={29232} />
               </Col>
+              {/* {repoLoading ? <div>loading</div> : repos.map((repo) => {
+                return <Col span={6}>
+                  <RepositoryCard name={repo.name} description={repo.description} forksCount={repo.forks_count} starsCount={repo.stargazers_count} language={repo.language} size={repo.size} />
+                </Col>
+              })} */}
             </Grid>
-            <Group position='center'>
-              <Pagination color='green' radius='md' total={pages} page={activePage} onChange={setPage} />
+            <Group sx={{ margin: '2rem 0' }} position='center'>
+              <Pagination color='green' radius='md' total={pages} page={activePage} onChange={(e) => handlerPageChange(e)} />
             </Group>
           </Tabs.Tab>
           <Tabs.Tab label="Starred">Second tab content</Tabs.Tab>
