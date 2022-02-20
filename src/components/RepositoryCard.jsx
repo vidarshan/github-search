@@ -2,8 +2,8 @@ import React from "react";
 import { Card, Text, Group, Badge, Grid, Col, Container } from "@mantine/core";
 import { BsStarFill } from "react-icons/bs";
 import { BiGitBranch } from "react-icons/bi";
-import {GoPrimitiveDot} from 'react-icons/go';
-import {colors} from '../data/Colors';
+import { GoPrimitiveDot } from "react-icons/go";
+import { colors } from "../data/Colors";
 
 const RepositoryCard = ({
   name,
@@ -13,58 +13,82 @@ const RepositoryCard = ({
   language,
   size,
 }) => {
-
-
   const getColor = (language) => {
-    console.log(language)
-    let langColor = colors.filter((lang)=>{
-      return (lang.language === language);
+    console.log(language);
+    let langColor = colors.filter((lang) => {
+      return lang.language === language;
     });
 
-    return langColor[0].color
-  }
+    return langColor[0].color;
+  };
 
   return (
-    <Card sx={{ margin: "1rem 0" }} padding='xl' radius="md" shadow="md" withBorder>
+    <Card
+      sx={{ margin: "1rem 0", display:'flex', flexDirection:'column', justifyContent:'center' }}
+      padding="xl"
+      radius="md"
+      shadow="lg"
+      withBorder
+    >
       <Grid>
         <Col span={6}>
-        
-          <Text weight={600}>{name}</Text> 
+          <Text weight={600}>{name}</Text>
         </Col>
-        {language && <Col span={6}>
-        <div style={{display:'flex', alignItems:'center', justifyContent:'flex-end', width:'100%'}}>
-        <GoPrimitiveDot color={(getColor(language))}/>
-          <Text align='right' >{language}</Text>
-          </div>
-        </Col>}
-        
-        </Grid>
-        <Grid>
-       {description &&  <Col sx={{margin:'1rem 0'}} span={12}>
-          <Text size="sm" style={{ lineHeight: 1.5 }}>
-          {description &&description.substring(0,100)+'...'}
-        </Text>
-        </Col>}
-        </Grid>
-        <Group  direction='row' position='apart'>
-          <div style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
-          <BsStarFill color='orange' style={{marginRight:'5px'}}/> 
-          <Text size='sm' weight={500}> {starsCount.toLocaleString()}</Text>
-          </div>
-          <div  direction='row' position='apart' style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
-          <BiGitBranch color='blue' style={{marginRight:'5px'}}/> 
-          <Text size='sm' weight={500}> {forksCount.toLocaleString()}</Text>
-          </div>
-        </Group>
-        {/* <Grid>
+        {language && (
           <Col span={6}>
-          {starsCount}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+                width: "100%",
+              }}
+            >
+              <GoPrimitiveDot color={getColor(language)} />
+              <Text color='gray' weight={600} size='sm' align="right">{language}</Text>
+            </div>
           </Col>
-          <Col span={6}>
-            <Text>  {forksCount}</Text>
-        
+        )}
+      </Grid>
+      <Grid>
+        {description && (
+          <Col sx={{ marginTop: "1.5rem" }} span={12}>
+            <Text size="sm" weight={500} style={{ lineHeight: 1.5 }}>
+              {description && description.substring(0, 100) + "..."}
+            </Text>
           </Col>
-        </Grid> */}
+        )}
+      </Grid>
+      <Group sx={{ marginTop: "1.5rem" }} direction="row" position="apart">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <BsStarFill color="orange" style={{ marginRight: "5px" }} />
+          <Text color='gray' size="sm" weight={600}>
+            {" "}
+            {starsCount.toLocaleString()}
+          </Text>
+        </div>
+        <div
+          direction="row"
+          position="apart"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <BiGitBranch color="lightblue" style={{ marginRight: "5px" }} />
+          <Text color='gray' size="sm" weight={600}>
+            {" "}
+            {forksCount.toLocaleString()}
+          </Text>
+        </div>
+      </Group>
     </Card>
   );
 };

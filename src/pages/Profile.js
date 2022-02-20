@@ -212,14 +212,14 @@ const Profile = ({ match }) => {
         <Tabs color='green' active={activeTab} onTabChange={setActiveTab}>
           <Tabs.Tab label="Repositories">
             <Grid>
-              {/* <Col span={6}>
-                <RepositoryCard name='Sample-repo' description={`nfrebfhbe rferbferfer ybreygfyr erebvurev nrenvuireburebg breugburegb urebgreg brehvbrf hvbhr ebverbvbef hvbefb verbvb`} forksCount={34023} starsCount={45942} language='Typescript' size={29232} />
-              </Col> */}
-              {repoLoading ? <div>loading</div> : repos.map((repo) => {
+              <Col span={6}>
+                <RepositoryCard name='Sample-repo' description={`nfrebfhbe rferbferfer ybreygfyr erebvurev nrenvuireburebg breugburegb urebgreg brehvbrf hvbhr ebverbvbef hvbefb verbvb`} forksCount={34023} starsCount={45942} language='TypeScript' size={29232} />
+              </Col>
+              {/* {repoLoading ? <div>loading</div> : repos.map((repo) => {
                 return <Col span={6}>
                   <RepositoryCard name={repo.name} description={repo.description} forksCount={repo.forks_count} starsCount={repo.stargazers_count} language={repo.language} size={repo.size} />
                 </Col>
-              })}
+              })} */}
             </Grid>
             <Group sx={{ margin: '2rem 0' }} position='center'>
               <Pagination color='green' radius='md' total={pages} page={activePage} onChange={(e) => handlerPageChange(e)} />
