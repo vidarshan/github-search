@@ -4,7 +4,7 @@ import { BsMoonStarsFill, BsAt, BsSearch, BsX } from "react-icons/bs";
 import { VscGithub } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import { useNotifications } from "@mantine/notifications";
-import { searchUser } from "../actions/userActions";
+import { searchUser, getRate } from "../actions/userActions";
 import {
   Paper,
   ActionIcon,
@@ -17,6 +17,7 @@ import {
   TextInput,
   useMantineTheme,
 } from "@mantine/core";
+import Spinner from "../components/Spinner";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -32,8 +33,12 @@ const Home = () => {
   const [keyword, setKeyword] = useState();
 
   const searchResults = useSelector((state) => state.userSearch);
+  const rateLimit = useSelector((state) => state.limit);
+
+
 
   const { loading, userSearch, error } = searchResults;
+  const { loading: rateLimitLoading, error: rateLimitError, limit } = rateLimit;
 
   const searchHandler = (event) => {
     dispatch(searchUser(keyword));
@@ -57,31 +62,13 @@ const Home = () => {
     }
   }, [error]);
 
+  useEffect(() => {
+    dispatch(getRate());
+  }, [dispatch])
+
   return (
     <Paper sx={{ borderRadius: "0px", paddingTop: '1rem' }}>
-      <Container
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          height: "5vh",
-        }}
-        fluid
-      >
-        <Text size="md" weight={500}>
-          57 / 60 Requests
-        </Text>
-        <ActionIcon
-          variant="outline"
-          color={dark ? "yellow" : "blue"}
-          onClick={() => toggleColorScheme()}
-          title="Toggle color scheme"
-          radius="xl"
-          size='lg'
-        >
-          {dark ? <BsMoonStarsFill /> : <BsMoonStarsFill />}
-        </ActionIcon>
-      </Container>
+
       <Container
         sx={{
           maxWidth: "none",
