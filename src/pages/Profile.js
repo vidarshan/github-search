@@ -157,25 +157,25 @@ const Profile = ({ match }) => {
 
   useEffect(() => {
 
-    if (activeTab === 0) {
-      dispatch(getUserRepos(params.name, activePage));
-    } else if (activeTab === 1) {
-      dispatch(getUserStarred(params.name, activePage));
-    } else if (activeTab === 2) {
-      dispatch(getUserGists(params.name, activePage));
-    }
+    // if (activeTab === 0) {
+    //   dispatch(getUserRepos(params.name, activePage));
+    // } else if (activeTab === 1) {
+    //   dispatch(getUserStarred(params.name, activePage));
+    // } else if (activeTab === 2) {
+    //   dispatch(getUserGists(params.name, activePage));
+    // }
 
   }, [activePage])
 
 
   useEffect(() => {
-    if (activeTab === 0) {
-      dispatch(getUserRepos(params.name, 1))
-    } else if (activeTab === 1) {
-      dispatch(getUserStarred(params.name, 1));
-    } else {
-      dispatch(getUserGists(params.name, 1));
-    }
+    // if (activeTab === 0) {
+    //   dispatch(getUserRepos(params.name, 1))
+    // } else if (activeTab === 1) {
+    //   dispatch(getUserStarred(params.name, 1));
+    // } else {
+    //   dispatch(getUserGists(params.name, 1));
+    // }
   }, [activeTab])
 
   useEffect(() => {
@@ -187,7 +187,7 @@ const Profile = ({ match }) => {
 
   return (
     <Paper sx={{ minHeight: "100vh" }}>
-      <Container
+      <Container color='red'
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -195,6 +195,7 @@ const Profile = ({ match }) => {
           justifyContent: "center",
           minHeight: "400px",
           backgroundColor: "#2b3137",
+          color: 'white'
         }}
         fluid
       >
@@ -207,15 +208,15 @@ const Profile = ({ match }) => {
         <Text sx={{ marginTop: "1.5rem", fontSize: "2rem" }} weight={700}>
           {userSearch.name}
         </Text>
-        <Text sx={{ fontSize: "1rem" }} weight={400}>
+        <Text sx={{ fontSize: "1rem" }} weight={600}>
           @{userSearch.login}
         </Text>
         <Group sx={{ marginTop: '1rem' }} direction="row" position="center">
-          <Text align="center">
-            {userSearch.followers} <br /> Followers
+          <Text size='sm' weight={700} align="center">
+            {userSearch.followers ? userSearch.followers.toLocaleString() : '-'} <br /> Followers
           </Text>
-          <Text align="center">
-            {userSearch.following} <br /> Following
+          <Text size='sm' weight={700} align="center">
+            {userSearch.following ? userSearch.following.toLocaleString() : '-'} <br /> Following
           </Text>
         </Group>
         <Group sx={{ marginTop: "1rem" }} direction="row" position="center">
@@ -224,7 +225,7 @@ const Profile = ({ match }) => {
             variant="filled"
             radius="xl"
             color="green"
-            size="lg"
+            size="xl"
           >
             <BsSearch />
           </ActionIcon>
@@ -233,7 +234,7 @@ const Profile = ({ match }) => {
             variant="filled"
             radius="xl"
             color="cyan"
-            size="lg"
+            size="xl"
           >
             <BsGlobe />
           </ActionIcon>
@@ -242,7 +243,7 @@ const Profile = ({ match }) => {
             variant="filled"
             radius="xl"
             color="blue"
-            size="lg"
+            size="xl"
           >
             <BsTwitter />
           </ActionIcon>
@@ -251,7 +252,7 @@ const Profile = ({ match }) => {
             variant="filled"
             radius="xl"
             color="yellow"
-            size="lg"
+            size="xl"
           >
             <BsEnvelope />
           </ActionIcon>
