@@ -309,53 +309,53 @@ const Profile = ({ match }) => {
           </Grid>
         </Container>
         <Container sx={{ marginTop: '2rem' }}>
-          <Card shadow='sm' radius="md" withBorder>
-            <Tabs grow variant="default" color='green' active={activeTab} onTabChange={setActiveTab}>
-              <Tabs.Tab icon={<BsFillFileZipFill />} label="Repositories">
-                <Grid>
-                  {repoLoading ? <Col span={12}><Spinner /></Col> : repos && repos.length ? repos.map((repo) => {
-                    return <Col span={6}>
-                      <RepositoryCard name={repo.name} description={repo.description} forksCount={repo.forks_count} starsCount={repo.stargazers_count} language={repo.language} size={repo.size} />
-                    </Col>
-                  }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
-                    This user has no public repos.
-                  </Alert></Col>}
-                </Grid>
-                <Group sx={{ margin: '3rem 0' }} position='center'>
-                  <Pagination size="md" color='green' radius='xl' total={repoPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
-                </Group>
-              </Tabs.Tab>
-              <Tabs.Tab icon={<BsFillStarFill />} label="Starred">
-                <Grid>
-                  {starredLoading ? <Col span={12}><Spinner /></Col> : starred && starred.length ? starred.map((star) => {
-                    return <Col span={6}>
-                      <RepositoryCard name={star.name} description={star.description} language={star.language} size={star.size} />
-                    </Col>
-                  }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
-                    This user has no starred repos.
-                  </Alert></Col>}
-                </Grid>
-                <Group sx={{ margin: '3rem 0' }} position='center'>
-                  <Pagination size="md" color='green' radius='xl' total={starredPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
-                </Group>
-              </Tabs.Tab>
-              <Tabs.Tab icon={<BsFillFileEarmarkCodeFill />} label="Gists">
 
-                <Grid>
-                  {gistsLoading ? <Col span={12}><Spinner /></Col> : gists && gists.length ? gists.map((gist) => {
-                    return <Col span={6}>
-                      <RepositoryCard name={gist.id} />
-                    </Col>
-                  }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
-                    This user has no gists.
-                  </Alert></Col>}
-                </Grid>
-                <Group sx={{ margin: '3rem 0' }} position='center'>
-                  <Pagination size="md" color='green' radius='xl' total={gistsPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
-                </Group>
-              </Tabs.Tab>
-            </Tabs>
-          </Card>
+          <Tabs grow variant="default" color='green' active={activeTab} onTabChange={setActiveTab}>
+            <Tabs.Tab icon={<BsFillFileZipFill />} label="Repositories">
+              <Grid>
+                {repoLoading ? <Col span={12}><Spinner /></Col> : repos && repos.length ? repos.map((repo) => {
+                  return <Col span={6}>
+                    <RepositoryCard name={repo.name} description={repo.description} forksCount={repo.forks_count} starsCount={repo.stargazers_count} language={repo.language} size={repo.size} />
+                  </Col>
+                }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
+                  This user has no public repos.
+                </Alert></Col>}
+              </Grid>
+              <Group sx={{ margin: '3rem 0' }} position='center'>
+                <Pagination size="md" color='green' radius='xl' total={repoPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
+              </Group>
+            </Tabs.Tab>
+            <Tabs.Tab icon={<BsFillStarFill />} label="Starred">
+              <Grid>
+                {starredLoading ? <Col span={12}><Spinner /></Col> : starred && starred.length ? starred.map((star) => {
+                  return <Col span={6}>
+                    <RepositoryCard name={star.name} description={star.description} language={star.language} size={star.size} />
+                  </Col>
+                }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
+                  This user has no starred repos.
+                </Alert></Col>}
+              </Grid>
+              <Group sx={{ margin: '3rem 0' }} position='center'>
+                <Pagination size="md" color='green' radius='xl' total={starredPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
+              </Group>
+            </Tabs.Tab>
+            <Tabs.Tab icon={<BsFillFileEarmarkCodeFill />} label="Gists">
+
+              <Grid>
+                {gistsLoading ? <Col span={12}><Spinner /></Col> : gists && gists.length ? gists.map((gist) => {
+                  return <Col span={6}>
+                    <RepositoryCard name={gist.id} />
+                  </Col>
+                }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
+                  This user has no gists.
+                </Alert></Col>}
+              </Grid>
+              <Group sx={{ margin: '3rem 0' }} position='center'>
+                <Pagination size="md" color='green' radius='xl' total={gistsPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
+              </Group>
+            </Tabs.Tab>
+          </Tabs>
+
         </Container></> : <Container
           fluid>
         <Paper sx={{

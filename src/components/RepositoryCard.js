@@ -19,13 +19,13 @@ const RepositoryCard = ({
       return lang.language === language;
     });
 
-    
+
     return langColor && langColor.length ? langColor[0].color : 'grey';
   };
 
   return (
     <Card
-      sx={{ margin: "1rem 0", display:'flex', flexDirection:'column', justifyContent:'center' }}
+      sx={{ margin: "1rem 0", display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
       padding="xl"
       radius="md"
       shadow="lg"
@@ -89,7 +89,7 @@ const RepositoryCard = ({
             {forksCount.toLocaleString()}
           </Text>
         </div>}
-        
+
       </Group>
     </Card>
   );
