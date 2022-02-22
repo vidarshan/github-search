@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
-import { MantineProvider, ColorSchemeProvider, ColorScheme, Paper, Container, ActionIcon, Text } from '@mantine/core';
+import { MantineProvider, ColorSchemeProvider, Paper, Container, ActionIcon, Text } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -23,7 +23,7 @@ function App() {
   });
   const dark = colorScheme === "dark";
   const dispatch = useDispatch();
-  const { loading: rateLimitLoading, error: rateLimitError, limit } = rateLimit;
+  const { loading: rateLimitLoading, limit } = rateLimit;
   const toggleColorScheme = (value) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
