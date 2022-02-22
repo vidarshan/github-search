@@ -20,7 +20,7 @@ import {
   BsEnvelope,
   BsSearch,
   BsTwitter,
-  BsGithub, BsFillFileEarmarkCodeFill, BsFillXCircleFill, BsFillStarFill, BsFillFileZipFill, BsBuilding, BsClock, BsPinAngle
+  BsGithub, BsFillFileEarmarkCodeFill, BsFillXCircleFill, BsFillStarFill, BsFillFileZipFill, BsBuilding, BsClock, BsPinAngle, BsClockFill, BsPinAngleFill, BsBriefcaseFill
 } from "react-icons/bs";
 import {
   Container,
@@ -6409,33 +6409,31 @@ const Profile = ({ match }) => {
           </Anchor>}
         </Group>
       </Container>
-      <Container sx={{ marginTop: '1rem' }}>
-
+      <Container >
         <Grid>
-          <Col span={12}>
-            <Card withBorder>
+          <Col sx={{ marginTop: '2rem' }} span={12}>
+            <Card radius="md" withBorder>
               <Grid>
-                {userSearch.company && <Col sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} span={4}><BsBuilding /><Text sx={{ marginTop: '1rem' }} align='center' weight={700} size='xs'>{userSearch.company}</Text> </Col>}
-                {userSearch.created_at && <Col sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} span={4}><BsClock /><Text sx={{ marginTop: '1rem' }} align='center' weight={700} size='xs'>Member since {moment(userSearch.created_at).format('DD-MMM-YYYY')}</Text> </Col>}
-                {userSearch.location && <Col sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} span={4}><BsPinAngle /><Text sx={{ marginTop: '1rem' }} align='center' weight={700} size='xs'>{userSearch.location}</Text></Col>}
+                {userSearch.company && <Col sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} span={4}><BsBriefcaseFill /><Text color='gray' sx={{ marginTop: '1rem' }} align='center' weight={700} size='xs'>{userSearch.company}</Text> </Col>}
+                {userSearch.created_at && <Col sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} span={4}><BsClockFill /><Text color='gray' sx={{ marginTop: '1rem' }} align='center' weight={700} size='xs'>Member since {moment(userSearch.created_at).format('DD-MMM-YYYY')}</Text> </Col>}
+                {userSearch.location && <Col sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} span={4}><BsPinAngleFill /><Text color='gray' sx={{ marginTop: '1rem' }} align='center' weight={700} size='xs'>{userSearch.location}</Text></Col>}
               </Grid>
             </Card>
           </Col>
-          <Col sx={{ marginTop: '1.5rem' }} span={12}>
-            <Card withBorder>
+          <Col span={12}>
+            <Card radius="md" withBorder>
 
               <Group position='apart'>
                 {userLangStats.map((lang) => {
-                  return <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}> <GoPrimitiveDot color={lang.color} /> <Text weight={800} size='xs'>{lang.name}</Text></div>
+                  return <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}> <GoPrimitiveDot color={lang.color} /> <Text sx={{ marginTop: '.5rem' }} color='gray' weight={800} size='xs'>{lang.name}</Text></div>
                 })}
               </Group>
-              {console.log(userLangStats)}
             </Card>
           </Col>
         </Grid>
       </Container>
       <Container sx={{ marginTop: '2rem' }}>
-        <Card withBorder>
+        <Card shadow='sm' radius="md" withBorder>
           <Tabs grow variant="default" color='green' active={activeTab} onTabChange={setActiveTab}>
             <Tabs.Tab icon={<BsFillFileZipFill />} label="Repositories">
               <Grid>
