@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import Results from "./pages/Results";
+import NotFound from "./pages/NotFound";
 import { MantineProvider, ColorSchemeProvider, ColorScheme, Paper, Container, ActionIcon, Text } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { useDispatch, useSelector } from "react-redux";
@@ -52,12 +53,12 @@ function App() {
 
 
             <ActionIcon
-              variant="outline"
+              variant="filled"
               color={dark ? "yellow" : "blue"}
               onClick={() => toggleColorScheme()}
               title="Toggle color scheme"
               radius="xl"
-              size='lg'
+              size='md'
             >
               {dark ? <BsMoonStarsFill /> : <BsMoonStarsFill />}
             </ActionIcon>
@@ -68,6 +69,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/search/:word" element={<Results />} />
                 <Route path="/profile/:name" element={<Profile />} />
+                <Route path="*" element={<NotFound title='Not found' />} />
               </Routes>
             </BrowserRouter>
           </NotificationsProvider>
