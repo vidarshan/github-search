@@ -1,37 +1,27 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getUserGists,
-  getUserInfo,
   getUserRepos,
   getUserStarred,
   getRate,
 } from "../actions/userActions";
 import Spinner from "../components/Spinner";
-import Error from "../components/Error";
-import { useNotifications } from "@mantine/notifications";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
-
 import { GoPrimitiveDot } from "react-icons/go";
-
 import { colors } from "../data/Colors";
 import {
   BsGlobe,
   BsEnvelope,
-  BsSearch,
   BsTwitter,
   BsGithub,
   BsFillFileEarmarkCodeFill,
   BsFillXCircleFill,
   BsFillStarFill,
   BsFillFileZipFill,
-  BsBuilding,
-  BsClock,
-  BsPinAngle,
   BsClockFill,
   BsPinAngleFill,
   BsBriefcaseFill,
   BsEmojiDizzyFill,
+  BsX,
 } from "react-icons/bs";
 import {
   Container,
@@ -39,7 +29,6 @@ import {
   Paper,
   Anchor,
   ActionIcon,
-  Badge,
   Tabs,
   Alert,
   Text,
@@ -49,33 +38,25 @@ import {
   Col,
   Pagination,
   Card,
-  RingProgress,
 } from "@mantine/core";
 import { searchUser } from "../actions/userActions";
 import RepositoryCard from "../components/RepositoryCard";
 import { useParams } from "react-router";
-import { RiGitRepositoryLine, RiStarLine } from "react-icons/ri";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useNotifications } from "@mantine/notifications";
 const Profile = ({ match }) => {
-  ChartJS.register(ArcElement, Tooltip, Legend);
+
 
   const params = useParams();
   const dispatch = useDispatch();
+  const notifications = useNotifications();
   const [repoPages, setRepoPages] = useState(1);
   const [gistsPages, setGistsPages] = useState(1);
   const [starredPages, setStarredPages] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
   const [activePage, setActivePage] = useState(1);
   const [userLangStats, setUserLangStats] = useState([]);
-  const alload = true;
-  // const years = useRef(0);
-  // const months = useRef(0);
-  // const days = useRef(0);
-
-  // const [isCopied, setIsCopied] = useState(false);
-  // const [copiedLink, setCopiedLink] = useState(null);
 
   const searchResults = useSelector((state) => state.userSearch);
 
@@ -99,6 +80,20 @@ const Profile = ({ match }) => {
     error: gistsError,
     userGists: gists,
   } = useSelector((state) => state.userGists);
+
+
+  useEffect(() => {
+    if (gistsError || starredError || repoError) {
+      notifications.showNotification({
+        title: "Oops!",
+        message: "Error Fetching Data.",
+        icon: <BsX />,
+        color: "red",
+        duration: 10000,
+      });
+    }
+    //eslint-disable-next-line
+  }, [gistsError, starredError, repoError]);
 
   const handlerPageChange = (e) => {
     setActivePage(e);
@@ -178,17 +173,17 @@ const Profile = ({ match }) => {
     }
   }, [userSearch]);
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   if (activeTab === 0) {
-  //     dispatch(getUserRepos(params.name, activePage));
-  //   } else if (activeTab === 1) {
-  //     dispatch(getUserStarred(params.name, activePage));
-  //   } else if (activeTab === 2) {
-  //     dispatch(getUserGists(params.name, activePage));
-  //   }
+    if (activeTab === 0) {
+      dispatch(getUserRepos(params.name, activePage));
+    } else if (activeTab === 1) {
+      dispatch(getUserStarred(params.name, activePage));
+    } else if (activeTab === 2) {
+      dispatch(getUserGists(params.name, activePage));
+    }
 
-  // }, [activePage])
+  }, [activePage])
 
   useEffect(() => {
     if (activeTab === 0) {
@@ -202,10 +197,7 @@ const Profile = ({ match }) => {
 
   useEffect(() => {
     searchHandler();
-    // dispatch(getUserInfo(match.params.name));
-
     dispatch(getRate());
-    // dispatch(getUserStarred(match.params.name));
   }, [dispatch, match]);
 
   useEffect(() => {
@@ -216,7 +208,7 @@ const Profile = ({ match }) => {
 
   return (
     <Paper sx={{ minHeight: "100vh" }}>
-      {!searchError ? (
+      {!searchError ? searchLoading ? <Spinner /> : (
         <>
           <Container
             sx={{
