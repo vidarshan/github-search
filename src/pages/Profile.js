@@ -12,7 +12,7 @@ import { useNotifications } from "@mantine/notifications";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
-
+import { GoPrimitiveDot } from 'react-icons/go';
 
 import { colors } from "../data/Colors";
 import {
@@ -33,6 +33,7 @@ import {
   Alert,
   Text,
   Group,
+  Divider,
   Grid,
   Col, Pagination, Card, RingProgress
 } from "@mantine/core";
@@ -6410,25 +6411,24 @@ const Profile = ({ match }) => {
       <Container sx={{ marginTop: '1rem' }}>
 
         <Grid>
-          <Col span={6}>
+          <Col span={12}>
             <Card>
-              <Group direction='column' position='apart'>
+              <Group direction='row' position='apart'>
                 <Text align='center' weight={700} size='xs'>@New Company</Text>
                 <Text align='center' weight={700} size='xs'>Member Since 25th Jan 2008</Text>
                 <Text align='center' weight={700} size='xs'>New York</Text>
               </Group>
             </Card>
           </Col>
-          <Col span={6}>
+          <Col span={12}>
             <Card>
-
-              <Grid>
-
+              <Divider label='Most Used Languages' sx={{ marginBottom: '1rem' }} />
+              <Group position='apart'>
                 {userLangStats.map((lang) => {
-                  return <Col span={3}><Badge variant="dot">{lang.name}</Badge></Col>
+                  return <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}> <GoPrimitiveDot color={lang.color} /> <Text weight={700} size='xs'>{lang.name}</Text></div>
                 })}
-              </Grid>
-
+              </Group>
+              {console.log(userLangStats)}
             </Card>
           </Col>
           {/* <Col span={6}>
