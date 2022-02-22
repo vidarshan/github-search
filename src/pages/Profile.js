@@ -28,6 +28,7 @@ import {
   Paper,
   Anchor,
   ActionIcon,
+  Badge,
   Tabs,
   Alert,
   Text,
@@ -52,32 +53,7 @@ const Profile = ({ match }) => {
   const [starredPages, setStarredPages] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
   const [activePage, setActivePage] = useState(1);
-  const [userLangStats, setUserLangStats] = useState({
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [
-      {
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-        ],
-        borderWidth: 1,
-      },
-    ],
-  });
+  const [userLangStats, setUserLangStats] = useState([]);
   const alload = true;
   // const years = useRef(0);
   // const months = useRef(0);
@@ -6248,6 +6224,7 @@ const Profile = ({ match }) => {
 
 
   const generateLanguageChartData = (repos) => {
+    const languageStats = [];
     const langaugesByRepo = [];
 
     repos.map((repoLang, key) => {
@@ -6259,63 +6236,20 @@ const Profile = ({ match }) => {
       }
     })
 
-    const arrangeToGraphFormat = [];
-    const labelsToGraphFormat = [];
-    const colorsToGraphFormat = [];
-
-
-
     let langCountTotal = langaugesByRepo.reduce((sum, p) => sum + p.count, 0);
 
-    langaugesByRepo.map((l) => {
-      arrangeToGraphFormat.push(Math.round((l.count / langCountTotal) * 100))
-    })
-
-
-    langaugesByRepo.map((l) => {
-      labelsToGraphFormat.push(l.name)
-    })
-
-    langaugesByRepo.map((l) => {
-
-      let colorExists = colors.filter((lang) => {
-        return lang.language === l.name;
-      });
-
-      console.log('colorExists: ', colorExists);
-
-      if (colorExists.length) {
-        colorsToGraphFormat.push(colorExists[0].color);
-      } else {
-        colorsToGraphFormat.push('#AFAFAF');
-      }
-
-      // colorsToGraphFormat.push();
+    langaugesByRepo.map((l, key) => {
+      languageStats.push({
+        id: key, name: l.name === null ? 'Other' : l.name, value: Math.round((l.count / langCountTotal) * 100), color: colors.filter((lang) => {
+          return lang.language === l.name;
+        }).length ? colors.filter((lang) => {
+          return lang.language === l.name;
+        })[0].color : '#AFAFAF'
+      })
 
     })
 
-
-
-
-    setUserLangStats({
-      labels: labelsToGraphFormat,
-      datasets: [
-        {
-          label: '# of Votes',
-          data: arrangeToGraphFormat,
-          backgroundColor: colorsToGraphFormat,
-          borderColor: colorsToGraphFormat,
-        },
-      ],
-    })
-
-
-
-    console.log('langCountTotal: ', langCountTotal);
-    console.log('langaugesByRepo: ', langaugesByRepo);
-    console.log('arrangeToGraphFormat: ', arrangeToGraphFormat);
-    console.log('colorsToGraphFormat: ', colorsToGraphFormat);
-    // console.log(langaugesByRepo)
+    setUserLangStats(languageStats)
   }
 
   useEffect(() => {
@@ -6477,10 +6411,31 @@ const Profile = ({ match }) => {
 
         <Grid>
           <Col span={6}>
+            <Card>
+              <Group direction='column' position='apart'>
+                <Text align='center' weight={700} size='xs'>@New Company</Text>
+                <Text align='center' weight={700} size='xs'>Member Since 25th Jan 2008</Text>
+                <Text align='center' weight={700} size='xs'>New York</Text>
+              </Group>
+            </Card>
+          </Col>
+          <Col span={6}>
+            <Card>
+
+              <Grid>
+
+                {userLangStats.map((lang) => {
+                  return <Col span={3}><Badge variant="dot">{lang.name}</Badge></Col>
+                })}
+              </Grid>
+
+            </Card>
+          </Col>
+          {/* <Col span={6}>
             <Card sx={{ minHeight: '200px' }}>
               <Doughnut data={userLangStats} />
             </Card>
-          </Col>
+          </Col> */}
 
         </Grid>
       </Container>
