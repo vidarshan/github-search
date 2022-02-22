@@ -3,7 +3,7 @@ import {
   getUserGists,
   getUserInfo,
   getUserRepos,
-  getUserStarred,
+  getUserStarred, getRate
 } from "../actions/userActions";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
@@ -6306,10 +6306,9 @@ const Profile = ({ match }) => {
     searchHandler();
     // dispatch(getUserInfo(match.params.name));
 
+    dispatch(getRate());
     // dispatch(getUserStarred(match.params.name));
   }, [dispatch, match]);
-
-
 
   return (
     <Paper sx={{ minHeight: "100vh" }}>

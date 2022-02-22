@@ -11,7 +11,7 @@ export const searchUser = (keyword) => async (dispatch) => {
         });
 
         const { data } = await axios.get(
-            `https://api.github.com/users/${keyword}?accept=true&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`
+            `https://api.github.com/users/${keyword}`
         );
 
         dispatch({
