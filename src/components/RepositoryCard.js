@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Text, Group, Badge, Grid, Col, Container } from "@mantine/core";
+import { Card, Text, Group, Grid, Col } from "@mantine/core";
 import { BsStarFill } from "react-icons/bs";
 import { BiGitBranch } from "react-icons/bi";
 import { GoPrimitiveDot } from "react-icons/go";
@@ -10,8 +10,7 @@ const RepositoryCard = ({
   description,
   forksCount,
   starsCount,
-  language,
-  size,
+  language
 }) => {
   const getColor = (language) => {
 

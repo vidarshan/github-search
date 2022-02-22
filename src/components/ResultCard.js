@@ -4,11 +4,6 @@ import { Card, Image, Text } from "@mantine/core";
 
 const ResultCard = ({ result }) => {
 
-
-  const handleDetailedProfile = (username) => {
-    // history.push(`/profile/${username}`);
-  };
-
   return (
     <Card
       padding='xs' radius='md'
