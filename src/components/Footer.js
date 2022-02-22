@@ -1,6 +1,5 @@
 import React from "react";
-import moment from "moment";
-import { Paper, Grid, Col, Group, Anchor, Text } from "@mantine/core";
+import { Paper, Text } from "@mantine/core";
 
 const Footer = () => {
   return (
