@@ -19,7 +19,7 @@ import {
   BsEnvelope,
   BsSearch,
   BsTwitter,
-  BsGithub, BsFillFileEarmarkCodeFill, BsFillXCircleFill, BsFillStarFill, BsFillFileZipFill, BsBuilding, BsClock, BsPinAngle, BsClockFill, BsPinAngleFill, BsBriefcaseFill
+  BsGithub, BsFillFileEarmarkCodeFill, BsFillXCircleFill, BsFillStarFill, BsFillFileZipFill, BsBuilding, BsClock, BsPinAngle, BsClockFill, BsPinAngleFill, BsBriefcaseFill, BsEmojiDizzyFill
 } from "react-icons/bs";
 import {
   Container,
@@ -105,26 +105,6 @@ const Profile = ({ match }) => {
     userGists: gists,
   } = useSelector((state) => state.userGists);
 
-  // const goBackHandler = () => {
-  //   // history.goBack();
-  // };
-
-  // const openNotificationWithIcon = (type) => {
-  //   notification[type]({
-  //     message: "Copied Link",
-  //     description: "Repo clone URL Copied to the clipboard.",
-  //   });
-  // };
-  // const copyToClipboard = (text, id) => {
-  //   setCopiedLink(id);
-  //   setIsCopied(false);
-  //   navigator.clipboard.writeText(text + ".git");
-  //   setIsCopied(true);
-
-  //   if (isCopied) {
-  //     // openNotificationWithIcon("success");
-  //   }
-  // };
 
   const handlerPageChange = (e) => {
     setActivePage(e)
@@ -6312,17 +6292,17 @@ const Profile = ({ match }) => {
 
 
   useEffect(() => {
-    // if (activeTab === 0) {
-    //   dispatch(getUserRepos(params.name, 1))
-    // } else if (activeTab === 1) {
-    //   dispatch(getUserStarred(params.name, 1));
-    // } else {
-    //   dispatch(getUserGists(params.name, 1));
-    // }
+    if (activeTab === 0) {
+      dispatch(getUserRepos(params.name, 1))
+    } else if (activeTab === 1) {
+      dispatch(getUserStarred(params.name, 1));
+    } else {
+      dispatch(getUserGists(params.name, 1));
+    }
   }, [activeTab])
 
   useEffect(() => {
-    generateLanguageChartData(sample)
+
     searchHandler();
     // dispatch(getUserInfo(match.params.name));
 
@@ -6333,8 +6313,7 @@ const Profile = ({ match }) => {
 
   return (
     <Paper sx={{ minHeight: "100vh" }}>
-      {console.log(searchError)}
-      <Container color='red'
+      {!searchError ? <><Container
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -6416,78 +6395,93 @@ const Profile = ({ match }) => {
           </Anchor>}
         </Group>
       </Container>
-      <Container >
-        <Grid>
-          <Col sx={{ marginTop: '2rem' }} span={12}>
-            <Card radius="md" withBorder>
-              <Grid>
-                {userSearch.company && <Col sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} span={4}><BsBriefcaseFill /><Text color='gray' sx={{ marginTop: '1rem' }} align='center' weight={700} size='xs'>{userSearch.company}</Text> </Col>}
-                {userSearch.created_at && <Col sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} span={4}><BsClockFill /><Text color='gray' sx={{ marginTop: '1rem' }} align='center' weight={700} size='xs'>Member since {moment(userSearch.created_at).format('DD-MMM-YYYY')}</Text> </Col>}
-                {userSearch.location && <Col sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} span={4}><BsPinAngleFill /><Text color='gray' sx={{ marginTop: '1rem' }} align='center' weight={700} size='xs'>{userSearch.location}</Text></Col>}
-              </Grid>
-            </Card>
-          </Col>
-          <Col span={12}>
-            <Card radius="md" withBorder>
+        <Container >
+          <Grid>
+            {/* {generateLanguageChartData(userSearch.userRepos)} */}
+            <Col sx={{ marginTop: '2rem' }} span={12}>
+              <Card radius="md" withBorder>
+                <Grid>
+                  {userSearch.company && <Col sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} span={4}><BsBriefcaseFill /><Text color='gray' sx={{ marginTop: '1rem' }} align='center' weight={700} size='xs'>{userSearch.company}</Text> </Col>}
+                  {userSearch.created_at && <Col sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} span={4}><BsClockFill /><Text color='gray' sx={{ marginTop: '1rem' }} align='center' weight={700} size='xs'>Member since {moment(userSearch.created_at).format('DD-MMM-YYYY')}</Text> </Col>}
+                  {userSearch.location && <Col sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} span={4}><BsPinAngleFill /><Text color='gray' sx={{ marginTop: '1rem' }} align='center' weight={700} size='xs'>{userSearch.location}</Text></Col>}
+                </Grid>
+              </Card>
+            </Col>
+            <Col span={12}>
+              <Card radius="md" withBorder>
 
-              <Group position='apart'>
-                {userLangStats.map((lang) => {
-                  return <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}> <GoPrimitiveDot color={lang.color} /> <Text sx={{ marginTop: '.5rem' }} color='gray' weight={800} size='xs'>{lang.name}</Text></div>
-                })}
-              </Group>
-            </Card>
-          </Col>
-        </Grid>
-      </Container>
-      <Container sx={{ marginTop: '2rem' }}>
-        <Card shadow='sm' radius="md" withBorder>
-          <Tabs grow variant="default" color='green' active={activeTab} onTabChange={setActiveTab}>
-            <Tabs.Tab icon={<BsFillFileZipFill />} label="Repositories">
-              <Grid>
-                {repoLoading ? <Col span={12}><Spinner /></Col> : repos && repos.length ? repos.map((repo) => {
-                  return <Col span={6}>
-                    <RepositoryCard name={repo.name} description={repo.description} forksCount={repo.forks_count} starsCount={repo.stargazers_count} language={repo.language} size={repo.size} />
-                  </Col>
-                }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
-                  This user has no public repos.
-                </Alert></Col>}
-              </Grid>
-              <Group sx={{ margin: '3rem 0' }} position='center'>
-                <Pagination size="md" color='green' radius='xl' total={repoPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
-              </Group>
-            </Tabs.Tab>
-            <Tabs.Tab icon={<BsFillStarFill />} label="Starred">
-              <Grid>
-                {starredLoading ? <Col span={12}><Spinner /></Col> : starred && starred.length ? starred.map((star) => {
-                  return <Col span={6}>
-                    <RepositoryCard name={star.name} description={star.description} language={star.language} size={star.size} />
-                  </Col>
-                }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
-                  This user has no starred repos.
-                </Alert></Col>}
-              </Grid>
-              <Group sx={{ margin: '3rem 0' }} position='center'>
-                <Pagination size="md" color='green' radius='xl' total={starredPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
-              </Group>
-            </Tabs.Tab>
-            <Tabs.Tab icon={<BsFillFileEarmarkCodeFill />} label="Gists">
+                <Group position='apart'>
+                  {userLangStats.map((lang) => {
+                    return <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}> <GoPrimitiveDot color={lang.color} /> <Text sx={{ marginTop: '.5rem' }} color='gray' weight={800} size='xs'>{lang.name}</Text></div>
+                  })}
+                </Group>
+              </Card>
+            </Col>
+          </Grid>
+        </Container>
+        <Container sx={{ marginTop: '2rem' }}>
+          <Card shadow='sm' radius="md" withBorder>
+            <Tabs grow variant="default" color='green' active={activeTab} onTabChange={setActiveTab}>
+              <Tabs.Tab icon={<BsFillFileZipFill />} label="Repositories">
+                <Grid>
+                  {repoLoading ? <Col span={12}><Spinner /></Col> : repos && repos.length ? repos.map((repo) => {
+                    return <Col span={6}>
+                      <RepositoryCard name={repo.name} description={repo.description} forksCount={repo.forks_count} starsCount={repo.stargazers_count} language={repo.language} size={repo.size} />
+                    </Col>
+                  }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
+                    This user has no public repos.
+                  </Alert></Col>}
+                </Grid>
+                <Group sx={{ margin: '3rem 0' }} position='center'>
+                  <Pagination size="md" color='green' radius='xl' total={repoPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
+                </Group>
+              </Tabs.Tab>
+              <Tabs.Tab icon={<BsFillStarFill />} label="Starred">
+                <Grid>
+                  {starredLoading ? <Col span={12}><Spinner /></Col> : starred && starred.length ? starred.map((star) => {
+                    return <Col span={6}>
+                      <RepositoryCard name={star.name} description={star.description} language={star.language} size={star.size} />
+                    </Col>
+                  }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
+                    This user has no starred repos.
+                  </Alert></Col>}
+                </Grid>
+                <Group sx={{ margin: '3rem 0' }} position='center'>
+                  <Pagination size="md" color='green' radius='xl' total={starredPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
+                </Group>
+              </Tabs.Tab>
+              <Tabs.Tab icon={<BsFillFileEarmarkCodeFill />} label="Gists">
 
-              <Grid>
-                {gistsLoading ? <Col span={12}><Spinner /></Col> : gists && gists.length ? gists.map((gist) => {
-                  return <Col span={6}>
-                    <RepositoryCard name={gist.id} />
-                  </Col>
-                }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
-                  This user has no gists.
-                </Alert></Col>}
-              </Grid>
-              <Group sx={{ margin: '3rem 0' }} position='center'>
-                <Pagination size="md" color='green' radius='xl' total={gistsPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
-              </Group>
-            </Tabs.Tab>
-          </Tabs>
-        </Card>
-      </Container>
+                <Grid>
+                  {gistsLoading ? <Col span={12}><Spinner /></Col> : gists && gists.length ? gists.map((gist) => {
+                    return <Col span={6}>
+                      <RepositoryCard name={gist.id} />
+                    </Col>
+                  }) : <Col sx={{ marginTop: '1rem' }} span={12}><Alert icon={<BsFillXCircleFill size={16} />} title="OOPS!" color="red" radius="md">
+                    This user has no gists.
+                  </Alert></Col>}
+                </Grid>
+                <Group sx={{ margin: '3rem 0' }} position='center'>
+                  <Pagination size="md" color='green' radius='xl' total={gistsPages} page={activePage} onChange={(e) => handlerPageChange(e)} />
+                </Group>
+              </Tabs.Tab>
+            </Tabs>
+          </Card>
+        </Container></> : <Container
+          fluid>
+        <Paper sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "100vh",
+        }}>
+          <BsEmojiDizzyFill size='30' />
+          <Text weight={600} sx={{ marginTop: '1rem' }}>Whoops!</Text>
+          <Text size='sm' weight={600} sx={{ marginTop: '.5rem' }}>{searchError.split(' - ')[1] === '404' ? 'User Not Found' : 'An error Occurred'}</Text>
+        </Paper>
+      </Container>}
+
     </Paper >
   );
 };
