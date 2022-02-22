@@ -2,16 +2,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
-import Results from "./pages/Results";
 import NotFound from "./pages/NotFound";
 import { MantineProvider, ColorSchemeProvider, ColorScheme, Paper, Container, ActionIcon, Text } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
-import { BsMoonStarsFill, BsAt, BsSearch, BsX } from "react-icons/bs";
+import { useEffect } from "react";
+import { BsMoonStarsFill } from "react-icons/bs";
 import { useHotkeys, useLocalStorageValue } from '@mantine/hooks';
 import './styles/styles.scss'
-import { searchUser, getRate } from "./actions/userActions";
+import { getRate } from "./actions/userActions";
 import Spinner from "./components/Spinner";
 
 function App() {
@@ -67,7 +66,6 @@ function App() {
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/search/:word" element={<Results />} />
                 <Route path="/profile/:name" element={<Profile />} />
                 <Route path="*" element={<NotFound title='Not found' />} />
               </Routes>
