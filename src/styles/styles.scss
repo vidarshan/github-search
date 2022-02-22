@@ -27,9 +27,12 @@ input,
   font-weight: 600 !important;
 }
 
-.mantine-Tabs-tabLabel,
-.mantine-Divider-label {
+.mantine-Tabs-tabLabel {
   font-weight: 600 !important;
+}
+
+.mantine-Divider-label {
+  font-weight: 700 !important;
 }
 
 .mantine-Badge-dot,
@@ -39,4 +42,9 @@ input,
 
 .mantine-Card-root {
   height: 100% !important;
+}
+
+.mantine-1quajhs,
+.mantine-Image-image {
+  border-radius: 50% !important;
 }
