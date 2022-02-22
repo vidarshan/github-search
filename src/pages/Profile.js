@@ -7,7 +7,6 @@ import {
 } from "../actions/userActions";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
-import { useDispatch, useSelector } from "react-redux";
 import { useNotifications } from "@mantine/notifications";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
@@ -42,6 +41,7 @@ import RepositoryCard from '../components/RepositoryCard';
 import { useParams } from "react-router";
 import { RiGitRepositoryLine, RiStarLine } from 'react-icons/ri';
 import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const Profile = ({ match }) => {
@@ -65,7 +65,7 @@ const Profile = ({ match }) => {
   // const [copiedLink, setCopiedLink] = useState(null);
 
   const searchResults = useSelector((state) => state.userSearch);
-  const { loading, userSearch, error } = searchResults;
+
 
   // const getDuration = (createdDate) => {
   //   let interval;
@@ -88,6 +88,7 @@ const Profile = ({ match }) => {
   //   error: userError,
   //   getUser: user,
   // } = useSelector((state) => state.getUser);
+  const { loading: searchLoading, userSearch, error: searchError } = searchResults;
   const {
     loading: repoLoading,
     error: repoError,
@@ -128,6 +129,10 @@ const Profile = ({ match }) => {
   const handlerPageChange = (e) => {
     setActivePage(e)
   }
+
+  const searchHandler = () => {
+    dispatch(searchUser(params.name));
+  };
 
 
   const sample = [
@@ -6318,6 +6323,7 @@ const Profile = ({ match }) => {
 
   useEffect(() => {
     generateLanguageChartData(sample)
+    searchHandler();
     // dispatch(getUserInfo(match.params.name));
 
     // dispatch(getUserStarred(match.params.name));
@@ -6327,6 +6333,7 @@ const Profile = ({ match }) => {
 
   return (
     <Paper sx={{ minHeight: "100vh" }}>
+      {console.log(searchError)}
       <Container color='red'
         sx={{
           display: "flex",

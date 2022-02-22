@@ -23,7 +23,7 @@ export const searchUser = (keyword) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_SEARCH_FAIL,
-            payload: 'An error occurred'
+            payload: error.response ? `${error.response.data.message} - ${error.response.status}` : 'An error occurred - 503'
         });
     }
 };
