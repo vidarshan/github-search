@@ -1,66 +1,51 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BsMoonStarsFill, BsAt, BsSearch, BsX } from "react-icons/bs";
+import { BsAt, BsSearch, BsX } from "react-icons/bs";
 import { VscGithub } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import { useNotifications } from "@mantine/notifications";
-import { searchUser, getRate } from "../actions/userActions";
+import { getRate } from "../actions/userActions";
 import {
   Paper,
   ActionIcon,
-  useMantineColorScheme,
   Container,
   Space,
-  Button,
   Group,
   Text,
-  TextInput,
-  useMantineTheme,
+  TextInput
 } from "@mantine/core";
-import Spinner from "../components/Spinner";
+
 
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const notifications = useNotifications();
 
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  const dark = colorScheme === "dark";
-
-  const [opened, setOpened] = useState(false);
-  const theme = useMantineTheme();
 
   const [keyword, setKeyword] = useState();
 
-  const searchResults = useSelector((state) => state.userSearch);
   const rateLimit = useSelector((state) => state.limit);
 
 
+  const { loading: rateLimitLoading, error: rateLimitError } = rateLimit;
 
-  const { loading, userSearch, error } = searchResults;
-  const { loading: rateLimitLoading, error: rateLimitError, limit } = rateLimit;
-
-  const searchHandler = (event) => {
-    dispatch(searchUser(keyword));
+  const searchHandler = () => {
+    navigate(`/profile/${keyword}`);
   };
 
-  useEffect(() => {
-    if (Object.keys(userSearch).length) {
-      navigate(`/profile/${userSearch.login}`);
-    }
-  }, [userSearch]);
 
   useEffect(() => {
-    if (error) {
+    if (rateLimitError) {
       notifications.showNotification({
         title: "Oops!",
-        message: "No users found with the username you entered. Try Again!",
+        message: "Rate Limit Exceeded, try later.",
         icon: <BsX />,
         color: "red",
         duration: 10000,
       });
     }
-  }, [error]);
+    //eslint-disable-next-line
+  }, [rateLimitError]);
 
   useEffect(() => {
     dispatch(getRate());
@@ -89,14 +74,14 @@ const Home = () => {
         <Group direction="row" position="center">
           <TextInput
             onChange={(e) => setKeyword(e.target.value)}
-            disabled={loading}
+            disabled={rateLimitLoading}
             icon={<BsAt />}
             radius="md"
             size="md"
             placeholder="Your github username"
           />
           <ActionIcon
-            loading={loading}
+            loading={rateLimitLoading}
             onClick={() => searchHandler()}
             variant="filled"
             radius="xl"
