@@ -1,188 +1,50 @@
-@font-face {
-  font-family: "San Francisco";
-  src: url("../fonts/sf/SFNSDisplay-Light.otf");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#root {
-  font-family: "San Francisco" !important;
+div,
+input,
+.mantine-Text-root,
+.mantine-150hmss,
+.mantine-Container-root,
+.mantine-p20j1y,
+.mantine-Pagination-item {
+  font-family: "Manrope", sans-serif !important;
 }
 
-.search-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-  font-family: "San Francisco";
-
-  .col-spacing-top {
-    padding-top: 1rem;
-  }
-
-  .ant-col-12 {
-    margin-top: 1rem;
-  }
-
-  .theme-col {
-    margin-bottom: 1rem;
-  }
+input,
+.mantine-Alert-message {
+  font-weight: 600 !important;
 }
 
-.footer {
-  margin-top: 1rem;
+.mantine-Notification-description,
+.mantine-Notification-title {
+  font-weight: 600 !important;
 }
 
-.error {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.mantine-Tabs-tabLabel {
+  font-weight: 600 !important;
 }
 
-.no-results {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.mantine-Divider-label {
+  font-weight: 700 !important;
 }
 
-.results-grid {
-  margin: 0 2rem;
-
-  .ant-card-body {
-    text-align: center;
-  }
+.mantine-Badge-dot,
+.mantine-Badge-root {
+  border: none !important;
 }
 
-.ant-card-cover img {
-  padding: 2rem;
+.mantine-Card-root {
+  height: 100% !important;
+}
+
+.mantine-1quajhs,
+.mantine-Image-image {
   border-radius: 50% !important;
 }
-
-.profile-img {
-  border-radius: 50%;
-  height: 10rem;
-}
-
-.loading {
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile {
-  .main-row {
-    padding: 1rem;
-    background-color: rgb(236, 236, 236);
-
-    h1.ant-typography,
-    .ant-typography h1 {
-      margin-bottom: 0 !important;
-    }
-
-    .followers-following {
-      text-align: left !important;
-      font-size: 1rem;
-    }
-
-    .flex-col {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .bio {
-      font-size: 1rem;
-    }
-
-    .duration {
-      font-size: 1rem;
-      color: rgb(95, 95, 95) !important;
-    }
-
-    .col-spacing {
-      padding: 0.2rem 0.5rem;
-    }
-
-    .col-spacing-top {
-      padding-top: 0.5rem;
-    }
-
-    .col-center {
-      text-align: center !important;
-    }
-
-    .ant-col-4 {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-}
-
-.ant-input-search
-  > .ant-input-group
-  > .ant-input-group-addon:last-child
-  .ant-input-search-button:not(.ant-btn-primary) {
-  background-color: #20c162 !important;
-}
-
-// .dark-mode {
-//   #root,
-//   .ant-input-group > .ant-input:first-child,
-//   .ant-input-group-addon:first-child,
-//   h4.ant-typography,
-//   .ant-typography h4,
-//   h5.ant-typography,
-//   .ant-typography h5 {
-//     background-color: #333 !important;
-//     border-color: #696969;
-//     color: white;
-//   }
-
-//   .h2.ant-typography,
-//   .ant-typography h2 {
-//     color: white !important;
-//   }
-
-//   .profile .main-row .duration {
-//     color: white !important;
-//   }
-//   .main-row {
-//     background-color: rgb(68, 68, 68) !important;
-//   }
-
-//   .ant-card-bordered .ant-card-cover,
-//   .results-grid .ant-card-body {
-//     background-color: #333 !important;
-//     border: 1px solid rgb(238, 238, 238) !important;
-//   }
-
-//   .ant-card-body {
-//     background-color: #333 !important;
-//     color: white !important;
-//   }
-
-//   .ant-notification-notice {
-//     background-color: #20c162 !important;
-//   }
-
-//   .ant-input-search
-//     > .ant-input-group
-//     > .ant-input-group-addon:last-child
-//     .ant-input-search-button:not(.ant-btn-primary) {
-//     background-color: #20c162 !important;
-//     border-color: #20c162 !important;
-//   }
-
-//   h1,
-//   .ant-page-header-heading-title,
-//   svg {
-//     color: #f5f5f5 !important;
-//   }
-// }

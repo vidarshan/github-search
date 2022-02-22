@@ -1,14 +1,14 @@
-import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { Typography } from "antd";
+// import { ExclamationCircleOutlined } from "@ant-design/icons";
+// import { Typography } from "antd";
 
-const { Title } = Typography;
+// const { Title } = Typography;
 
 const Error = ({ error }) => {
   return (
     <div className="error">
-      <ExclamationCircleOutlined />
+      {/* <ExclamationCircleOutlined />
       <br />
-      <Title level={4}>{error}</Title>
+      <Title level={4}>{error}</Title> */}
     </div>
   );
 };

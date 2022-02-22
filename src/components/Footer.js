@@ -1,24 +1,12 @@
 import React from "react";
-import moment from "moment";
-import { Button, Row } from "antd";
+import { Paper, Text } from "@mantine/core";
 
 const Footer = () => {
   return (
-    <div className="footer">
-      <Row justify="center">
-        &copy; {moment().format("YYYY")} vidarshan. | Powered by Github API
-      </Row>
-      <Row justify="center">
-        <Button
-          type="link"
-          href="https://github.com/vidarshanadithya"
-          target="_blank"
-          rel="noreferrer"
-        >
-          View creater on Github
-        </Button>
-      </Row>
-    </div>
+    <Paper sx={{ minHeight: '5vh', borderRadius: '0px', padding: '1rem 0', marginTop: '5rem', }}>
+      <Text size='xs' weight={700} align='center'>By Vidarshan</Text>
+      <Text sx={{ marginTop: '.5rem' }} size='xs' weight={700} align='center'>Powered by Github API</Text>
+    </Paper>
   );
 };
 

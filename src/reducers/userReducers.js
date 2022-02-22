@@ -13,11 +13,14 @@ import {
     USER_GET_GISTS_FAIL,
     USER_GET_STARRED_REQUEST,
     USER_GET_STARRED_SUCCESS,
-    USER_GET_STARRED_FAIL
+    USER_GET_STARRED_FAIL,
+    GET_RATE_LIMIT_REQUEST,
+    GET_RATE_LIMIT_SUCCESS,
+    GET_RATE_LIMIT_FAIL
 } from '../constants/userConstants';
 
 export const userSearchReducer = (
-    state = { userSearch: [] },
+    state = { userSearch: {} },
     action
 ) => {
     switch (action.type) {
@@ -78,6 +81,19 @@ export const getUserStarred = (state = { userStarred: [] }, action) => {
         case USER_GET_STARRED_SUCCESS:
             return { ...state, loading: false, userStarred: action.payload };
         case USER_GET_STARRED_FAIL:
+            return { ...state, loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+
+export const getRateLimit = (state = { limit: {} }, action) => {
+    switch (action.type) {
+        case GET_RATE_LIMIT_REQUEST:
+            return { ...state, loading: true };
+        case GET_RATE_LIMIT_SUCCESS:
+            return { ...state, loading: false, limit: action.payload };
+        case GET_RATE_LIMIT_FAIL:
             return { ...state, loading: false, error: action.payload }
         default:
             return state;
