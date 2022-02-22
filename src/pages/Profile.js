@@ -107,7 +107,7 @@ const Profile = ({ match }) => {
     const languageStats = [];
     const langaugesByRepo = [];
 
-    repos.map((repoLang, key) => {
+    repos.forEach((repoLang, key) => {
       if (!langaugesByRepo.some((el) => el.name === repoLang.language)) {
         langaugesByRepo.push({ id: key, name: repoLang.language, count: 1 });
       } else {
@@ -121,7 +121,7 @@ const Profile = ({ match }) => {
 
     let langCountTotal = langaugesByRepo.reduce((sum, p) => sum + p.count, 0);
 
-    langaugesByRepo.map((l, key) => {
+    langaugesByRepo.forEach((l, key) => {
       languageStats.push({
         id: key,
         name: l.name === null ? "Misc" : l.name,
@@ -171,6 +171,7 @@ const Profile = ({ match }) => {
         }
       }
     }
+    //eslint-disable-next-line
   }, [userSearch]);
 
   useEffect(() => {
@@ -182,7 +183,7 @@ const Profile = ({ match }) => {
     } else if (activeTab === 2) {
       dispatch(getUserGists(params.name, activePage));
     }
-
+    //eslint-disable-next-line
   }, [activePage])
 
   useEffect(() => {
@@ -193,11 +194,13 @@ const Profile = ({ match }) => {
     } else {
       dispatch(getUserGists(params.name, 1));
     }
+    //eslint-disable-next-line
   }, [activeTab]);
 
   useEffect(() => {
     searchHandler();
     dispatch(getRate());
+    //eslint-disable-next-line
   }, [dispatch, match]);
 
   useEffect(() => {
