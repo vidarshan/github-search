@@ -438,7 +438,7 @@ const Profile = ({ match }) => {
                   ) : repos && repos.length ? (
                     repos.map((repo) => {
                       return (
-                        <Col span={6}>
+                        <Col xs={12} sm={6} md={6} lg={6} xl={6} span={6}>
                           <RepositoryCard
                             name={repo.name}
                             description={repo.description}
