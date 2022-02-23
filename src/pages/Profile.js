@@ -21,7 +21,6 @@ import {
   BsPinAngleFill,
   BsBriefcaseFill,
   BsEmojiDizzyFill,
-  BsX,
 } from "react-icons/bs";
 import {
   Container,
@@ -44,14 +43,12 @@ import RepositoryCard from "../components/RepositoryCard";
 import { useParams } from "react-router";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import { useNotifications } from "@mantine/notifications";
 import { USER_GET_GISTS_RESET, USER_GET_REPOS_RESET, USER_GET_STARRED_RESET, USER_SEARCH_RESET } from "../constants/userConstants";
 const Profile = ({ match }) => {
 
 
   const params = useParams();
   const dispatch = useDispatch();
-  const notifications = useNotifications();
   const [repoPages, setRepoPages] = useState(1);
   const [gistsPages, setGistsPages] = useState(1);
   const [starredPages, setStarredPages] = useState(1);
@@ -68,17 +65,14 @@ const Profile = ({ match }) => {
   } = searchResults;
   const {
     loading: repoLoading,
-    error: repoError,
     userRepos: repos,
   } = useSelector((state) => state.userRepos);
   const {
     loading: starredLoading,
-    error: starredError,
     userStarred: starred,
   } = useSelector((state) => state.userStarred);
   const {
     loading: gistsLoading,
-    error: gistsError,
     userGists: gists,
   } = useSelector((state) => state.userGists);
 
@@ -212,7 +206,7 @@ const Profile = ({ match }) => {
     dispatch({
       type: USER_GET_GISTS_RESET
     })
-
+    //eslint-disable-next-line
   }, [params.name])
 
   return (
@@ -327,6 +321,7 @@ const Profile = ({ match }) => {
                           justifyContent: "center",
                           alignItems: "center",
                         }}
+                        xs={12} sm={4} md={4} lg={4} xl={4}
                         span={4}
                       >
                         <BsBriefcaseFill />
@@ -349,7 +344,7 @@ const Profile = ({ match }) => {
                           justifyContent: "center",
                           alignItems: "center",
                         }}
-                        span={4}
+                        span={4} xs={12} sm={4} md={4} lg={4} xl={4}
                       >
                         <BsClockFill />
                         <Text
@@ -372,6 +367,7 @@ const Profile = ({ match }) => {
                           justifyContent: "center",
                           alignItems: "center",
                         }}
+                        xs={12} sm={4} md={4} lg={4} xl={4}
                         span={4}
                       >
                         <BsPinAngleFill />
@@ -483,7 +479,7 @@ const Profile = ({ match }) => {
                   ) : starred && starred.length ? (
                     starred.map((star) => {
                       return (
-                        <Col span={6}>
+                        <Col xs={12} sm={6} md={6} lg={6} xl={6} span={6}>
                           <RepositoryCard
                             name={star.name}
                             description={star.description}
@@ -526,7 +522,7 @@ const Profile = ({ match }) => {
                   ) : gists && gists.length ? (
                     gists.map((gist) => {
                       return (
-                        <Col span={6}>
+                        <Col xs={12} sm={6} md={6} lg={6} xl={6} span={6}>
                           <RepositoryCard name={gist.id} />
                         </Col>
                       );
