@@ -8,6 +8,7 @@ import {
 import Spinner from "../components/Spinner";
 import { GoPrimitiveDot } from "react-icons/go";
 import { colors } from "../data/Colors";
+import { Helmet } from 'react-helmet';
 import {
   BsGlobe,
   BsEnvelope,
@@ -211,6 +212,10 @@ const Profile = ({ match }) => {
 
   return (
     <Paper sx={{ minHeight: "100vh" }}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>@{params.name} | Github Search</title>
+      </Helmet>
       {!searchError ? searchLoading ? <Spinner /> : (
         <>
           <Container

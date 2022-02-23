@@ -14,6 +14,7 @@ import {
   Text,
   TextInput
 } from "@mantine/core";
+import { Helmet } from "react-helmet";
 
 
 const Home = () => {
@@ -53,7 +54,10 @@ const Home = () => {
 
   return (
     <Paper sx={{ borderRadius: "0px", paddingTop: '1rem' }}>
-
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home | Github Search</title>
+      </Helmet>
       <Container
         sx={{
           maxWidth: "none",
