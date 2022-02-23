@@ -45,6 +45,7 @@ import { useParams } from "react-router";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useNotifications } from "@mantine/notifications";
+import { USER_SEARCH_RESET } from "../constants/userConstants";
 const Profile = ({ match }) => {
 
 
@@ -200,6 +201,8 @@ const Profile = ({ match }) => {
   useEffect(() => {
     searchHandler();
     dispatch(getRate());
+
+
     //eslint-disable-next-line
   }, [dispatch, match]);
 
@@ -208,6 +211,13 @@ const Profile = ({ match }) => {
       generateLanguageChartData(repos);
     }
   }, [repos]);
+
+  useEffect(() => {
+    console.log('ddsd')
+    dispatch({
+      type: USER_SEARCH_RESET
+    })
+  }, [params.name])
 
   return (
     <Paper sx={{ minHeight: "100vh" }}>

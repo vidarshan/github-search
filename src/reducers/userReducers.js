@@ -16,7 +16,8 @@ import {
     USER_GET_STARRED_FAIL,
     GET_RATE_LIMIT_REQUEST,
     GET_RATE_LIMIT_SUCCESS,
-    GET_RATE_LIMIT_FAIL
+    GET_RATE_LIMIT_FAIL,
+    USER_SEARCH_RESET
 } from '../constants/userConstants';
 
 export const userSearchReducer = (
@@ -30,6 +31,8 @@ export const userSearchReducer = (
             return { ...state, loading: false, userSearch: action.payload };
         case USER_SEARCH_FAIL:
             return { ...state, loading: false, error: action.payload };
+        case USER_SEARCH_RESET:
+            return { ...state, loading: false, userSearch: {}, error: null };
         default:
             return state;
     }
