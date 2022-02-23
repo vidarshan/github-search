@@ -35,7 +35,15 @@ function App() {
 
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-      <MantineProvider theme={{ colorScheme }}>
+      <MantineProvider theme={{
+        colorScheme, breakpoints: {
+          xs: 350,
+          sm: 600,
+          md: 1000,
+          lg: 1200,
+          xl: 1400,
+        },
+      }}>
         <Paper sx={{ borderRadius: '0px' }}>
           <Container
             sx={{
