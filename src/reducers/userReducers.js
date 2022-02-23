@@ -17,7 +17,10 @@ import {
     GET_RATE_LIMIT_REQUEST,
     GET_RATE_LIMIT_SUCCESS,
     GET_RATE_LIMIT_FAIL,
-    USER_SEARCH_RESET
+    USER_SEARCH_RESET,
+    USER_GET_REPOS_RESET,
+    USER_GET_GISTS_RESET,
+    USER_GET_STARRED_RESET
 } from '../constants/userConstants';
 
 export const userSearchReducer = (
@@ -59,6 +62,8 @@ export const getUserRepos = (state = { userRepos: [] }, action) => {
             return { ...state, loading: false, userRepos: action.payload };
         case USER_GET_REPOS_FAIL:
             return { ...state, loading: false, error: action.payload }
+        case USER_GET_REPOS_RESET:
+            return { ...state, loading: false, userRepos: [], error: null };
         default:
             return state;
     }
@@ -72,6 +77,8 @@ export const getUserGists = (state = { userGists: [] }, action) => {
             return { ...state, loading: false, userGists: action.payload };
         case USER_GET_GISTS_FAIL:
             return { ...state, loading: false, error: action.payload }
+        case USER_GET_GISTS_RESET:
+            return { ...state, loading: false, userGists: [], error: null };
         default:
             return state;
     }
@@ -85,6 +92,8 @@ export const getUserStarred = (state = { userStarred: [] }, action) => {
             return { ...state, loading: false, userStarred: action.payload };
         case USER_GET_STARRED_FAIL:
             return { ...state, loading: false, error: action.payload }
+        case USER_GET_STARRED_RESET:
+            return { ...state, loading: false, userStarred: [], error: null };
         default:
             return state;
     }

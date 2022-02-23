@@ -45,7 +45,7 @@ import { useParams } from "react-router";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useNotifications } from "@mantine/notifications";
-import { USER_SEARCH_RESET } from "../constants/userConstants";
+import { USER_GET_GISTS_RESET, USER_GET_REPOS_RESET, USER_GET_STARRED_RESET, USER_SEARCH_RESET } from "../constants/userConstants";
 const Profile = ({ match }) => {
 
 
@@ -81,20 +81,6 @@ const Profile = ({ match }) => {
     error: gistsError,
     userGists: gists,
   } = useSelector((state) => state.userGists);
-
-
-  useEffect(() => {
-    if (gistsError || starredError || repoError) {
-      notifications.showNotification({
-        title: "Oops!",
-        message: "Error Fetching Data.",
-        icon: <BsX />,
-        color: "red",
-        duration: 10000,
-      });
-    }
-    //eslint-disable-next-line
-  }, [gistsError, starredError, repoError]);
 
   const handlerPageChange = (e) => {
     setActivePage(e);
@@ -213,10 +199,20 @@ const Profile = ({ match }) => {
   }, [repos]);
 
   useEffect(() => {
-    console.log('ddsd')
+
     dispatch({
       type: USER_SEARCH_RESET
     })
+    dispatch({
+      type: USER_GET_REPOS_RESET
+    })
+    dispatch({
+      type: USER_GET_STARRED_RESET
+    })
+    dispatch({
+      type: USER_GET_GISTS_RESET
+    })
+
   }, [params.name])
 
   return (
