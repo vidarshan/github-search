@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { BsMoonStarsFill } from "react-icons/bs";
 import { useHotkeys, useLocalStorageValue } from '@mantine/hooks';
-import './styles/styles.scss'
+import './styles/styles.css'
 import { getRate } from "./actions/userActions";
 import Spinner from "./components/Spinner";
 
