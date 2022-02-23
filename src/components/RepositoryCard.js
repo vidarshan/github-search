@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Text, Group, Grid, Col } from "@mantine/core";
+import { Card, Text, Group, Grid, Col, Anchor } from "@mantine/core";
 import { BsStarFill } from "react-icons/bs";
 import { BiGitBranch } from "react-icons/bi";
 import { GoPrimitiveDot } from "react-icons/go";
@@ -32,7 +32,7 @@ const RepositoryCard = ({
     >
       <Grid>
         <Col span={6}>
-          <Text weight={600}>{name}</Text>
+          <Anchor underline href={`https://github.com/${name}`} target="_blank"><Text weight={600}>{name}</Text></Anchor>
         </Col>
         {language && (
           <Col span={6}>
