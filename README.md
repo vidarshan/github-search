@@ -3,6 +3,10 @@
 <h5 align='center'>Search and find all the details of a Github user by their username.</h5>
 <h5 align='center'>🌎 https://github-search-3.vercel.app/</h5>
 
+<div align="center">
+<img src="https://therealsujitk-vercel-badge.vercel.app/?app=github-search-3" />
+</div>
+
 ## 💡 Objective
 - Search Github users easily.
 - Provide a clear view of their repositories, gists and starred repositories.
