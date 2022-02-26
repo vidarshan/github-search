@@ -1,18 +1,29 @@
 <h1 align='center'>Github Search 🔍</h1>
 
-<h5 align='center'>Search and find all the details of a Github user by their name. Github search made simple.</h5>
-<h5 align='center'>🌎 https://61a26a6d1c6eea0007117321--quirky-heisenberg-ef69be.netlify.app/</h5>
+<h5 align='center'>Search and find all the details of a Github user by their username.</h5>
+<h5 align='center'>🌎 https://github-search-3.vercel.app/</h5>
 
-## 📁 Data Source
+## 💡 Objective
+- Search Github users easily.
+- Provide a clear view of their repositories, gists and starred repositories.
 
+
+
+## ✅ Features
+- Easy search.
+- Tab view for neat presentation of the data.
+- Most used languages section. 
+- Front-end Pagination.
+
+
+
+##  👨‍💻 Tools and Technologies
+- React JS
+- Mantine
 - Github API
+- Vercel
 
-## 👨‍💻 Technologies
 
-- React JS [Create React App]
-- Ant Design
-- React Awesome Reveal
-- Moment
 
 ## ⚙️ Setup
 
@@ -41,7 +52,3 @@
 - Get Github Client Keys
 
       https://docs.github.com/en/rest/guides/basics-of-authentication
-
-## 📝 Notes
-
-- If there is a use case for personal or commercial use, please contact the creator through the email vidarshanadithya3@gmail.com 📧.
