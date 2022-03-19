@@ -56,3 +56,10 @@
 - Get Github Client Keys
 
       https://docs.github.com/en/rest/guides/basics-of-authentication
+      
+## ⚠️ Update 19-03-2022
+
+`npm` error :   
+
+If `Error: error:0308010C:digital envelope routines::unsupported` appears on the `npm start` command, use npm version 14.x.
+
