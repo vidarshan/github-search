@@ -11,7 +11,8 @@
 - Search Github users easily.
 - Provide a clear view of their repositories, gists and starred repositories.
 
-
+## 🚀 Version
+- Version 3.
 
 ## ✅ Features
 - Easy search.
