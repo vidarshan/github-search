@@ -1,6 +1,6 @@
 <h1 align='center'>Github Search 🔍</h1>
 
-<h5 align='center'>Search and find all the details of a Github user by their username.</h5>
+<h5 align='center'>Search and find all the details of a Github user by their username</h5>
 <h5 align='center'>🌎 https://github-search-3.vercel.app/</h5>
 
 <div align="center">
